@@ -14,4 +14,6 @@
 * [第八卷·Linux秘籍](chapter8/README.md)
 * [第九卷·前端项目实战](chapter9/README.md)
     * [前后端BFF架构实现](chapter9/section1.md)
+* [第十卷·前端性能优化与工程化](chapter10/README.md)
+    * [前端性能优化的服务器基础](chapter10/section1.md)
 
