@@ -12,8 +12,10 @@
 * [第六卷·前端测试](chapter6/README.md)
 * [第七卷·传输协议那点事儿](chapter7/README.md)
 * [第八卷·Linux秘籍](chapter8/README.md)
+    * [Linux开发环境准备](chapter8/section1.md)
 * [第九卷·前端项目实战](chapter9/README.md)
     * [前后端BFF架构实现](chapter9/section1.md)
 * [第十卷·前端性能优化与工程化](chapter10/README.md)
     * [前端性能优化的服务器基础](chapter10/section1.md)
+    * [Chrome浏览器的渲染机制](chapter10/section2.md)
 

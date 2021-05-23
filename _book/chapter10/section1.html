@@ -61,6 +61,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="section2.html" />
+    
     
     <link rel="prev" href="./" />
     
@@ -257,6 +259,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/section1.html">
+            
+                <a href="../chapter8/section1.html">
+            
+                    
+                    Linux开发环境准备
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.10" data-path="../chapter9/">
@@ -318,6 +339,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.11.2" data-path="section2.html">
+            
+                <a href="section2.html">
+            
+                    
+                    Chrome浏览器的渲染机制
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -371,7 +405,7 @@
                                 <h1 id="&#x524D;&#x7AEF;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x670D;&#x52A1;&#x5668;&#x77E5;&#x8BC6;">&#x524D;&#x7AEF;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x670D;&#x52A1;&#x5668;&#x77E5;&#x8BC6;</h1>
 <h2 id="&#x96F6;&#x3001;&#x524D;&#x8A00;">&#x96F6;&#x3001;&#x524D;&#x8A00;</h2>
 <ul>
-<li>HTTP&#x8BF7;&#x6C42;&#x7684;&#x5177;&#x4F53;&#x8FC7;&#x627F;&#xFF08;&#x524D;&#x7F6E;&#x77E5;&#x8BC6;&#xFF0C;&#x8FD9;&#x5728;&#x4EE5;&#x524D;&#x662F;&#x8BB2;&#x8FC7;&#x7684;&#xFF09;</li>
+<li>HTTP&#x8BF7;&#x6C42;&#x7684;&#x5177;&#x4F53;&#x8FC7;&#x7A0B;&#xFF08;&#x524D;&#x7F6E;&#x77E5;&#x8BC6;&#xFF0C;&#x8FD9;&#x5728;&#x4EE5;&#x524D;&#x662F;&#x8BB2;&#x8FC7;&#x7684;&#xFF09;</li>
 </ul>
 <h1 id="&#x4E00;&#x3001;&#x6D4F;&#x89C8;&#x5668;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;">&#x4E00;&#x3001;&#x6D4F;&#x89C8;&#x5668;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;</h1>
 <h2 id="i&#x3001;http&#x5904;&#x7406;&#x6D41;&#x7A0B;&#xFF08;&#x5927;&#x6982;&#x8FC7;&#x7A0B;&#xFF09;">I&#x3001;HTTP&#x5904;&#x7406;&#x6D41;&#x7A0B;&#xFF08;&#x5927;&#x6982;&#x8FC7;&#x7A0B;&#xFF09;</h2>
@@ -464,7 +498,47 @@
 <p>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#x52A0;&#x4E00;&#x4E2A;&#x70B9;&#x5C31;&#x662F;&#x589E;&#x52A0;&#x4E00;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4F8B;&#x5982;<code>baidu.com</code> &#x662F;&#x4E00;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;<code>www.baidu.com</code>&#x5C31;&#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x3002;</p>
 <h3 id="&#x4EC0;&#x4E48;&#x662F;soa&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;SOA&#xFF1F;</h3>
 <p>SOA&#xFF08;Start Of Authority&#xFF0C;&#x8D77;&#x59CB;&#x6388;&#x6743;&#x8BB0;&#x5F55;&#xFF09;&#xFF0C;&#x4E00;&#x4E2A;&#x533A;&#x57DF;&#x89E3;&#x6790;&#x5E93;&#x6709;&#x4E14;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;SOA&#x8BB0;&#x5F55;&#xFF0C;&#x800C;&#x4E14;&#x5FC5;&#x987B;&#x653E;&#x5728;&#x7B2C;&#x4E00;&#x6761;&#x3002;</p>
-<h1 id="&#x4E09;&#x3001;tcp&#x4E09;&#x6B21;&#x63E1;&#x624B;">&#x4E09;&#x3001;TCP&#x4E09;&#x6B21;&#x63E1;&#x624B;</h1>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;a&#x8BB0;&#x5F55;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;A&#x8BB0;&#x5F55;&#xFF1F;</h3>
+<p>A&#x8BB0;&#x5F55;&#xFF08;&#x4E3B;&#x673A;&#x8BB0;&#x5F55;&#xFF09;&#xFF0C;&#x7528;&#x4E8E;&#x57DF;&#x540D;&#x89E3;&#x6790;&#x7684;&#x91CD;&#x8981;&#x8BB0;&#x5F55;&#xFF0C;&#x5C06;&#x7279;&#x5B9A;&#x7684;&#x4E3B;&#x673A;&#x57DF;&#x540D;&#x5F71;&#x5C04;&#x5230;&#x5BF9;&#x5E94;&#x4E3B;&#x673A;&#x7684;IP&#x5730;&#x5740;&#xFF08;IPV4&#xFF09;&#x4E0A;&#x3002;</p>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;aaaa&#x8BB0;&#x5F55;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;AAAA&#x8BB0;&#x5F55;&#xFF1F;</h3>
+<p>AAAA&#x8BB0;&#x5F55; &#xFF08;IPV6&#x4E3B;&#x673A;&#x8BB0;&#x5F55;&#xFF09;&#xFF0C;&#x4E0E;A&#x8BB0;&#x5F55;&#x5BF9;&#x5E94;&#xFF0C;&#x7528;&#x4E8E;&#x5C06;&#x4E3B;&#x673A;&#x540D;&#x6620;&#x5C04;&#x5230;&#x4E00;&#x4E2A;&#x4E3B;&#x673A;&#x7684;IPV6&#x5730;&#x5740;&#x3002;</p>
+<h2 id="iii&#x3001;dns&#x67E5;&#x8BE2;&#x8FC7;&#x7A0B;&#x56FE;&#x89E3;">III&#x3001;DNS&#x67E5;&#x8BE2;&#x8FC7;&#x7A0B;&#x56FE;&#x89E3;</h2>
+<p><img src="../assets/images/chapter10/DNS.png" alt="node-app.png" style="zoom:80%;"></p>
+<h2 id="iv&#x3001;dns&#x67E5;&#x8BE2;&#x8FC7;&#x7A0B;&#x8BE6;&#x89E3;&#xFF08;&#x4EE5;wwwgooglecom&#x4E3A;&#x4F8B;&#xFF09;">IV&#x3001;DNS&#x67E5;&#x8BE2;&#x8FC7;&#x7A0B;&#x8BE6;&#x89E3;&#xFF08;&#x4EE5;www.google.com&#x4E3A;&#x4F8B;&#xFF09;</h2>
+<ul>
+<li>&#x6B65;&#x9AA4;1&#x662F;&#x628A;www.google.com&#x53D1;&#x9001;&#x7ED9;DNS&#x670D;&#x52A1;&#x5668;</li>
+<li>DNS&#x670D;&#x52A1;&#x5668;&#x63A5;&#x6536;&#x5230;www.google.com&#xFF0C;&#x4F1A;&#x628A;&#x6574;&#x4E2A;&#x57DF;&#x540D;&#x53D1;&#x9001;&#x7ED9;&#x6839;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x6839;&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x67E5;&#x8BE2;&#x4E00;&#x4E0B;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x4EE5;<code>.com</code>&#x7ED3;&#x5C3E;&#x7684;&#x4E00;&#x7EA7;&#x57DF;&#x540D;&#x5F52;&#x54EA;&#x4E2A;TLD Server&#x7BA1;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x67E5;&#x4E00;&#x4E0B;google.com&#x5F52;&#x54EA;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x7BA1;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;TLD&#x670D;&#x52A1;&#x5668;&#x7684;IP&#x7ED9;DNS&#x670D;&#x52A1;&#x5668;&#x3002;</li>
+<li>DNS&#x670D;&#x52A1;&#x5668;&#x63A5;&#x6536;&#x5230;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x63A5;&#x7740;&#x518D;&#x53D1;&#x9001;&#x7B2C;&#x4E8C;&#x4E2A;&#x8BF7;&#x6C42;&#x7ED9;TLD&#x670D;&#x52A1;&#x5668;&#xFF0C;TLD&#x4F1A;&#x67E5;&#x8BE2;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x67E5;&#x770B;google.com&#x4E00;&#x7EA7;&#x57DF;&#x540D;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x540D;&#x79F0;&#x670D;&#x52A1;&#x5668;&#x7684;IP&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x7ED9;DNS&#x3002;</li>
+<li>DNS&#x670D;&#x52A1;&#x5668;&#x63A5;&#x6536;&#x5230;&#x540D;&#x79F0;&#x670D;&#x52A1;&#x5668;&#x7684;IP&#x4E4B;&#x540E;&#xFF0C;&#x53D1;&#x9001;&#x7B2C;&#x4E09;&#x4E2A;&#x8BF7;&#x6C42;&#x7ED9;&#x540D;&#x79F0;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x540D;&#x79F0;&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x67E5;&#x627E;www.google.com&#x6240;&#x5BF9;&#x5E94;&#x7684;IP&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x7ED9;DNS&#x670D;&#x52A1;&#x5668;&#x3002;</li>
+<li>&#x6700;&#x540E;DNS&#x670D;&#x52A1;&#x5668;&#x4F1A;&#x628A;IP&#x5730;&#x5740;&#x4F1A;&#x539F;&#x5C01;&#x4E0D;&#x52A8;&#x7684;&#x8F6C;&#x53D1;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;&#x7136;&#x540E;&#x7531;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;HTTP&#x8BF7;&#x6C42;&#x3002;</li>
+</ul>
+<h2 id="v&#x3001;cdn">V&#x3001;CDN</h2>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;cdn&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;CDN&#xFF1F;</h3>
+<p>CDN&#x7684;&#x5168;&#x79F0;&#x662F;Content Delivery Network&#xFF0C;&#x5373;<a href="https://baike.baidu.com/item/&#x5185;&#x5BB9;&#x5206;&#x53D1;&#x7F51;&#x7EDC;/4034265" target="_blank">&#x5185;&#x5BB9;&#x5206;&#x53D1;&#x7F51;&#x7EDC;</a></p>
+<h3 id="cdn&#x89E3;&#x51B3;&#x4E86;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F;">CDN&#x89E3;&#x51B3;&#x4E86;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F;</h3>
+<ul>
+<li>&#x901A;&#x8FC7;&#x67B6;&#x8BBE;&#x955C;&#x50CF;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5206;&#x6563;&#x6570;&#x636E;&#x8BF7;&#x6C42;&#x7684;&#x538B;&#x529B;&#xFF08;&#x4F9D;&#x8D56;DNS&#x89E3;&#x6790;&#x7684;&#x5C31;&#x8FD1;&#x539F;&#x5219;&#xFF09;&#x3002;</li>
+<li>&#x5E26;&#x5BBD;&#x4F18;&#x5316;&#x3002;</li>
+</ul>
+<h1 id="&#x4E09;&#x3001;tcp&#x4E09;&#x6B21;&#x63E1;&#x624B;&#x4E0E;&#x56DB;&#x6B21;&#x6325;&#x624B;">&#x4E09;&#x3001;TCP&#x4E09;&#x6B21;&#x63E1;&#x624B;&#x4E0E;&#x56DB;&#x6B21;&#x6325;&#x624B;</h1>
+<h3 id="i&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#xFF1F;">I&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#xFF1F;</h3>
+<ul>
+<li>Client&#x5411;Server&#x53D1;&#x8D77;&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#xFF0C;&#x9996;&#x5148;&#x53D1;&#x4E00;&#x4E2A;SYN&#x8FDE;&#x63A5;&#x6307;&#x4EE4;&#xFF0C;&#x5728;&#x534F;&#x8BAE;&#x5934;&#x4E2D;&#x52A0;&#x5165;&#x987A;&#x5E8F;&#x53F7;seq=x&#xFF0C;x&#x662F;&#x5177;&#x4F53;&#x7684;&#x503C;&#x3002;x&#x5F52;&#x5BA2;&#x6237;&#x7AEF;&#x7EF4;&#x62A4;&#x3002;</li>
+<li>Server&#x54CD;&#x5E94;Client&#x7684;&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#xFF0C;&#x9996;&#x5148;&#x53D1;&#x4E00;&#x4E2A;SYN&#x6307;&#x4EE4;&#xFF0C;&#x5728;&#x534F;&#x8BAE;&#x5934;&#x4E2D;&#x52A0;&#x5165;&#x987A;&#x5E8F;&#x53F7;seq=y&#xFF0C;y&#x662F;&#x5177;&#x4F53;&#x7684;&#x503C;&#xFF0C;y&#x5F52;&#x670D;&#x52A1;&#x7AEF;&#x7EF4;&#x62A4;&#x3002;&#x540C;&#x65F6;&#x670D;&#x52A1;&#x7AEF;&#x8FD8;&#x8981;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x5E94;&#x7B54;&#x53F7;ACK=x+1&#xFF0C;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x8FC7;&#x6765;&#x7684;&#x4E0A;&#x4E00;&#x4E2A;&#x5305;&#x7684;&#x987A;&#x5E8F;&#x53F7;&#x52A0;1&#x3002;</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x6536;&#x5230;Server&#x7684;&#x54CD;&#x5E94;&#x4E4B;&#x540E;&#xFF0C;&#x8FD8;&#x8981;&#x5411;&#x670D;&#x52A1;&#x5668;&#x518D;&#x53D1;&#x4E00;&#x4E2A;&#x5E94;&#x7B54;&#x53F7;ACK=y+1&#xFF0C;&#x662F;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x8FC7;&#x6765;&#x7684;&#x4E0A;&#x4E00;&#x4E2A;&#x5305;&#x7684;&#x987A;&#x5E8F;&#x53F7;&#x52A0;1&#x3002;</li>
+</ul>
+<p>&#x901A;&#x8FC7;&#x8FD9;&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x4FDD;&#x8BC1;&#x4E86;&#x53CC;&#x65B9;&#x90FD;&#x80FD;&#x6B63;&#x786E;&#x7684;&#x6536;&#x5230;&#x5BF9;&#x65B9;&#x53D1;&#x9001;&#x8FC7;&#x6765;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x4FDD;&#x8BC1;&#x8FDE;&#x63A5;&#x7684;&#x53EF;&#x9760;&#xFF0C;&#x8FD9;&#x4E5F;&#x5C31;&#x80FD;&#x89E3;&#x91CA;&#x4E86;&#x4E3A;&#x4EC0;&#x4E48;&#x5FC5;&#x987B;&#x662F;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#x3002;</p>
+<h3 id="ii&#x3001;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#xFF1F;">II&#x3001;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#xFF1F;</h3>
+<p>&#x4E0A;&#x6587;&#x5DF2;&#x7ECF;&#x89E3;&#x7B54;&#x4E86;&#xFF0C;&#x53EA;&#x6709;&#x901A;&#x8FC7;&#x4E09;&#x6B21;&#x63E1;&#x624B;&#x624D;&#x80FD;&#x4FDD;&#x8BC1;&#x8FDE;&#x63A5;&#x7684;&#x53EF;&#x9760;&#x3002;&#x4E00;&#x6B21;&#x4E0D;&#x80FD;&#x5C11;&#xFF0C;&#x591A;&#x4E86;&#x6D6A;&#x8D39;&#x3002;</p>
+<h3 id="iii&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x56DB;&#x6B21;&#x6325;&#x624B;&#xFF1F;">III&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x56DB;&#x6B21;&#x6325;&#x624B;&#xFF1F;</h3>
+<ul>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x51B3;&#x5B9A;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#xFF0C;&#x5411;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x9001;&#x4E00;&#x4E2A;FIN&#xFF08;finish&#xFF09;&#x6307;&#x4EE4;&#xFF0C;&#x5E76;&#x643A;&#x5E26;&#x987A;&#x5E8F;&#x53F7;seq=x+2&#x4EE5;&#x53CA;&#x5E94;&#x7B54;&#x53F7;ACK=y+1&#x3002;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x6536;&#x5230;FIN&#x8BF7;&#x6C42;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x9A6C;&#x4E0A;&#x5E94;&#x7B54;&#xFF0C;&#x5E76;&#x643A;&#x5E26;&#x5E94;&#x7B54;&#x53F7;ACK=x+3&#x3002;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x63A5;&#x7740;&#x53D1;&#x9001;&#x4E00;&#x4E2A;FIN&#x6307;&#x4EE4;&#xFF0C;&#x5E76;&#x643A;&#x5E26;&#x987A;&#x5E8F;&#x53F7;seq=y+1&#x3002;</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x63A5;&#x6536;&#x5230;&#x670D;&#x52A1;&#x5668;&#x7684;FIN&#x8BF7;&#x6C42;&#xFF0C;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x5E94;&#x7B54;&#x53F7;ACK=y+2</li>
+</ul>
+<h3 id="iv&#x3001;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x56DB;&#x6B21;&#x6325;&#x624B;&#xFF1F;">IV&#x3001;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x56DB;&#x6B21;&#x6325;&#x624B;&#xFF1F;</h3>
+<p>&#x4E3A;&#x4E86;&#x66F4;&#x597D;&#x7684;&#x4E25;&#x5BC6;&#x6027;&#x3002;&#x65AD;&#x5F00;&#x9700;&#x8981;&#x786E;&#x8BA4;&#x4E00;&#x6B21;&#x3002;</p>
 <h1 id="&#x56DB;&#x3001;http&#x7F13;&#x5B58;&#x673A;&#x5236;">&#x56DB;&#x3001;HTTP&#x7F13;&#x5B58;&#x673A;&#x5236;</h1>
 <h1 id="&#x4E94;&#x3001;cdn&#x96C6;&#x7FA4;">&#x4E94;&#x3001;CDN&#x96C6;&#x7FA4;</h1>
 
@@ -494,10 +568,14 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 第十卷·前端性能优化与工程化">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第十卷·前端性能优化与工程化">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="section2.html" class="navigation navigation-next " aria-label="Next page: Chrome浏览器的渲染机制">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -506,7 +584,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"前端性能优化的服务器基础","level":"1.11.1","depth":2,"previous":{"title":"第十卷·前端性能优化与工程化","level":"1.11","depth":1,"path":"chapter10/README.md","ref":"chapter10/README.md","articles":[{"title":"前端性能优化的服务器基础","level":"1.11.1","depth":2,"path":"chapter10/section1.md","ref":"chapter10/section1.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter10/section1.md","mtime":"2021-05-11T09:22:47.105Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-04T02:24:47.736Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"前端性能优化的服务器基础","level":"1.11.1","depth":2,"next":{"title":"Chrome浏览器的渲染机制","level":"1.11.2","depth":2,"path":"chapter10/section2.md","ref":"chapter10/section2.md","articles":[]},"previous":{"title":"第十卷·前端性能优化与工程化","level":"1.11","depth":1,"path":"chapter10/README.md","ref":"chapter10/README.md","articles":[{"title":"前端性能优化的服务器基础","level":"1.11.1","depth":2,"path":"chapter10/section1.md","ref":"chapter10/section1.md","articles":[]},{"title":"Chrome浏览器的渲染机制","level":"1.11.2","depth":2,"path":"chapter10/section2.md","ref":"chapter10/section2.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter10/section1.md","mtime":"2021-05-11T15:57:29.812Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-04T02:24:47.736Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

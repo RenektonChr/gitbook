@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第九卷·前端项目实战 · GitBook</title>
+        <title>Chrome浏览器的渲染机制 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="section1.html" />
     
-    
-    <link rel="prev" href="../chapter8/section1.html" />
+    <link rel="prev" href="section1.html" />
     
 
     </head>
@@ -280,9 +278,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.10" data-path="./">
+        <li class="chapter " data-level="1.10" data-path="../chapter9/">
             
-                <a href="./">
+                <a href="../chapter9/">
             
                     
                     第九卷·前端项目实战
@@ -294,9 +292,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.10.1" data-path="section1.html">
+        <li class="chapter " data-level="1.10.1" data-path="../chapter9/section1.html">
             
-                <a href="section1.html">
+                <a href="../chapter9/section1.html">
             
                     
                     前后端BFF架构实现
@@ -312,9 +310,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11" data-path="../chapter10/">
+        <li class="chapter " data-level="1.11" data-path="./">
             
-                <a href="../chapter10/">
+                <a href="./">
             
                     
                     第十卷·前端性能优化与工程化
@@ -326,9 +324,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.11.1" data-path="../chapter10/section1.html">
+        <li class="chapter " data-level="1.11.1" data-path="section1.html">
             
-                <a href="../chapter10/section1.html">
+                <a href="section1.html">
             
                     
                     前端性能优化的服务器基础
@@ -339,9 +337,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.2" data-path="../chapter10/section2.html">
+        <li class="chapter active" data-level="1.11.2" data-path="section2.html">
             
-                <a href="../chapter10/section2.html">
+                <a href="section2.html">
             
                     
                     Chrome浏览器的渲染机制
@@ -387,7 +385,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >第九卷·前端项目实战</a>
+        <a href=".." >Chrome浏览器的渲染机制</a>
     </h1>
 </div>
 
@@ -402,11 +400,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x524D;&#x7AEF;&#x5B9E;&#x6218;&#x9879;&#x76EE;">&#x524D;&#x7AEF;&#x5B9E;&#x6218;&#x9879;&#x76EE;</h1>
+                                <h1 id="chrome&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x6E32;&#x67D3;&#x673A;&#x5236;">Chrome&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x6E32;&#x67D3;&#x673A;&#x5236;</h1>
+<h2 id="&#x96F6;&#x3001;&#x6587;&#x7AE0;&#x6897;&#x6982;">&#x96F6;&#x3001;&#x6587;&#x7AE0;&#x6897;&#x6982;</h2>
 <ul>
-<li>&#x524D;&#x540E;&#x7AEF;BFF&#x67B6;&#x6784;&#x5B9E;&#x73B0;&#xFF08;&#x4E00;&#xFF09;</li>
-<li>&#x524D;&#x540E;&#x7AEF;BFF&#x67B6;&#x6784;&#x5B9E;&#x73B0;&#xFF08;&#x4E8C;&#xFF09;</li>
+<li>&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8FDB;&#x5316;&#x8FC7;&#x7A0B;</li>
+<li>&#x73B0;&#x4EE3;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7279;&#x5F81;&#x4E0E;&#x7ED3;&#x6784;</li>
+<li>chrome&#x6D4F;&#x89C8;&#x5668;&#x67B6;&#x6784;</li>
+<li>chrome&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;</li>
+<li>&#x521D;&#x7AA5;WebKit</li>
 </ul>
+<h2 id="&#x4E00;&#x3001;&#x73B0;&#x4EE3;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8FDB;&#x5316;">&#x4E00;&#x3001;&#x73B0;&#x4EE3;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8FDB;&#x5316;</h2>
+<ol>
+<li>1990&#x5E74;&#xFF0C;&#x8482;&#x59C6;&#xB7;&#x4F2F;&#x7EB3;&#x65AF;&#xB7;&#x674E;&#x5F00;&#x53D1;&#x4E86;&#x7B2C;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x6D4F;&#x89C8;&#x5668;WorldWideWeb&#xFF0C;&#x540E;&#x6539;&#x540D;&#x4E3A;Nexus&#x3002;WorldWideWeb&#x6D4F;&#x89C8;&#x5668;&#x652F;&#x6301;&#x65E9;&#x671F;&#x7684;HTML&#x6807;&#x8BB0; &#x8BED;&#x8A00;&#xFF0C;&#x529F;&#x80FD;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x80FD;&#x652F;&#x6301;&#x6587;&#x672C;&#x3001;&#x7B80;&#x5355;&#x7684;&#x6837;&#x5F0F;&#x8868;&#x3001;&#x7535;&#x5F71;&#x3001;&#x58F0;&#x97F3;&#x3001;&#x56FE;&#x7247;&#x7B49;&#x8D44;&#x6E90;&#x7684;&#x663E;&#x793A;&#x3002;</li>
+<li>1993&#x5E74;&#xFF0C;&#x9A6C;&#x514B;&#xB7;&#x5B89;&#x5FB7;&#x68EE;&#x9886;&#x5BFC;&#x7684;&#x56E2;&#x5F00;&#x53D1;&#x4E86;&#x4E00;&#x4E2A;&#x771F;&#x6B63;&#x6709;&#x5F71;&#x54CD;&#x529B;&#x7684;&#x6D4F;&#x89C8;&#x5668;Mosaic&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x540E;&#x6765;&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x6D41;&#x884C;&#x7684;&#x6D4F;&#x89C8;&#x5668;Netscape Navigator&#x3002;</li>
+<li>1995&#x5E74;&#xFF0C;&#x5FAE;&#x8F6F;&#x63A8;&#x51FA;&#x4E86;&#x95FB;&#x540D;&#x4E8E;&#x4E16;&#x7684;&#x6D4F;&#x89C8;&#x5668;Internet Explorer&#x3002;&#x7B2C;&#x4E00;&#x6B21;&#x6D4F;&#x89C8;&#x5668;&#x5927;&#x6218;&#x5F00;&#x59CB;&#xFF0C;&#x6301;&#x7EED;&#x4E24;&#x5E74;</li>
+<li>1998&#x5E74;&#xFF0C;Netscape&#x516C;&#x53F8;&#x5F00;&#x653E;Netscape Navigator&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x6210;&#x7ACB;&#x4E86;Mozilla&#x57FA;&#x91D1;&#x4F1A;&#x3002;&#x7B2C;&#x4E8C;&#x6B21;&#x6D4F;&#x89C8;&#x5668;&#x5927;&#x6218;&#x5F00;&#x59CB;&#xFF0C;&#x6301;&#x7EED;&#x516B;&#x5E74;</li>
+<li>2003&#x5E74;&#xFF0C;&#x82F9;&#x679C;&#x516C;&#x53F8;&#x53D1;&#x5E03;&#x4E86;Safari&#x6D4F;&#x89C8;&#x5668;&#x3002;</li>
+<li>2004&#x5E74;&#xFF0C;Netscape&#x516C;&#x53F8;&#x53D1;&#x5E03;&#x4E86;&#x8457;&#x540D;&#x7684;&#x5F00;&#x6E90;&#x6D4F;&#x89C8;&#x5668;Mozilla Firefox&#x3002;</li>
+<li>2005&#x5E74;&#xFF0C;&#x82F9;&#x679C;&#x516C;&#x53F8;&#x5F00;&#x6E90;&#x4E86;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x7684;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF0C;&#x57FA;&#x4E8E;&#x6B64;&#x53D1;&#x8D77;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;WebKit(Safari&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5185;&#x6838;)&#x3002;</li>
+<li>2008&#x5E74;&#xFF0C; Google&#x516C;&#x53F8;&#x5DF2;WebKit&#x4E3A;&#x5185;&#x6838;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x9879;&#x76EE;Chromium&#x3002;&#x4EE5;Chromium&#x4E3A;&#x57FA;&#x7840;&#xFF0C;&#x8C37;&#x6B4C;&#x53D1;&#x5E03;&#x4E86;Chrome&#x6D4F;&#x89C8;&#x5668;&#x3002; &#x81F3;&#x4E8E;&#x8FD9;&#x4E24;&#x8005;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5730;&#x7406;&#x89E3;&#x4E3A;:Chromium&#x4E3A;&#x5B9E;&#x9A8C;&#x7248;&#xFF0C;&#x5177;&#x6709;&#x4F17;&#x591A;&#x65B0;&#x7279;&#x6027;;Chrome&#x4E3A;&#x7A33;&#x5B9A;&#x7248;&#x3002;</li>
+</ol>
+<h2 id="&#x4E8C;&#x3001;&#x73B0;&#x4EE3;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7279;&#x5F81;">&#x4E8C;&#x3001;&#x73B0;&#x4EE3;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7279;&#x5F81;</h2>
+<h3 id="i&#x3001;&#x7F51;&#x7EDC;">I&#x3001;&#x7F51;&#x7EDC;</h3>
+<h3 id="ii&#x3001;&#x8D44;&#x6E90;&#x7BA1;&#x7406;">II&#x3001;&#x8D44;&#x6E90;&#x7BA1;&#x7406;</h3>
+<h3 id="iii&#x3001;&#x7F51;&#x9875;&#x6D4F;&#x89C8;">III&#x3001;&#x7F51;&#x9875;&#x6D4F;&#x89C8;</h3>
+<h3 id="iv&#x3001;&#x591A;&#x9875;&#x9762;&#x7BA1;&#x7406;">IV&#x3001;&#x591A;&#x9875;&#x9762;&#x7BA1;&#x7406;</h3>
+<h3 id="v&#x3001;&#x63D2;&#x4EF6;&#x548C;&#x6269;&#x5C55;">V&#x3001;&#x63D2;&#x4EF6;&#x548C;&#x6269;&#x5C55;</h3>
+<h3 id="vi&#x3001;&#x8D26;&#x6237;&#x548C;&#x540C;&#x6B65;">VI&#x3001;&#x8D26;&#x6237;&#x548C;&#x540C;&#x6B65;</h3>
+<h3 id="vii&#x3001;&#x5B89;&#x5168;&#x673A;&#x5236;">VII&#x3001;&#x5B89;&#x5168;&#x673A;&#x5236;</h3>
+<h3 id="viii&#x3001;&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;">VIII&#x3001;&#x5F00;&#x53D1;&#x8005;&#x5DE5;&#x5177;</h3>
 
                                 
                                 </section>
@@ -434,14 +456,10 @@
 
             
                 
-                <a href="../chapter8/section1.html" class="navigation navigation-prev " aria-label="Previous page: Linux开发环境准备">
+                <a href="section1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 前端性能优化的服务器基础">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="section1.html" class="navigation navigation-next " aria-label="Next page: 前后端BFF架构实现">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -450,7 +468,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第九卷·前端项目实战","level":"1.10","depth":1,"next":{"title":"前后端BFF架构实现","level":"1.10.1","depth":2,"path":"chapter9/section1.md","ref":"chapter9/section1.md","articles":[]},"previous":{"title":"Linux开发环境准备","level":"1.9.1","depth":2,"path":"chapter8/section1.md","ref":"chapter8/section1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter9/README.md","mtime":"2021-04-27T00:31:04.411Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-04T02:24:47.736Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chrome浏览器的渲染机制","level":"1.11.2","depth":2,"previous":{"title":"前端性能优化的服务器基础","level":"1.11.1","depth":2,"path":"chapter10/section1.md","ref":"chapter10/section1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter10/section2.md","mtime":"2021-05-14T06:49:16.689Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-04T02:24:47.736Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
