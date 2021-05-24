@@ -5,6 +5,7 @@
     * [Section1.1](chapter1/section1.1.md)
     * [Section1.2](chapter1/section1.2.md)
 * [第二卷·你不知道的JavaScript](chapter2/README.md)
+    * [JavaScript面试题详解](chapter2/section1.md)
 * [第三卷·天天造轮子](chapter3/README.md)
     * [手写vue-cli](chapter3/section1.1.vue-cli.md)
 * [第四卷·天天面试](chapter4/README.md)

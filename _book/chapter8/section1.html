@@ -162,6 +162,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/section1.html">
+            
+                <a href="../chapter2/section1.html">
+            
+                    
+                    JavaScript面试题详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.4" data-path="../chapter3/">
@@ -526,6 +545,7 @@ $ ip addr
 <p>&#x5982;&#x679C;&#x60F3;&#x8981;&#x77E5;&#x9053;Linux&#x4E0B;&#x7684;&#x547D;&#x4EE4;&#x90FD;&#x662F;&#x5E72;&#x4EC0;&#x4E48;&#x7528;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Linux&#x7CFB;&#x7EDF;&#x81EA;&#x5E26;&#x7684;&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;&#xFF0C;&#x8F93;&#x5165;<code>dir --help</code>&#x547D;&#x4EE4;&#x5373;&#x53EF;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x8981;&#x6C42;&#x6211;&#x4EEC;&#x7684;&#x82F1;&#x6587;&#x5FC5;&#x987B;&#x8981;&#x8FC7;&#x5173;&#x3002;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; man &#x547D;&#x4EE4;&#x3002;</p>
 <p>&#x5176;&#x5B9E;&#x4E00;&#x672C;&#x300A;&#x9E1F;&#x54E5;&#x7684;Linux&#x79C1;&#x623F;&#x83DC;&#x300B;&#x5C31;OK&#x4E86;&#x3002;</p>
 <p>&#x53E6;&#x5916;&#xFF0C;&#x5949;&#x529D;&#x4E00;&#x53E5;&#xFF0C;&#x5B66;&#x4E60;&#x82F1;&#x6587;&#xFF0C;&#x82F1;&#x6587;&#x8865;&#x5F97;&#x8D8A;&#x65E9;&#x8D8A;&#x6709;&#x4F18;&#x52BF;&#x3002;</p>
+<p>Linux&#x4E0B;&#x5E38;&#x7528;&#x7684;&#x57FA;&#x672C;&#x547D;&#x4EE4;&#xFF0C;&#x4EE5;&#x540E;&#x4F1A;&#x4E13;&#x95E8;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF0C;&#x5199;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x3002;</p>
 <h2 id="&#x4E09;&#x3001;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x5FC5;&#x987B;&#x8981;&#x61C2;&#x5F97;&#x77E5;&#x8BC6;">&#x4E09;&#x3001;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x5FC5;&#x987B;&#x8981;&#x61C2;&#x5F97;&#x77E5;&#x8BC6;</h2>
 <h4 id="i&#x3001;&#x7F51;&#x7EDC;&#x7AEF;&#x53E3;">I&#x3001;&#x7F51;&#x7EDC;&#x7AEF;&#x53E3;</h4>
 <ul>
@@ -540,8 +560,39 @@ $ ip addr
 <ul>
 <li><code>netstate -an</code> &#x67E5;&#x770B;&#x5F53;&#x524D;&#x7AEF;&#x53E3;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x67E5;&#x770B;&#x672C;&#x5730;&#x5730;&#x5740;<code>Local Address</code>&#x5BF9;&#x5E94;&#x7684;&#x7AEF;&#x53E3;&#xFF0C;&#x5C31;&#x662F;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x5DF2;&#x7ECF;&#x4F7F;&#x7528;&#x7684;&#x7AEF;&#x53E3;&#x3002;</li>
 <li><code>netstate -anp</code> &#x5E26;&#x6709;&#x4E86;pid&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x5360;&#x7528;&#x7AEF;&#x53E3;&#x7684;&#x662F;&#x4EC0;&#x4E48;&#x8FDB;&#x7A0B;&#x3002;&#x4ECE;&#x800C;&#x51B3;&#x5B9A;&#x80FD;&#x4E0D;&#x80FD;&#x6740;&#x6B7B;&#xFF0C;&#x6216;&#x8005;&#x6362;&#x4E00;&#x4E2A;&#x7AEF;&#x53E3;&#x53F7;&#x3002;</li>
-<li><code>ps aux</code> &#x67E5;&#x770B;&#x8FDB;&#x7A0B;&#xFF0C;&#x5F97;&#x5230;pid&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;<code>kill pid -9</code> &#x5F3A;&#x5236;&#x6740;&#x6B7B;&#x8FDB;&#x7A0B;&#x3002;</li>
+<li><code>ps aux</code> &#x67E5;&#x770B;&#x8FDB;&#x7A0B;&#xFF0C;&#x5F97;&#x5230;pid&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;<code>kill -9 pid</code> &#x5F3A;&#x5236;&#x6740;&#x6B7B;&#x8FDB;&#x7A0B;&#x3002;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x70B9;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x6740;&#x6B7B;&#x8FDB;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8981;&#x6740;&#x6B7B;&#x7236;&#x8FDB;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x6740;&#x6B7B;&#x5B50;&#x8FDB;&#x7A0B;&#x4E0D;&#x6740;&#x6B7B;&#x7236;&#x8FDB;&#x7A0B;&#xFF0C;&#x5F53;&#x7236;&#x8FDB;&#x7A0B;&#x53D1;&#x73B0;&#x5B50;&#x8FDB;&#x7A0B;&#x6B7B;&#x6389;&#xFF0C;&#x4F1A;&#x9A6C;&#x4E0A;&#x590D;&#x6D3B;&#x5B50;&#x8FDB;&#x7A0B;&#x3002;</li>
 </ul>
+<h3 id="ii&#x3001;&#x670D;&#x52A1;">II&#x3001;&#x670D;&#x52A1;</h3>
+<p>&#x5728;Linux&#x4E2D;&#xFF0C;&#x670D;&#x52A1;&#x7684;&#x6982;&#x5FF5;&#x548C;web&#x670D;&#x52A1;&#x6216;&#x8005;&#x670D;&#x52A1;&#x5668;&#x7684;&#x8FD9;&#x79CD;&#x670D;&#x52A1;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF0C;Linux&#x4E2D;&#x7684;&#x670D;&#x52A1;&#x53EB;&#x505A;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x3002;</p>
+<h2 id="&#x56DB;&#x3001;&#x5B89;&#x88C5;linux&#x5F00;&#x53D1;&#x73AF;&#x5883;">&#x56DB;&#x3001;&#x5B89;&#x88C5;Linux&#x5F00;&#x53D1;&#x73AF;&#x5883;</h2>
+<h3 id="i&#x3001;&#x5B89;&#x88C5;nodejs">I&#x3001;&#x5B89;&#x88C5;NodeJS</h3>
+<ul>
+<li><p>yum&#x5B89;&#x88C5;&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-javascript"># &#x6DFB;&#x52A0;&#x5B98;&#x65B9;&#x7684;yum&#x6E90;
+# As root
+curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+
+# yum&#x547D;&#x4EE4;&#x5B89;&#x88C5;
+yum install -y nodejs
+# &#x67E5;&#x770B;&#x5B89;&#x88C5;&#x7684;banben
+node -v
+</code></pre>
+</li>
+<li><p>&#x6E90;&#x7801;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</p>
+</li>
+</ul>
+<h3 id="ii&#x3001;&#x5B89;&#x88C5;xampp&#x96C6;&#x6210;&#x5F00;&#x53D1;&#x73AF;&#x5883;">II&#x3001;&#x5B89;&#x88C5;XAMPP&#x96C6;&#x6210;&#x5F00;&#x53D1;&#x73AF;&#x5883;</h3>
+<ul>
+<li><a href="https://www.apachefriends.org/index.html" target="_blank">&#x70B9;&#x51FB;&#x6B64;&#x5904;&#x4E0B;&#x8F7D;</a></li>
+<li>Windows&#x548C;Mac&#x7684;&#x5B89;&#x88C5;&#x7248;&#x672C;&#x6709;&#x6240;&#x4E0D;&#x540C;<ul>
+<li>windows&#xFF0C;&#x76F4;&#x63A5;&#x4E0B;&#x8F7D;windows&#x6700;&#x65B0;&#x7248;&#x672C;&#x5C31;&#x53EF;&#x4EE5;</li>
+<li>Mac&#x4E0B;&#x6709;&#x4E24;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x666E;&#x901A;&#x7248;&#x672C;&#xFF08;xxx.dmg&#xFF09;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;vm&#x7248;&#x672C;&#xFF08;xxx.vm.dmg&#xFF09;&#xFF0C;&#x5B89;&#x88C5;&#x666E;&#x901A;&#x7248;&#x672C;&#x7684;&#x6700;&#x65B0;&#x7248;&#x5373;&#x53EF;&#xFF0C;&#x4E0D;&#x8981;&#x5B89;&#x88C5;vm&#x7248;&#x672C;&#xFF0C;vm&#x7248;&#x672C;&#x662F;&#x6253;&#x5305;&#x5230;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x7684;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="iii&#x3001;&#x5B66;&#x4F1A;&#x4F7F;&#x7528;vim&#x7F16;&#x8F91;&#x5668;">III&#x3001;&#x5B66;&#x4F1A;&#x4F7F;&#x7528;vim&#x7F16;&#x8F91;&#x5668;</h3>
+<p>&#x6211;&#x4EEC;&#x5DE5;&#x4F5C;&#x4EE5;&#x540E;&#x4F1A;&#x78B0;&#x5230;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#x66F4;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x4E0D;&#x4F1A;&#x6709;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF0C;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x4F1A;&#x4F7F;&#x7528;vim&#x7F16;&#x8F91;&#x5668;&#x3002;</p>
+<h2 id="&#x4E94;&#x3001;&#x5173;&#x4E8E;&#x67D0;&#x4E9B;&#x7F51;&#x7AD9;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF08;&#x4F60;&#x61C2;&#x5F97;&#xFF09;">&#x4E94;&#x3001;&#x5173;&#x4E8E;&#x67D0;&#x4E9B;&#x7F51;&#x7AD9;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF08;&#x4F60;&#x61C2;&#x5F97;&#xFF09;</h2>
 
                                 
                                 </section>
@@ -585,7 +636,7 @@ $ ip addr
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Linux开发环境准备","level":"1.9.1","depth":2,"next":{"title":"第九卷·前端项目实战","level":"1.10","depth":1,"path":"chapter9/README.md","ref":"chapter9/README.md","articles":[{"title":"前后端BFF架构实现","level":"1.10.1","depth":2,"path":"chapter9/section1.md","ref":"chapter9/section1.md","articles":[]}]},"previous":{"title":"第八卷·Linux秘籍","level":"1.9","depth":1,"path":"chapter8/README.md","ref":"chapter8/README.md","articles":[{"title":"Linux开发环境准备","level":"1.9.1","depth":2,"path":"chapter8/section1.md","ref":"chapter8/section1.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter8/section1.md","mtime":"2021-05-21T08:24:47.064Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-04T02:24:47.736Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Linux开发环境准备","level":"1.9.1","depth":2,"next":{"title":"第九卷·前端项目实战","level":"1.10","depth":1,"path":"chapter9/README.md","ref":"chapter9/README.md","articles":[{"title":"前后端BFF架构实现","level":"1.10.1","depth":2,"path":"chapter9/section1.md","ref":"chapter9/section1.md","articles":[]}]},"previous":{"title":"第八卷·Linux秘籍","level":"1.9","depth":1,"path":"chapter8/README.md","ref":"chapter8/README.md","articles":[{"title":"Linux开发环境准备","level":"1.9.1","depth":2,"path":"chapter8/section1.md","ref":"chapter8/section1.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter8/section1.md","mtime":"2021-05-24T14:47:44.228Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-24T08:26:07.487Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
