@@ -376,5 +376,701 @@ a();
 到这里，第一题的基本题目已经讲完，难度不大，所以我们还可以加强一下，看一下第一题的进阶题目：
 
 ```javascript
+var x = 1,
+    y = 0,
+    z = 0;
+function add(x) {
+  return (x = x + 1);
+}
+y = add(x);
+console.log(y);
+function add(x) {
+  return (x = x + 3);
+}
+z = add(x);
+console.log(z);
 ```
 
+首先解释一下`(x = x + 1)`，这个就是对x求值然后返回x的值，相当于`++x`。然后就是这段代码中存在两个add函数，我们可以知道的是，JS的函数声明提升会使得add函数重写，所以解释之后的JS代码如下：
+
+```javascript
+function add(x) {
+  return (x = x + 3);
+}
+var x,y,z;
+x = 1,
+y = 0,
+z = 0;
+
+y = add(x);
+console.log(y);
+
+z = add(x);
+console.log(z);
+```
+
+
+
+#### 2.第二题
+
+```javascript
+// this指向的乞丐版
+
+this.a = 20;
+var test = {
+  init: function() {
+    console.log(this.a);
+  }
+}
+
+test.init();
+```
+
+test.init()，这里init函数中的this指向是test对象，但是test对象中没有a属性，所以打印this.a的是值为undefined。
+
+我们改变一下上面的代码：
+
+```javascript
+this.a = 20;
+var test = {
+  a: 40,
+  init: function() {
+    console.log(this.a);
+  }
+}
+
+test.init();
+```
+
+修改后的代码，在test对象中加了一个a属性，init函数中的this仍然指向test对象，test对象中a属性的值为40，所以打印的this.a的值就是40。继续修改代码：
+
+```javascript
+this.a = 20;
+var test = {
+  a: 40,
+  init: function() {
+    console.log(this.a);
+  }
+}
+
+test.init();
+
+var fn = test.init;
+fn();
+```
+
+修改后的代码声明了一个fn赋值为test.init()，然后再全局作用域下执行fn()，这里直接指向fn相当于`window.fn()`，所以函数fn中的this指向的是window，this.a则是20，打印的结果即为20。
+
+继续修改代码：
+
+```javascript
+this.a = 20;
+var test = {
+  a: 40,
+  init: function() {
+    function init() {
+      console.log(this.a);
+    }
+    
+    init();
+  }
+}
+
+test.init();
+
+var fn = test.init;
+fn();
+```
+
+test.init()，函数内部执行init子函数，子函数没有被挂载到任何对象上，所以就等价于`window.init()`，那么init子函数中的this就指向了window，window.a为20，fn被赋值为test.init()，直接执行fn，相当于执行`window.fn()`，fn函数中的this指向了window，所以init函数中的this.a仍然为window.a，仍然是20，综上所述，两次打印的结果都为20。
+
+**上述代码，只在非严格模式下可以这样执行，如果加上严格模式，this的指向就不会指向window，而是指向undefined。**
+
+关于this指向还有一种更为特殊的情况，也就是存在构造函数的时候，new操作符会使this改变：
+
+```javascript
+function go() {
+  this.a = 30;
+}
+
+go.a = 50;
+go.prototype.a = 40;
+var instance = new go();
+
+console.log('instance.a --->', instance.a);
+```
+
+我们知道，new操作符的作用就是可以改变构造函数内this的指向的，使得this指向构造出来的对象，然后给对象添加属性并赋值。这里也就是指向instance对象，然后instance对象上有一个属性a，值为30，所以打印的结果就是30。
+
+我们来修改一下代码：
+
+```javascript
+function go() {
+  
+}
+
+go.a = 50;
+go.prototype.a = 40;
+var instance = new go();
+
+console.log('instance.a --->', instance.a);
+```
+
+可以看到，构造函数go里面什么都没做，所以说我们new go()，只有了一个作用那就是改变了this的指向，仍然指向instance。我们输出instance.a，但是instance对象上是没有a的，**JS解释器这时候就会去构造函数的原型上去找而不是去构造函数上去找**，go.prototype.a = 40，所以打印的结果就是40。至于构造函数上的属性，它相当于ES6中类的static属性，只有go.a的时候才会访问到。
+
+下面我们看一个面试真题：
+
+```javascript
+// this指向性问题的面试真题
+
+this.a = 20;
+function go() {
+  console.log(this.a);
+  this.a = 30;
+}
+go.prototype.a = 40;
+var test = {
+  a: 50,
+  init: function(fn) {
+    fn();
+    console.log(this.a);
+    return fn;
+  }
+};
+console.log(new go().a);
+test.init(go);
+var p = test.init(go);
+p();
+```
+
+首先，我们先看一下`console.log(new go().a);`，先执行了new go()，构造函数go中打印了this.a，现在this的指向受到new操作符的影响，指向的是实例化出来的对象，但是还没有执行this.a = 30; 所以实例化出来的对象上并不存在a属性，那么JS解释器就会去构造函数的原型上去找属性a，构造函数上的属性a为40，所以构造函数go中打印的this.a的值就是40。然后就是new go()实例化对象完成，this指向实例化出来的对象，并且对象上存在了属性a，值为30，那么console.log(new go().a);的打印结果为30。
+
+接下来，执行的是`test.init(go);`所以我们来看test对象上的init方法，init方法接收一个参数fn，这个参数的类型是一个function，执行fn()，当前的fn没有任何对象调用，所以相当于`window.fn()`，穿进去的fn实际上是函数go，函数go中执行`console.log(this.a);`，这里的this毫无疑问指向的是window，全局作用域下this.a = 20; 所以打印的结果为20，打印之后将window.a改为30。init方法中执行的console.log(this.a); 毫无疑问的是init方法中的this现在指向的是test，即访问的是test.a的值，test.a为50，所以打印的结果为50。最后，init方法返回fn。
+
+然后执行`var p = test.init(go);`，又是重复了刚才的运行逻辑，不同的是返回的fn被p接收。先执行window.fn()，this.a的值为30，打印结果为30，init方法中，`console.log(this.a);` 毫无疑问是50。p为init的返回值fn函数。
+
+最后执行p函数，当前的this指向的window，window.a当前是30。所以打印结果为30。
+
+
+
+**总结一下可以改变this指向的操作**
+
++ new操作符
++ bind、call、apply
++ 箭头函数
+
+
+
+```javascript
+this.a = 20;
+
+var test = {
+  a: 40,
+  init() {
+    console.log(this.a);
+  }
+}
+
+test.init();
+```
+
+上面的代码，打印的结果是40，`init() { ... }`，这种写法只是对象的简便写法，实质上和对象的写法是一样的！
+
+我们继续修改代码：
+
+```javascript
+this.a = 20;
+
+var test = {
+  a: 40,
+  init: () => {
+    console.log(this.a);
+  }
+}
+
+test.init();
+```
+
+现在这种情况是把test的init方法改写成箭头函数，箭头函数是能够改变this指向的，箭头函数中的this指向的是init方法的父对象（test对象）所在的作用域，test对象所在的作用域是全局作用域，所以init方法中打印的this.a等同于window.a。结果为20。
+
+继续修改：
+
+```javascript
+this.a = 20;
+
+var test = {
+  a: 40,
+  init: () => {
+    setTimeout(function() {
+      console.log(this.a);
+    });
+  }
+}
+
+test.init();
+```
+
+我们在init方法中，设置定时器，在定时器的函数中打印this.a。因为定时器中的方法没有任何对象去执行它，所以定时器函数中的this指向的是window，this.a为20。
+
+继续修改：
+
+```javascript
+this.a = 20;
+
+var test = {
+  a: 40,
+  init: function() {
+    setTimeout(function() {
+      console.log(this.a);
+    });
+  }
+}
+
+test.init();
+```
+
+在chrome中运行上面的代码，你会发现打印的是20，这也印证了上面的解释，无论init是普通函数还是箭头函数，也就是说无论init方法中的this指向什么，一旦有了定时器的存在，那么定时器中的this就一定指向window，因为定时器中的函数没有任何的对象去执行它，在它内部的this就只能指向window！
+
+**到此为止，我们所有的this指向问题都是在非严格模式下讨论的，但是我们知道JS还有一个严格模式，在严格模式下类似于指向window的做些操作可能就会有一部分发生变化**
+
+```javascript
+// 严格模式下的this指向
+var num = 1;
+function fun() {
+  'use strict'
+  console.log(this.num++);
+}
+
+fun();
+```
+
+在chrome浏览器中的执行结果：
+
+<img src="../assets/images/chapter2/07.png" alt="node-app.png" style="zoom:80%;" />
+
+在严格模式下，浏览器是不会让this指向window的，this为undefined！因为浏览器会考虑到this指向全局，会把全局变量污染了。
+
+我们修改一下代码：
+
+```javascript
+// 严格模式下的this指向
+var num = 1;
+function fun() {
+  console.log(++this.num);
+}
+(function() {
+  'use strict';
+  fun();
+})();
+```
+
+<img src="../assets/images/chapter2/08.png" alt="node-app.png" style="zoom:80%;" />
+
+这段代码的执行表明，this又是指向了window。原因就是严格模式的声明只有在相应的函数内部才会有作用。在函数外，对于函数内部的执行并不会起到严格模式的作用。
+
+怎样才能让所有的代码都在严格模式下执行呢？那就要把 'use strict' 加到全局。
+
+再看一个关于this指向的面试题：
+
+```javascript
+function C1(name) {
+  if(name) {
+    this.name = name;
+  }
+}
+
+function C2(name) {
+  this.name = name;
+}
+
+function C3(name) {
+  this.name = name || 'fe';
+}
+
+C1.prototype.name = 'yideng';
+C2.prototype.name = 'lao';
+C3.prototype.name = 'yuan';
+
+console.log(new C1().name + new C2().name + new C3().name);
+```
+
+我们可以看到实例化这三个构造函数时，这三个构造函数都没有传值，也就是说name属性值为undefined。new操作符会改变this的指向，使得this指向实例化出来的对象，new C1().name，C1实例化后的对象上是没有name的属性的，JS解释器会查询构造函数的原型上有没有name属性，找到了C1原型上的name属性为"yideng"，同理，new C2()，实例化后的对象上存在name属性，但是属性值为undefined。new C3()得到的对象上的name属性值为“fe”，所以最后的结果为 “yidengundefinedfe”。
+
+我们看一下chrome浏览器中的执行结果：
+
+<img src="../assets/images/chapter2/09.png" alt="node-app.png" style="zoom:80%;" />
+
+与我们分析的一致。
+
+再看一道经典的题目：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+
+  <script>
+    // 改写下面这段代码，使得点击每个li元素的时候打印li元素中相应的数字（至少使用三种方法实现）。
+    var list_li = document.getElementsByTagName('li');
+    for(var i = 0; i < list_li.length; i++) {
+      list_li[i].onclick = function() {
+        console.log(i);
+      }
+    }
+  </script>
+</body>
+</html>
+```
+
+上面这段代码如果执行点击事件所有的输出都是6，先解释一下为什么，因为ES5是没有块级作用域的，在for执行完之后`i`的值就变成了6，你代码逻辑中所有的`i`，其实都是同一个`i`，这时候所有的`i`，就都变成了6。那么这只是从块级作用域上来讲，更深层次的是JS有同步执行的任务和异步执行的任务，同步任务就是一般的逻辑代码，异步任务里面包括定时器、ajax、promis、dom事件等。JS会先执行完同步任务再执行异步任务。对于这段代码出现所有的点击事件都打印6的根本原因是JS会把for循环先执行完，然后在执行dom事件的注册。这时候 i 已经是6了。
+
+那么怎么才能不让所有的`i`都变成6呢？解决这个问题的方向有以下两种：
+
++ 实现局部作用域
++ 利用this指向
+
+**解法一：利用es6的let关键字使得for循环成为块级作用域**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+
+  <script>
+    // let实现。
+    var list_li = document.getElementsByTagName('li');
+    // 修改
+    for(let i = 0; i < list_li.length; i++) {
+      list_li[i].onclick = function() {
+        // 修改
+        console.log(i + 1);
+      }
+    }
+  </script>
+</body>
+</html>
+```
+
+上面的代码修改了两处，一个是把`var`改成了`let`，这个修改是为了形成块级作用域。另一个是把点击事件的处理函数中打印的内容改成`i + 1`，i是从0开始，所以要加1才能成为li元素中的值。
+
+**解法二：使用闭包来实现块级作用域**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+
+  <script>
+    // 闭包实现。
+    var list_li = document.getElementsByTagName('li');
+    for(var i = 0; i < list_li.length; i++) {
+      list_li[i].onclick = (function(i) {
+        return function() {
+          console.log(i + 1);
+        }
+      })(i)
+    }
+  </script>
+</body>
+</html>
+```
+
+使用闭包构建一个块级作用域，使得内层函数的i不会收外部作用域的影响。这也是es6的块级作用域出现之前最常用的方式！
+
+**解法三：使用this**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+
+  <script>
+    // 闭包实现。
+    var list_li = document.getElementsByTagName('li');
+    for(var i = 0; i < list_li.length; i++) {
+      list_li[i].onclick = function() {
+        console.log(this.inner);
+      }
+    }
+  </script>
+</body>
+</html>
+```
+
+通过观察html代码，我们可以看到，只要是得到各自li元素中的数字就可以解决这个问题，所以我们可以可用this，this指向的正好是当前点击事件操作的dom元素，然后打印this.innerText。
+
+#### 3.第三题
+
+JS有两种引用方式：
+
++ 按值引用：所有的基本类型、函数的实参都是按值引用。
++ 按址引用：原型链、复杂类型都是按址引用。
+
+```javascript
+// 按值引用
+var a = 1;
+var b = a;
+b = 3;
+console.log(a, b);
+```
+
+在chrome中运行a是1，b是3。证明了基本类型都是按值引用。
+
+```javascript
+// 按址引用
+var a = {};
+var b = a;
+b.uname = '测试一下';
+
+console.log(a, b);
+```
+
+在chrome中的运行结果a，b两个对象都是`{ uname: '测试一下' }`，本质就是，变量a的栈内存中只能存储值类型，遇到`var a = {}`这种情况，a的栈内存中存储的并不是`{}` 对象，像`{}`这样的对象属于复杂类型，存储在堆内，a的栈内存中本质上只存储了`{}`对象的**堆地址**。所以，`var b = a;`的执行结果就是把a里存储的`{}`堆地址赋值给b，那么现在就造成了a和b的栈内存中都存储了对象`{}`的堆地址，也就是说a，b这两个变量都指向了同一个对象，所以当b增加一个属性时，实际上就是操作`{}`新增了一个uname属性，属性值为`测试一下`，也就是解释了打印a和b，为什么都是`{ uname: '测试一下' }`。
+
+```javascript
+function test(m) {
+  m = { v: 5 };
+}
+
+var m = { k: 30 };
+test(m);
+alert(m.v);
+```
+
+函数的参数是按值传递的，传进去的是m对象的地址，但是在函数中断开了和外部m对象的连接，重新赋值了一个新对象，这个新对象在函数执行之后就会被销毁，外面的m还是 `{ k: 30 }`，不会有任何变化，所以`m.v`是undefined。
+
+更改一下代码：
+
+```javascript
+function test(m) {
+  m.v = 5;
+}
+
+var m = { k: 30 };
+test(m);
+alert(m.v);
+```
+
+这段代码在chrome中运行你会得到5，这是因为test函数中并没有断掉与外部m对象的联系，形参m是外部m对象的堆地址，并没有重新赋值一个新的对象，所以会得到5。
+
+再看一个面试题：
+
+```javascript
+function fun() {
+  console.log(1);
+}
+
+(function() {
+  if(false) {
+    function fun() {
+      console.log(2);
+    }
+  }
+  fun();
+})();
+```
+
+这个问题其实本质上和上文中的题是相同的，本质上都是函数声明提升的问题，函数声明提升会提升到自身所在的函数作用域的顶端！如果函数的定义在`if(false) { ... }`代码块中，结果是要看运行在什么浏览器中，这个原理我们在上文中已经详细讲解，这里不再赘述。
+
+#### 第四题
+
+```javascript
+// 请用一句话算出0-100之间学生的等级，90-100为一等生，80-90为2等生。
+
+10 - 98 / 10
+```
+
+既然题目要求是一句话解决这个问题，那么首先应该排除的是`switch`和`if else`。那么这个题锻炼的是我们解决问题的能力，不能思维定式，其实就是一道数学题而已。**平时在写代码的时候需要想一想和数学之间的关系。**
+
+#### 第五题
+
+```javascript
+// 如何把'abc'转成数组，禁止使用split()方法和for
+
+var a = "abc";
+// 方法一
+[...a];
+// 方法二
+[...new Set(a)];
+// 方法三
+Array.from();
+// 方法四  借用方法
+Array.prototype.slice.call(a);
+```
+
+这个题主要是第四种解法比较有意思，借用Array原型上的slice方法，改变this，然后就可以把参数变成一个数组。这种方式在很多plofy中很常见，大家可以去网上查一下，很多老代码都是这么处理的！
+
+#### 第六题
+
+```javascript
+// JS面向对象的静态属性的继承
+
+class Car {
+  static price = 4;
+}
+
+class BMW extends Car {
+  // 这里什么也不做
+}
+
+console.log(BMW.price);
+```
+
+我们看一下在chrome中的执行结果：
+
+<img src="../assets/images/chapter2/10.png" alt="node-app.png" style="zoom:80%;" />
+
+竟然会得到4，这简直是不可思议。对于稍微有一点计算机基础或者是任何一个学过面向对象变成语言的读者来说，这都是不可理解的。因为我们知道除了JS之外，其他的绝大多数面向对象语言，类的静态方法都是不能被继承的！JS竟然可以继承父类的静态属性。这又是JavaScript恶心的一个地方。
+
+那么如果让我们手写继承，应该怎么写呢？看个面试题
+
+```javascript
+/*
+请在下面写出JavaScript面向对象编程的混合式继承。并写出ES6版本的继承。 要求:汽车是父类，Cruze是子类。父类有颜色、价格属性，有售卖的方法。Cruze子 类实现父类颜色是红色，价格是140000,售卖方法实现输出如下语句:将 红色的 Cruze买给了小王价格是14万。(20分)
+*/
+
+"use strict"
+function Car(color) {
+  this.car = car;
+}
+Car.myName = 'Renekton';
+Car.prototype.x = function() {
+  console.log('父类方法');
+};
+
+function BMW(color) {
+  // 继承父类属性
+  Car.call(this, color);
+}
+
+// 修正constructor的指向
+BMW.prototype = Object.create(Car.prototype, {
+  constructor: {
+    value: BMW,
+    writeable: false,
+  }
+});
+
+// 继承静态属性
+var staticKeys = Object.entries(Car);
+for(var i = 0; i < staticKeys.length; i++) {
+  var key = staticKeys[i][0];
+  var value = staticKeys[i][1];
+  BMW.key = value;
+}
+```
+
+这是全网最正确的混合继承的写法。特别是修正constroctor指向和继承静态属性。这个没什么可说的。。。
+
+#### 第七题
+
+```javascript
+var regex = /yideng/g;
+console.log(regex.test('yideng'));
+console.log(regex.test('yideng'));
+console.log(regex.test('yideng'));
+console.log(regex.test('yideng'));
+```
+
+我们来看一下这段代码在chrome中的运行结果：
+
+<img src="../assets/images/chapter2/11.png" alt="node-app.png" style="zoom:80%;" />
+
+这道题实际上是考察了正则匹配的lastIndex的概念。
+
+`lastIndex` 是正则表达式的一个可读可写的整型属性，用来指定下一次匹配的起始索引。只有正则表达式使用了表示全局检索的 "`g`" 标志时，该属性才会起作用。此时应用下面的规则：
+
+- 如果 `lastIndex` 大于字符串的长度，则 `regexp.test` 和 `regexp.exec` 将会匹配失败，然后 `lastIndex` 被设置为 0。
+- 如果 `lastIndex` 等于字符串的长度，且该正则表达式匹配空字符串，则该正则表达式匹配从 `lastIndex` 开始的字符串。（then the regular expression matches input starting at `lastIndex`.）
+- 如果 `lastIndex` 等于字符串的长度，且该正则表达式不匹配空字符串 ，则该正则表达式不匹配字符串，`lastIndex` 被设置为 0.。
+- 否则，`lastIndex` 被设置为紧随最近一次成功匹配的下一个位置。
+
+了解了正则的lastIndex的概念，还有一个重要的概念就是正则的克隆，分为深克隆和浅克隆。区别就在于对于lastIndex的处理：
+
+```javascript
+function cloneReg(target, isDeep) {
+  var regFlag = /\w*$/;
+  var result = new target.constructor(target.source, regFlag.exec(target));
+  if(isDeep) {
+    result.last = 0;
+  }else {
+    result.last = target.lastIndex;
+  }
+}
+```
+
+#### 第八题
+
+```javascript
+// 克隆buffer
+
+function cloneBuffer(buffer, isDeep) {
+  if(!isDeep) {
+    return buffer.slice();
+  } else {
+    const length = buffer.length;
+    result = allocUnsafe? allocUnsafe(length): new buffer.constructor(length);
+    return result;
+  }
+}
+const buf = Buffer.from("Renekton");
+const buf2 = cloneBuffer(buf);
+```
+
+如果不知道什么是buffer需要补一下这部分知识！buffer的深克隆的概念可以对比对象的深克隆。 笔者认为这个很好理解，故这里不做赘述。
