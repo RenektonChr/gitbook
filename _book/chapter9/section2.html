@@ -1,0 +1,1325 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>前后端BFF架构实现（二） · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter10/" />
+    
+    
+    <link rel="prev" href="section1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/">
+            
+                <a href="../chapter1/">
+            
+                    
+                    第一卷·前端JS手写系列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter1/section1.1.html">
+            
+                <a href="../chapter1/section1.1.html">
+            
+                    
+                    Section1.1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../chapter1/section1.2.html">
+            
+                <a href="../chapter1/section1.2.html">
+            
+                    
+                    Section1.2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/">
+            
+                <a href="../chapter2/">
+            
+                    
+                    第二卷·你不知道的JavaScript
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/section1.html">
+            
+                <a href="../chapter2/section1.html">
+            
+                    
+                    JavaScript面试题详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter3/">
+            
+                <a href="../chapter3/">
+            
+                    
+                    第三卷·天天造轮子
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter3/section1.1.vue-cli.html">
+            
+                <a href="../chapter3/section1.1.vue-cli.html">
+            
+                    
+                    手写vue-cli
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/">
+            
+                <a href="../chapter4/">
+            
+                    
+                    第四卷·天天面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter5/">
+            
+                <a href="../chapter5/">
+            
+                    
+                    第五卷·源码系列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter6/">
+            
+                <a href="../chapter6/">
+            
+                    
+                    第六卷·前端测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chapter7/">
+            
+                <a href="../chapter7/">
+            
+                    
+                    第七卷·传输协议那点事儿
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chapter7/section1.html">
+            
+                <a href="../chapter7/section1.html">
+            
+                    
+                    HTTP协议那些事儿（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../chapter7/section2.html">
+            
+                <a href="../chapter7/section2.html">
+            
+                    
+                    HTTP协议那些事儿（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter8/">
+            
+                <a href="../chapter8/">
+            
+                    
+                    第八卷·Linux秘籍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/section1.html">
+            
+                <a href="../chapter8/section1.html">
+            
+                    
+                    Linux开发环境准备
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../chapter8/section2.html">
+            
+                <a href="../chapter8/section2.html">
+            
+                    
+                    操作系统与后端语言核心
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第九卷·前端项目实战
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="section0.html">
+            
+                <a href="section0.html">
+            
+                    
+                    前端架构分离实践之后端开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="section1.html">
+            
+                <a href="section1.html">
+            
+                    
+                    前后端BFF架构实现（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.10.3" data-path="section2.html">
+            
+                <a href="section2.html">
+            
+                    
+                    前后端BFF架构实现（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../chapter10/">
+            
+                <a href="../chapter10/">
+            
+                    
+                    第十卷·前端性能优化与工程化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../chapter10/section1.html">
+            
+                <a href="../chapter10/section1.html">
+            
+                    
+                    前端性能优化的服务器基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../chapter10/section2.html">
+            
+                <a href="../chapter10/section2.html">
+            
+                    
+                    Chrome浏览器的渲染机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../chapter10/section3.html">
+            
+                <a href="../chapter10/section3.html">
+            
+                    
+                    大规模NodeJS项目架构与优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../chapter10/section4.html">
+            
+                <a href="../chapter10/section4.html">
+            
+                    
+                    前端工程化Linux预备知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../chapter11/">
+            
+                <a href="../chapter11/">
+            
+                    
+                    第十一卷·JavaScript函数式编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../chapter11/section1.html">
+            
+                <a href="../chapter11/section1.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >前后端BFF架构实现（二）</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x524D;&#x540E;&#x7AEF;&#x5B9E;&#x73B0;bff&#x67B6;&#x6784;&#xFF08;&#x4E8C;&#xFF09;">&#x524D;&#x540E;&#x7AEF;&#x5B9E;&#x73B0;BFF&#x67B6;&#x6784;&#xFF08;&#x4E8C;&#xFF09;</h1>
+<h2 id="&#x96F6;&#x3001;&#x5199;&#x5728;&#x524D;&#x9762;">&#x96F6;&#x3001;&#x5199;&#x5728;&#x524D;&#x9762;</h2>
+<p>&#x5728;<strong>&#x524D;&#x540E;&#x7AEF;&#x5B9E;&#x73B0;BFF&#x67B6;&#x6784;&#xFF08;&#x4E00;&#xFF09;</strong>&#x91CC;&#x9762;&#x6211;&#x4EEC;&#x4F7F;&#x7528;Koa2&#x53CA;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x63D2;&#x4EF6;&#x7B80;&#x5355;&#x7684;&#x642D;&#x51FA;&#x4E86;Node&#x670D;&#x52A1;&#x7684;MVC&#x6846;&#x67B6;&#xFF0C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x662F;&#x4E0A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x540E;&#x7EED;&#xFF0C;&#x6765;&#x5B8C;&#x6210;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x4E00;&#x4E9B;&#x5DE5;&#x4F5C;&#x3002;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x6211;&#x4EEC;&#x5C06;&#x4ECE;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x70B9;&#x6765;&#x5B8C;&#x5584;&#x6211;&#x4EEC;&#x7684;BFF&#x67B6;&#x6784;&#xFF1A;</p>
+<ul>
+<li><p>&#x5BF9;KOA2&#x9879;&#x76EE;&#x505A;&#x4E00;&#x4E9B;&#x5BB9;&#x9519;</p>
+</li>
+<li><p>&#x5C06;YII&#x7684;&#x540E;&#x7AEF;&#x9879;&#x76EE;&#x5199;&#x6210;&#x53EA;&#x63D0;&#x4F9B;&#x63A5;&#x53E3;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x7ED9;NodeJS&#x4F7F;&#x7528;</p>
+</li>
+<li><p>PlayWright&#x5B8C;&#x6210;&#x9875;&#x9762;&#x6D4B;&#x8BD5;</p>
+<p>mocha&#x5B8C;&#x6210;Node&#x63A5;&#x53E3;&#x6D4B;&#x8BD5;</p>
+</li>
+<li><p>&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x7528;ES6&#x7F16;&#x5199;&#xFF0C;&#x5E76;&#x5C06;&#x6D4F;&#x89C8;&#x5668;&#x652F;&#x6301;&#x5206;&#x5F00;&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x7684;&#x7528;babel&#x7F16;&#x8BD1;system.js&#x52A0;&#x8F7D;</p>
+</li>
+<li><p>&#x6BCF;&#x4E00;&#x6B21;&#x65B0;&#x589E;&#x8BB0;&#x5F55;&#x7684;&#x70B9;&#x51FB;&#x7528;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x7684;&#x65B9;&#x5F0F;&#x7A00;&#x91CA;&#xFF08;&#x8282;&#x6D41;&#xFF09;&#x3002;</p>
+</li>
+</ul>
+<h2 id="&#x4E00;&#x3001;&#x6DFB;&#x52A0;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;">&#x4E00;&#x3001;&#x6DFB;&#x52A0;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;</h2>
+<p>&#x6DFB;&#x52A0;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5E93;<code>log4js</code>&#x3002;&#x6211;&#x4EEC;&#x5148;&#x5B89;&#x88C5;&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x8981;&#x5728;&#x7EBF;&#x4E0A;&#x4F7F;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x53EA;&#x5B89;&#x88C5;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;&#x4E86;&#xFF1A;</p>
+<pre><code class="lang-javascript">$ npm install log4js
+</code></pre>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x5728;app.js&#x4E2D;&#x5F15;&#x5165;<code>log4js</code>&#xFF0C;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
+
+<span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa&apos;</span>);
+<span class="hljs-keyword">const</span> render = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-swig&apos;</span>);
+<span class="hljs-keyword">const</span> co = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;co&apos;</span>);
+<span class="hljs-keyword">const</span> server_static = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-static&apos;</span>);
+<span class="hljs-keyword">const</span> { historyApiFallback } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa2-connect-history-api-fallback&apos;</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();
+<span class="hljs-keyword">const</span> log4js = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;log4js&quot;</span>);        <span class="hljs-comment">// &#x5F15;&#x5165;log4js</span>
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./config&apos;</span>);
+<span class="hljs-keyword">const</span> initController = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./controllers/index&apos;</span>);
+<span class="hljs-keyword">const</span> errorHandle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./middleware/ErrorHandle&apos;</span>);
+
+<span class="hljs-comment">// log4js&#x7684;&#x521D;&#x59CB;&#x5316;&#x548C;&#x8BBE;&#x7F6E;</span>
+<span class="hljs-keyword">const</span> logger = log4js.getLogger();
+<span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#x4E3A;debug&#x7EA7;&#x522B;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A;&#x5176;&#x4ED6;&#x7684;&#x7EA7;&#x522B;&#x3002;</span>
+logger.level = <span class="hljs-string">&quot;debug&quot;</span>;
+<span class="hljs-comment">// &#x8FD9;&#x6761;&#x65E5;&#x5FD7;&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;</span>
+logger.debug(<span class="hljs-string">&quot;Some debug messages&quot;</span>);
+
+app.use(server_static(config.staticDir));
+app.use(historyApiFallback({ index: <span class="hljs-string">&apos;/&apos;</span>, whiteList: [<span class="hljs-string">&apos;/api&apos;</span>, <span class="hljs-string">&apos;/activity&apos;</span>] }));
+app.context.render = co.wrap(render({
+  <span class="hljs-comment">// &#x6A21;&#x677F;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;&#x548C;&#x662F;&#x5426;&#x7F13;&#x5B58;&#x5C3D;&#x91CF;&#x7684;&#x653E;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x914D;&#x7F6E;&#x3002;</span>
+  root: config.viewsDir,
+  cache: config.cache
+}));
+
+errorHandle.error(app);
+
+initController(app);
+
+app.listen(config.port, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`server is running at http://loaclhost:<span class="hljs-subst">${config.port}</span>`</span>);
+});
+</code></pre>
+<p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6CE8;&#x91CA;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#x8F93;&#x51FA;&#x4E86;<code>Some debug message</code>&#x5B57;&#x6837;&#x7684;&#x65E5;&#x5FD7;&#x3002;log4js&#x6BD4;&#x81EA;&#x5E26;&#x7684;&#x65E5;&#x5FD7;&#x6253;&#x5370;&#x4F18;&#x8D8A;&#x7684;&#x5730;&#x65B9;&#x8FD8;&#x5728;&#x4E8E;&#xFF0C;&#x5B83;&#x5E26;&#x6709;&#x65F6;&#x95F4;&#x6233;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x52A0;&#x7EC6;&#x81F4;&#x7684;&#x53BB;&#x5B9A;&#x4F4D;&#x95EE;&#x9898;&#x3002;&#x9664;&#x4E86;&#x65E5;&#x5FD7;&#x7684;&#x65F6;&#x95F4;&#xFF0C;log4js&#x8FD8;&#x4F1A;&#x533A;&#x5206;&#x65E5;&#x5FD7;&#x7684;&#x7EA7;&#x522B;&#x548C;&#x65E5;&#x5FD7;&#x7684;&#x5206;&#x7C7B;&#x3002;</p>
+<p><img src="../assets/images/chapter9/log4.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x4E00;&#x4E0B;log4js&#x90FD;&#x652F;&#x6301;&#x4EC0;&#x4E48;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* log4js&#x65E5;&#x5FD7;&#x7EA7;&#x522B; */</span>
+
+<span class="hljs-keyword">const</span> logger = log4js.getLogger(<span class="hljs-string">&quot;cheese&quot;</span>);
+
+logger.trace(<span class="hljs-string">&quot;Entering cheese testing&quot;</span>);
+logger.debug(<span class="hljs-string">&quot;Got cheese.&quot;</span>);
+logger.info(<span class="hljs-string">&quot;Cheese is Comt&#xE9;.&quot;</span>);
+logger.warn(<span class="hljs-string">&quot;Cheese is quite smelly.&quot;</span>);
+logger.error(<span class="hljs-string">&quot;Cheese is too ripe!&quot;</span>);
+logger.fatal(<span class="hljs-string">&quot;Cheese was breeding ground for listeria.&quot;</span>);
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;log4js&#x652F;&#x6301;&#x7684;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#x4E00;&#x5171;&#x662F;&#x516D;&#x79CD;&#x7EA7;&#x522B;&#xFF0C;&#x5206;&#x522B;&#x662F;<code>trace</code>&#x3001;<code>debug</code>&#x3001;<code>info</code>&#x3001;<code>warn</code>&#x3001;<code>error</code>&#x3001;<code>fatel</code>&#x3002;&#x6211;&#x4EEC;&#x5728;&#x751F;&#x4EA7;&#x4E2D;&#x9047;&#x5230;&#x95EE;&#x9898;&#x6392;&#x67E5;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x53BB;&#x67E5;&#x770B;&#x95EE;&#x9898;&#x7684;&#x65E5;&#x5FD7;&#xFF0C;&#x4F46;&#x662F;&#x65E5;&#x5FD7;&#x5982;&#x679C;&#x53EA;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#x8F93;&#x51FA;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x4E0D;&#x5229;&#x4E8E;&#x7BA1;&#x7406;&#xFF0C;&#x90A3;&#x4E48;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x65E5;&#x5FD7;&#x5C31;&#x884C;&#x672C;&#x5730;&#x7684;&#x6301;&#x4E45;&#x5316;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x628A;&#x65E5;&#x5FD7;&#x5199;&#x5165;&#x5230;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;&#x53BB;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x5B9E;&#x73B0;&#x4E00;&#x4E0B;&#x65E5;&#x5FD7;&#x7684;&#x672C;&#x5730;&#x5316;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
+
+<span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa&apos;</span>);
+<span class="hljs-keyword">const</span> render = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-swig&apos;</span>);
+<span class="hljs-keyword">const</span> co = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;co&apos;</span>);
+<span class="hljs-keyword">const</span> server_static = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-static&apos;</span>);
+<span class="hljs-keyword">const</span> { historyApiFallback } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa2-connect-history-api-fallback&apos;</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();
+<span class="hljs-keyword">const</span> log4js = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;log4js&quot;</span>);        <span class="hljs-comment">// &#x5F15;&#x5165;log4js</span>
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./config&apos;</span>);
+<span class="hljs-keyword">const</span> initController = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./controllers/index&apos;</span>);
+<span class="hljs-keyword">const</span> errorHandle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./middleware/ErrorHandle&apos;</span>);
+
+<span class="hljs-comment">// log4js&#x7684;&#x521D;&#x59CB;&#x5316;&#x548C;&#x8BBE;&#x7F6E;</span>
+<span class="hljs-keyword">const</span> logger = log4js.getLogger();
+<span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#x4E3A;debug&#x7EA7;&#x522B;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A;&#x5176;&#x4ED6;&#x7684;&#x7EA7;&#x522B;&#x3002;</span>
+logger.level = <span class="hljs-string">&quot;debug&quot;</span>;
+<span class="hljs-comment">// &#x8FD9;&#x6761;&#x65E5;&#x5FD7;&#x4F1A;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;</span>
+logger.debug(<span class="hljs-string">&quot;Some debug messages&quot;</span>);
+<span class="hljs-comment">// &#x914D;&#x7F6E;log&#x8F93;&#x51FA;&#x6587;&#x4EF6;</span>
+log4js.configure({
+  appenders: { globalError: { type: <span class="hljs-string">&quot;file&quot;</span>, filename: <span class="hljs-string">&quot;./logs/error.log&quot;</span> } },
+  categories: { <span class="hljs-keyword">default</span>: { appenders: [<span class="hljs-string">&quot;globalError&quot;</span>], level: <span class="hljs-string">&quot;error&quot;</span> } }
+});
+
+app.use(server_static(config.staticDir));
+app.use(historyApiFallback({ index: <span class="hljs-string">&apos;/&apos;</span>, whiteList: [<span class="hljs-string">&apos;/api&apos;</span>, <span class="hljs-string">&apos;/activity&apos;</span>] }));
+app.context.render = co.wrap(render({
+  <span class="hljs-comment">// &#x6A21;&#x677F;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;&#x548C;&#x662F;&#x5426;&#x7F13;&#x5B58;&#x5C3D;&#x91CF;&#x7684;&#x653E;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x914D;&#x7F6E;&#x3002;</span>
+  root: config.viewsDir,
+  cache: config.cache
+}));
+
+errorHandle.error(app);
+
+initController(app);
+
+app.listen(config.port, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`server is running at http://loaclhost:<span class="hljs-subst">${config.port}</span>`</span>);
+});
+</code></pre>
+<p>&#x901A;&#x8FC7;&#x6211;&#x4EEC;&#x7684;&#x8BBE;&#x7F6E;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6E05;&#x695A;&#x7684;&#x770B;&#x5230;&#xFF0C;&#x8BB0;&#x5F55;&#x7684;&#x9519;&#x8BEF;&#x7684;&#x540D;&#x79F0;&#x662F;<code>globalError</code>&#xFF0C;<code>type: &quot;file&quot;</code>&#x5C31;&#x662F;&#x4EE5;&#x6587;&#x4EF6;&#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;&#x5728;filename&#x6240;&#x6307;&#x5B9A;&#x7684;<code>./logs/error.log</code>&#x6587;&#x4EF6;&#x4E2D;&#x3002;categories&#x4E2D;&#x7684;appenders&#x662F;&#x9519;&#x8BEF;&#x7C7B;&#x578B; &#x201D;globalError&#x201C;&#x5BF9;&#x5E94;&#x4E86; appenders&#x4E2D;&#x7684;globalError&#x3002;<strong>level: &quot;error&quot;</strong>&#xFF0C;&#x8FD9;&#x4E2A;&#x8BBE;&#x7F6E;&#x7684;&#x662F;error&#x7EA7;&#x522B;&#x6216;&#x8005;&#x5927;&#x4E8E;error&#x7EA7;&#x522B;&#x7684;&#x7684;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x624D;&#x4F1A;&#x8BB0;&#x5F55;&#x5230;&#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x73B0;&#x5728;&#x914D;&#x7F6E;&#x597D;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x6765;&#x6D4B;&#x8BD5;&#x4E00;&#x4E0B;&#xFF0C;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x5728;app.js&#x4E2D;&#x624B;&#x52A8;&#x8F93;&#x51FA;&#x5168;&#x90E8;&#x7B49;&#x7EA7;&#x7684;log&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
+
+<span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa&apos;</span>);
+<span class="hljs-keyword">const</span> render = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-swig&apos;</span>);
+<span class="hljs-keyword">const</span> co = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;co&apos;</span>);
+<span class="hljs-keyword">const</span> server_static = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-static&apos;</span>);
+<span class="hljs-keyword">const</span> { historyApiFallback } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa2-connect-history-api-fallback&apos;</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();
+<span class="hljs-keyword">const</span> log4js = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;log4js&quot;</span>);        <span class="hljs-comment">// &#x5F15;&#x5165;log4js</span>
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./config&apos;</span>);
+<span class="hljs-keyword">const</span> initController = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./controllers/index&apos;</span>);
+<span class="hljs-keyword">const</span> errorHandle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./middleware/ErrorHandle&apos;</span>);
+
+<span class="hljs-comment">// &#x914D;&#x7F6E;log&#x8F93;&#x51FA;&#x6587;&#x4EF6;</span>
+log4js.configure({
+  appenders: { globalError: { type: <span class="hljs-string">&quot;file&quot;</span>, filename: <span class="hljs-string">&quot;./logs/error.log&quot;</span> } },
+  categories: { <span class="hljs-keyword">default</span>: { appenders: [<span class="hljs-string">&quot;globalError&quot;</span>], level: <span class="hljs-string">&quot;error&quot;</span> } }
+});
+
+<span class="hljs-comment">// log4js&#x7684;&#x521D;&#x59CB;&#x5316;&#x548C;&#x8BBE;&#x7F6E;&#xFF0C;&#x65E5;&#x5FD7;&#x7C7B;&#x578B;&#x914D;&#x7F6E;&#x6210;globalError&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x4E0E;&#x524D;&#x9762;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x9519;&#x8BEF;&#x540D;&#x79F0;&#x914D;&#x7F6E;&#x76F8;&#x540C;&#x3002;</span>
+<span class="hljs-keyword">const</span> logger = log4js.getLogger(<span class="hljs-string">&apos;globalError&apos;</span>);
+<span class="hljs-comment">// &#x6211;&#x4EEC;&#x624B;&#x52A8;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x7684;&#x65E5;&#x5FD7;&#x7C7B;&#x578B;</span>
+logger.trace(<span class="hljs-string">&quot;Entering cheese testing&quot;</span>);
+logger.debug(<span class="hljs-string">&quot;Got cheese.&quot;</span>);
+logger.info(<span class="hljs-string">&quot;Cheese is Comt&#xE9;.&quot;</span>);
+logger.warn(<span class="hljs-string">&quot;Cheese is quite smelly.&quot;</span>);
+logger.error(<span class="hljs-string">&quot;Cheese is too ripe!&quot;</span>);
+logger.fatal(<span class="hljs-string">&quot;Cheese was breeding ground for listeria.&quot;</span>);
+
+app.use(server_static(config.staticDir));
+app.use(historyApiFallback({ index: <span class="hljs-string">&apos;/&apos;</span>, whiteList: [<span class="hljs-string">&apos;/api&apos;</span>, <span class="hljs-string">&apos;/activity&apos;</span>] }));
+app.context.render = co.wrap(render({
+  <span class="hljs-comment">// &#x6A21;&#x677F;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;&#x548C;&#x662F;&#x5426;&#x7F13;&#x5B58;&#x5C3D;&#x91CF;&#x7684;&#x653E;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x914D;&#x7F6E;&#x3002;</span>
+  root: config.viewsDir,
+  cache: config.cache
+}));
+
+errorHandle.error(app);
+
+initController(app);
+
+app.listen(config.port, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`server is running at http://loaclhost:<span class="hljs-subst">${config.port}</span>`</span>);
+});
+</code></pre>
+<p>&#x4FDD;&#x5B58;&#x4EE3;&#x7801;&#xFF0C;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x770B;&#x4E00;&#x4E0B;&#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x76EE;&#x5F55;&#xFF1A;</p>
+<p><img src="../assets/images/chapter9/log-err.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9879;&#x76EE;&#x4E2D;&#x591A;&#x4E86;&#x4E00;&#x4E2A;log&#x76EE;&#x5F55;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;error.log&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#xFF0C;&#x91CC;&#x9762;&#x8BB0;&#x5F55;&#x7684;&#x65E5;&#x5FD7;&#x548C;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x8F93;&#x51FA;&#x7684;&#x65E5;&#x5FD7;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x65E5;&#x8BB0;&#x7684;&#x7EA7;&#x522B;&#x4E5F;&#x548C;&#x6211;&#x4EEC;&#x7684;&#x8BBE;&#x7F6E;&#x76F8;&#x540C;&#xFF0C;&#x8BF4;&#x660E;&#x65E5;&#x5FD7;&#x7684;&#x672C;&#x5730;&#x5316;&#x529F;&#x80FD;&#x662F;&#x751F;&#x6548;&#x7684;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C31;&#x8981;&#x5728;&#x5BB9;&#x9519;&#x7684;&#x529F;&#x80FD;&#x4E2D;&#x52A0;&#x5165;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x7684;&#x8BB0;&#x5F55;&#xFF0C;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x6BEB;&#x65E0;&#x7591;&#x95EE;&#x8981;&#x6DFB;&#x52A0;&#x5728;errorHandle&#x7684;&#x4E2D;&#x95F4;&#x4EF6;&#x4E2D;&#xFF08;/middleware/errorHandle&#xFF09;&#xFF0C;&#x65E5;&#x5FD7;&#x7684;&#x8BB0;&#x5F55;&#x9700;&#x8981;log4js&#x7684;getterLogger&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x8981;&#x628A;logger&#x5B9E;&#x4F8B;&#x4F20;&#x5230;errorHandle&#x7684;error&#x65B9;&#x6CD5;&#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
+
+<span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa&apos;</span>);
+<span class="hljs-keyword">const</span> render = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-swig&apos;</span>);
+<span class="hljs-keyword">const</span> co = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;co&apos;</span>);
+<span class="hljs-keyword">const</span> server_static = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa-static&apos;</span>);
+<span class="hljs-keyword">const</span> { historyApiFallback } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;koa2-connect-history-api-fallback&apos;</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Koa();
+<span class="hljs-keyword">const</span> log4js = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;log4js&quot;</span>);
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./config&apos;</span>);
+<span class="hljs-keyword">const</span> initController = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./controllers/index&apos;</span>);
+<span class="hljs-keyword">const</span> errorHandle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./middleware/ErrorHandle&apos;</span>);
+
+<span class="hljs-comment">// &#x914D;&#x7F6E;log&#x8F93;&#x51FA;&#x6587;&#x4EF6;</span>
+log4js.configure({
+  appenders: { globalError: { type: <span class="hljs-string">&quot;file&quot;</span>, filename: <span class="hljs-string">&quot;./logs/error.log&quot;</span> } },
+  categories: { <span class="hljs-keyword">default</span>: { appenders: [<span class="hljs-string">&quot;globalError&quot;</span>], level: <span class="hljs-string">&quot;error&quot;</span> } }
+});
+
+<span class="hljs-comment">// log4js&#x7684;&#x521D;&#x59CB;&#x5316;&#x548C;&#x8BBE;&#x7F6E;&#xFF0C;&#x65E5;&#x5FD7;&#x7C7B;&#x578B;&#x914D;&#x7F6E;&#x6210;globalError&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x4E0E;&#x524D;&#x9762;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x9519;&#x8BEF;&#x540D;&#x79F0;&#x914D;&#x7F6E;&#x76F8;&#x540C;&#x3002;</span>
+<span class="hljs-keyword">const</span> logger = log4js.getLogger(<span class="hljs-string">&apos;globalError&apos;</span>);
+
+app.use(server_static(config.staticDir));
+app.use(historyApiFallback({ index: <span class="hljs-string">&apos;/&apos;</span>, whiteList: [<span class="hljs-string">&apos;/api&apos;</span>, <span class="hljs-string">&apos;/activity&apos;</span>] }));
+app.context.render = co.wrap(render({
+  <span class="hljs-comment">// &#x6A21;&#x677F;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;&#x548C;&#x662F;&#x5426;&#x7F13;&#x5B58;&#x5C3D;&#x91CF;&#x7684;&#x653E;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x914D;&#x7F6E;&#x3002;</span>
+  root: config.viewsDir,
+  cache: config.cache
+}));
+
+<span class="hljs-comment">// &#x4F20;&#x5165;logger&#x5B9E;&#x4F8B;</span>
+errorHandle.error(app, logger);
+
+initController(app);
+
+app.listen(config.port, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`server is running at http://loaclhost:<span class="hljs-subst">${config.port}</span>`</span>);
+});
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* middleware/errorHandle.js */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorHandle</span> </span>{
+  <span class="hljs-comment">// app&#x4F20;&#x5165;&#x7684;logger&#x5B9E;&#x4F8B;</span>
+  <span class="hljs-keyword">static</span> error(app, logger) {
+    app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">await</span> next();
+        <span class="hljs-keyword">if</span>(ctx.status === <span class="hljs-number">404</span>) {
+          ctx.body = <span class="hljs-string">&apos;&#x53CB;&#x597D;&#x7684;404&#x9875;&#x9762;&apos;</span>;
+        }
+      } <span class="hljs-keyword">catch</span>(err) {  <span class="hljs-comment">// catch&#x628A;&#x9519;&#x8BEF;&#x5BF9;&#x8C61;&#x4F20;&#x5165;</span>
+        <span class="hljs-comment">// &#x53D1;&#x751F;&#x9519;&#x8BEF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;</span>
+        logger.error(err.message);
+        ctx.body = <span class="hljs-string">&apos;500&#x8BF7;&#x6C42;&#xFF0C;&#x6B63;&#x5728;&#x79EF;&#x6781;&#x4FEE;&#x590D;&#x3002;&apos;</span>;
+      }
+    });
+  }
+}
+
+<span class="hljs-built_in">module</span>.exports = ErrorHandle;
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* conteollers/indexController.js */</span>
+
+<span class="hljs-keyword">const</span> Controller = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./Controller&apos;</span>);
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span> </span>{
+  <span class="hljs-keyword">constructor</span> () {
+    <span class="hljs-keyword">super</span>();
+  }
+
+  <span class="hljs-keyword">async</span> actionIndex(ctx, next) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&apos;&#x6D4B;&#x8BD5;log4js&#x65E5;&#x5FD7;&#x672C;&#x5730;&#x5316;&apos;</span>);
+    ctx.body = <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">&apos;home/index&apos;</span>);
+    next();
+  }
+}
+
+<span class="hljs-built_in">module</span>.exports = IndexController;
+</code></pre>
+<p>&#x4EE5;&#x4E0A;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x662F;log4js&#x7684;&#x6240;&#x6709;&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x7B80;&#x5355;&#x7684;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#x3002;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x5728;app.js&#x4E2D;&#x521D;&#x59CB;&#x5316;logger&#x5B9E;&#x4F8B;&#xFF0C;&#x7136;&#x540E;&#x628A;logger&#x5B9E;&#x4F8B;&#x4F20;&#x5165;&#x9519;&#x8BEF;&#x6355;&#x83B7;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;<code>errorHandle.error</code>&#x4E2D;&#xFF0C;&#x518D;&#x770B;&#x9519;&#x8BEF;&#x6355;&#x83B7;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x9700;&#x8981;&#x62FF;&#x5230;logger&#x5B9E;&#x4F8B;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x51FA;&#x9519;&#x7684;&#x5206;&#x652F;&#x4E0B;&#xFF0C;&#x8BB0;&#x5F55;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x3002;&#x8FD9;&#x662F;&#x540E;&#x7684;try&#x2026;&#x2026;catch&#x5FC5;&#x987B;&#x8981;&#x4F20;&#x5165;err&#x5BF9;&#x8C61;&#x3002;&#x4EE5;&#x4FBF;&#x8BB0;&#x5F55;&#x9519;&#x8BEF;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x6700;&#x540E;&#x6211;&#x4EEC;&#x5728;indexController&#x4E2D;&#x624B;&#x52A8;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x3002;&#x6211;&#x4EEC;&#x6765;&#x8BF7;&#x6C42;&#x4E00;&#x4E0B;&#x9996;&#x9875;&#xFF0C;&#x9996;&#x9875;&#x6BEB;&#x65E0;&#x7591;&#x95EE;&#x4F1A;&#x51FA;&#x73B0;<code>500&#x8BF7;&#x6C42;&#xFF0C;&#x6B63;&#x5728;&#x79EF;&#x6781;&#x4FEE;&#x590D;&#x3002;</code>&#xFF0C;&#x770B;&#x770B;&#x6700;&#x7EC8;&#x7684;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#xFF1A;</p>
+<p><img src="../assets/images/chapter9/log4js-test.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x5230;&#x6B64;&#x4E3A;&#x6B62;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;log4js&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x7684;&#x672C;&#x5730;&#x5316;&#x5B58;&#x50A8;&#x529F;&#x80FD;&#x5168;&#x90E8;&#x5B9E;&#x73B0;&#x3002;&#x6700;&#x540E;&#x6211;&#x4EEC;&#x8FD8;&#x8981;&#x89E3;&#x51B3;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x8FC7;&#x5927;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#xFF1F;</p>
+<p><strong>&#x89E3;&#x51B3;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x8FC7;&#x5927;&#x7684;&#x95EE;&#x9898;&#xFF1A;</strong></p>
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x6700;&#x5927;&#x65E5;&#x5FD7;&#x6570;&#x4EE5;&#x53CA;&#x6E05;&#x7406;&#x65E5;&#x5FD7;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#xFF0C;</li>
+<li>&#x4EE5;&#x6E05;&#x7406;&#x65E5;&#x5FD7;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#x5F00;&#x542F;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;</li>
+<li>&#x83B7;&#x53D6;&#x6240;&#x6709;&#x65E5;&#x5FD7;&#xFF0C;&#x6309;&#x65E5;&#x5FD7;&#x751F;&#x6210;&#x65F6;&#x95F4;&#xFF08;&#x65E5;&#x5FD7;&#x540D;&#xFF09;&#x505A;&#x4E00;&#x4E2A;&#x5012;&#x5E8F;&#xFF0C;&#x6309;&#x7167;&#x6392;&#x5217;&#x987A;&#x5E8F;&#x4FDD;&#x7559;&#x524D;&#x6700;&#x5927;&#x6570;&#x503C;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x5176;&#x4F59;&#x5220;&#x9664;&#x3002;</li>
+</ul>
+<h2 id="&#x4E8C;&#x3001;es6&#x6A21;&#x5757;&#x5316;&#x6539;&#x9020;">&#x4E8C;&#x3001;ES6&#x6A21;&#x5757;&#x5316;&#x6539;&#x9020;</h2>
+<p>&#x6211;&#x4EEC;&#x9879;&#x76EE;&#x7684;&#x7F16;&#x5199;&#x73B0;&#x5728;&#x90FD;&#x662F;&#x4F7F;&#x7528;&#x7684;CommonJS&#xFF0C;&#x5728;Node&#x4E2D;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;ES6&#x7684;&#x6A21;&#x5757;&#x5316;&#x8FDB;&#x884C;&#x5F00;&#x53D1;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x628A;&#x73B0;&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x7684;CommonJS&#x6539;&#x5199;&#x6210;ESModule&#x5F62;&#x5F0F;&#x3002;</p>
+<p>&#x5728;&#x4EE3;&#x7801;&#x7684;&#x4E66;&#x5199;&#x5F62;&#x5F0F;&#x4E0A;&#x505A;&#x5982;&#x4E0B;&#x4FEE;&#x6539;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x4FEE;&#x6539;&#x4E4B;&#x524D;</span>
+<span class="hljs-keyword">const</span> xxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;xxx&apos;</span>);
+
+<span class="hljs-comment">// &#x4FEE;&#x6539;&#x4E4B;&#x540E;</span>
+<span class="hljs-keyword">import</span> xxx <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;xxx&apos;</span>;
+</code></pre>
+<p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x5728;&#x5F15;&#x5165;&#x7684;&#x65F6;&#x5019;&#x505A;&#x8FD9;&#x79CD;&#x6539;&#x5199;&#xFF0C;&#x4EE3;&#x7801;&#x5FC5;&#x5B9A;&#x4F1A;&#x6302;&#x6389;&#xFF0C;&#x539F;&#x56E0;&#x5F88;&#x7B80;&#x5355;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x5728;&#x5F15;&#x5165;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x4E86;ESModule&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x5BFC;&#x51FA;&#x7684;&#x65F6;&#x5019;&#x8FD8;&#x662F;&#x4F7F;&#x7528;&#x7684;CommonJS&#xFF0C;&#x8FD9;&#x5FC5;&#x5B9A;&#x4F1A;&#x51FA;&#x95EE;&#x9898;&#x3002;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x7684;&#x6A21;&#x5757;&#x8981;&#x6539;&#x6210;ESModule&#x7684;&#x5BFC;&#x51FA;&#x5F62;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;&#x95EE;&#x9898;&#x65F6;Koa&#x7B49;&#x76F8;&#x5F53;&#x4E00;&#x90E8;&#x5206;Node&#x5E93;&#x662F;&#x4F7F;&#x7528;CommonJS&#x7F16;&#x5199;&#x7684;&#xFF0C;&#x5E76;&#x4E0D;&#x652F;&#x6301;ESModule&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4E0A;&#x8FF0;&#x7684;&#x95EE;&#x9898;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>@babel/node</code> &#x63D2;&#x4EF6;&#x89E3;&#x51B3;&#xFF0C;&#x5B89;&#x88C5;@babel/node&#xFF1A;</p>
+<pre><code>$ npm install @babel/node -D
+</code></pre><p>&#x9664;&#x4E86;@babel/node&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x4E00;&#x4E2A;babel&#x5957;&#x4EF6;,&#xFF0C;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x7684;&#x8F6C;&#x5316;&#xFF1A;</p>
+<pre><code class="lang-javascript">$ npm install @babel/preset-env -D
+</code></pre>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x8FD9;&#x4E9B;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;&#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// .babelrc</span>
+{
+  <span class="hljs-string">&quot;presets&quot;</span>: [<span class="hljs-string">&quot;@babel/preset-env&quot;</span>]
+}
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x5B8C;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x66F4;&#x6539;package.json&#x4E2D;&#x7684;&#x542F;&#x52A8;&#x547D;&#x4EE4;&#xFF0C;&#x8BA9;babel&#x8F6C;&#x5316;&#x4E00;&#x4E0B;app.js&#xFF1A;</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;BFF-Project&quot;</span>,
+  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;1.0.0&quot;</span>,
+  <span class="hljs-string">&quot;main&quot;</span>: <span class="hljs-string">&quot;index.js&quot;</span>,
+  <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;MIT&quot;</span>,
+  <span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;NODE_ENV=development nodemon --exec &apos;babel-node ./app.js&apos;&quot;</span>
+  },
+  <span class="hljs-string">&quot;dependencies&quot;</span>: {
+    <span class="hljs-string">&quot;@koa/router&quot;</span>: <span class="hljs-string">&quot;^10.0.0&quot;</span>,
+    <span class="hljs-string">&quot;co&quot;</span>: <span class="hljs-string">&quot;^4.6.0&quot;</span>,
+    <span class="hljs-string">&quot;koa&quot;</span>: <span class="hljs-string">&quot;^2.13.1&quot;</span>,
+    <span class="hljs-string">&quot;koa-static&quot;</span>: <span class="hljs-string">&quot;^5.0.0&quot;</span>,
+    <span class="hljs-string">&quot;koa-swig&quot;</span>: <span class="hljs-string">&quot;^2.2.1&quot;</span>,
+    <span class="hljs-string">&quot;koa2-connect-history-api-fallback&quot;</span>: <span class="hljs-string">&quot;^0.1.3&quot;</span>,
+    <span class="hljs-string">&quot;log4js&quot;</span>: <span class="hljs-string">&quot;^6.3.0&quot;</span>
+  },
+  <span class="hljs-string">&quot;devDependencies&quot;</span>: {
+    <span class="hljs-string">&quot;@babel/core&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>,
+    <span class="hljs-string">&quot;@babel/node&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>,
+    <span class="hljs-string">&quot;@babel/preset-env&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>
+  }
+}
+</code></pre>
+<p>&#x6700;&#x540E;&#x6211;&#x4EEC;&#x628A;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5BFC;&#x51FA;&#x65B9;&#x5F0F;&#x5168;&#x90E8;&#x6539;&#x5199;&#x6210;ESModule&#x7684;&#x5F62;&#x5F0F;&#x3002;</p>
+<h2 id="&#x4E09;&#x3001;&#x6DFB;&#x52A0;model&#x5C42;&#x8C03;&#x7528;&#x540E;&#x7AEF;&#x63A5;&#x53E3;">&#x4E09;&#x3001;&#x6DFB;&#x52A0;Model&#x5C42;&#x8C03;&#x7528;&#x540E;&#x7AEF;&#x63A5;&#x53E3;</h2>
+<p>BFF&#x5C42;&#x9700;&#x8981;&#x901A;&#x8FC7;HTTP&#x8BF7;&#x6C42;PHP&#x540E;&#x7AEF;&#x7684;&#x6570;&#x636E;&#xFF1A;</p>
+<ul>
+<li>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x5148;&#x6539;&#x5199;PHP&#x7684;&#x540E;&#x7AEF;&#x4EE3;&#x7801;&#xFF0C;&#x628A;PHP&#x7684;&#x4EE3;&#x7801;&#x6539;&#x6210;&#x63A5;&#x53E3;&#xFF1A;</li>
+</ul>
+<pre><code class="lang-php"><span class="hljs-comment">/* basic/controllers/BooksController.js */</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionIndex</span><span class="hljs-params">()</span>
+</span>{
+    $searchModel = <span class="hljs-keyword">new</span> BooksSearch();
+    $dataProvider = $searchModel-&gt;search(Yii::$app-&gt;request-&gt;queryParams);
+
+    <span class="hljs-comment">// return $this-&gt;render(&apos;index&apos;, [</span>
+    <span class="hljs-comment">//     &apos;searchModel&apos; =&gt; $searchModel,</span>
+    <span class="hljs-comment">//     &apos;dataProvider&apos; =&gt; $dataProvider,</span>
+    <span class="hljs-comment">// ]);</span>
+      <span class="hljs-comment">// &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x628A;actioninIndex&#x7684;&#x6570;&#x636E;&#x6CE8;&#x5165;&#xFF0C;&#x6539;&#x5199;&#x6210;&#x4E86;&#x8FD4;&#x56DE;JSON&#x6570;&#x636E;&#xFF0C;&#x63A5;&#x53E3;&#x6539;&#x9020;&#x5B8C;&#x6210;</span>
+    Yii::$app-&gt;response-&gt;format = Response::FORMAT_JSON;
+    <span class="hljs-keyword">return</span> $dataProvider -&gt; getModels();
+}
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x628A;YII&#x5355;&#x4F53;&#x5E94;&#x7528;&#x7684;controller&#x91CC;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x6539;&#x5199;&#x6210;&#x4E86;&#x63A5;&#x53E3;&#xFF0C;&#x7528;&#x4EE5;&#x8FD4;&#x56DE;JSON&#x6570;&#x636E;&#x3002;</p>
+<ul>
+<li>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x5728;Node&#x9879;&#x76EE;&#x4E0B;&#x7684;models&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;BooksModel&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* /models/BooksModel.js */</span>
+
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;axios&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooksModel</span> </span>{
+  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x56FE;&#x4E66;&#x5217;&#x8868;</span>
+  getBookList() {
+    <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x8BF7;&#x6C42;&#x7684;&#x662F;PHP&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x7684;&#x63A5;&#x53E3;</span>
+    <span class="hljs-keyword">return</span> axios.get(<span class="hljs-string">&quot;http://localhost/basic/web/index.php?r=books/index&quot;</span>);
+  }
+
+  <span class="hljs-comment">// &#x67E5;&#x627E;&#x56FE;&#x4E66;</span>
+  findBooB(id) {
+
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> BooksModel;
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5728;Node&#x4E2D;&#x4F7F;&#x7528;axios&#x8BF7;&#x6C42;PHP&#x540E;&#x7AEF;&#x7684;&#x63A5;&#x53E3;&#x3002;&#x7136;&#x540E;&#x4F5C;&#x4E3A;getBookList&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x7684;Node&#x4E5F;&#x662F;MVC&#x6A21;&#x5F0F;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;BooksModel&#x7C7B;&#x6765;&#x7BA1;&#x7406;&#x6240;&#x6709;&#x5173;&#x4E8E;&#x56FE;&#x4E66;&#x7684;&#x589E;&#x5220;&#x6539;&#x67E5;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x6BCF;&#x4E2A;&#x64CD;&#x4F5C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x3002;getBookList&#x5C31;&#x662F;&#x83B7;&#x53D6;&#x5982;&#x6570;&#x5217;&#x8868;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<ul>
+<li>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x51C6;&#x5907;&#x597D;&#x4E86;Model&#xFF0C;&#x5C31;&#x9700;&#x8981;controller&#x7BA1;&#x7406;&#x8DEF;&#x7531;&#xFF0C;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x63A5;&#x53E3;&#x6570;&#x636E;&#x4E86;&#x3002;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* controllers/ApiController.js */</span>
+
+<span class="hljs-keyword">import</span> Controller <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./Controller&apos;</span>;
+<span class="hljs-keyword">import</span> BooksModel <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../models/BooksModel&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApiController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span> </span>{
+  <span class="hljs-keyword">constructor</span> () {
+    <span class="hljs-keyword">super</span>();
+  }
+
+  <span class="hljs-keyword">async</span> actionBooksList(ctx, next) {
+    <span class="hljs-keyword">const</span> booksModel = <span class="hljs-keyword">new</span> BooksModel();
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> booksModel.getBookList();
+    ctx.body = result.data;
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ApiController;
+</code></pre>
+<p>&#x4E4B;&#x524D;&#x7684;ApiController&#x662F;&#x8FD4;&#x56DE;&#x7684;&#x4E00;&#x4E2A;&#x5199;&#x6B7B;&#x7684;JSON&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x6539;&#x5199;&#x5B83;&#x4F7F;&#x63A7;&#x5236;&#x5668;&#x5BF9;&#x8C61;&#x4E0A;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x52A8;&#x6001;&#x6570;&#x636E;&#xFF0C;&#x9996;&#x5148;&#x5F15;&#x5165;BooksModel&#xFF0C;&#x7136;&#x540E;actionBooksList&#x65B9;&#x6CD5;&#x4E2D;&#x5B9E;&#x4F8B;&#x5316;BooksModel&#x5BF9;&#x8C61;&#xFF0C;&#x8C03;&#x7528;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#xFF0C;&#x53D6;&#x5F97;&#x4ECE;PHP&#x540E;&#x53F0;&#x8BF7;&#x6C42;&#x5230;Node&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x5F53;&#x524D;&#x7684;&#x8BF7;&#x6C42;&#x65F6;HTTP&#x8BF7;&#x6C42;&#x662F;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x3002;&#x6240;&#x4EE5;&#x4F7F;&#x7528;&#x4E86;async await&#x3002;&#x6700;&#x540E;&#x628A;JSON&#x6570;&#x636E;&#x8FD4;&#x56DE;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x6DFB;&#x52A0;&#x4E00;&#x4E0B;Node&#x7684;getBookList&#x8DEF;&#x7531;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* controllers/index.js */</span>
+
+<span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@koa/router&quot;</span>;
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+<span class="hljs-keyword">import</span> IndexController <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./IndexController&apos;</span>;
+<span class="hljs-keyword">const</span> indexController = <span class="hljs-keyword">new</span> IndexController();
+<span class="hljs-keyword">import</span> ApiController  <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./ApiController&apos;</span>;
+<span class="hljs-keyword">const</span> apiController = <span class="hljs-keyword">new</span> ApiController();
+<span class="hljs-keyword">import</span> ActivityController <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./ActivityController&apos;</span>;
+<span class="hljs-keyword">const</span> actionActivity = <span class="hljs-keyword">new</span> ActivityController();
+<span class="hljs-keyword">import</span> VueController <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./VueController&apos;</span>;
+<span class="hljs-keyword">const</span> vueController = <span class="hljs-keyword">new</span> VueController();
+<span class="hljs-keyword">import</span> BooksController <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./BooksController&apos;</span>;
+<span class="hljs-keyword">const</span> booksController = <span class="hljs-keyword">new</span> BooksController();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initController</span>(<span class="hljs-params">app</span>) </span>{
+  router.get(<span class="hljs-string">&apos;/&apos;</span>, indexController.actionIndex);
+  <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x6DFB;&#x52A0;&#x4E86;bookslist&#x63A5;&#x53E3;&#x8DEF;&#x7531;</span>
+  router.get(<span class="hljs-string">&apos;/api/bookslist&apos;</span>, apiController.actionBooksList);
+  router.get(<span class="hljs-string">&apos;/vue&apos;</span>, vueController.actionVue);
+
+  app
+    .use(router.routes())
+    .use(router.allowedMethods());
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> initController;
+</code></pre>
+<ul>
+<li>&#x6700;&#x540E;&#x6211;&#x4EEC;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x5730;&#x5740;&#x680F;&#x8F93;&#x5165; <code>http://localhost:8000/api/booklist</code>&#xFF1A;</li>
+</ul>
+<p><img src="../assets/images/chapter9/bookslist.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x5230;&#x73B0;&#x5728;&#x4E3A;&#x6B62;&#x6211;&#x4EEC;&#x7684;BFF&#x5C42;&#x8C03;&#x7528;&#x540E;&#x7AEF;&#x7684;&#x63A5;&#x53E3;&#x8FD9;&#x4E00;&#x529F;&#x80FD;&#x5C31;&#x5168;&#x90E8;&#x5B9E;&#x73B0;&#x4E86;&#x3002;</p>
+<h2 id="&#x56DB;&#x3001;bff&#x8BF7;&#x6C42;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x6E32;&#x67D3;&#x5230;&#x9875;&#x9762;">&#x56DB;&#x3001;BFF&#x8BF7;&#x6C42;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x6E32;&#x67D3;&#x5230;&#x9875;&#x9762;</h2>
+<p>&#x6211;&#x4EEC;&#x5728;Node&#x4E2D;&#x8BF7;&#x6C42;&#x540E;&#x7AEF;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x83B7;&#x5F97;&#x6570;&#x636E;&#x4E4B;&#x540E;&#x5E0C;&#x671B;&#x6E32;&#x67D3;&#x5230;&#x9875;&#x9762;&#x4E0A;&#xFF0C;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x9700;&#x8981;&#x4EE5;&#x4E0B;&#x51E0;&#x6B65;&#xFF1A;</p>
+<ul>
+<li><p>&#x7F16;&#x5199;BooksController&#x63A7;&#x5236;&#x5668;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* controllers/BookController */</span>
+
+<span class="hljs-keyword">import</span> Controller <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./Controller&apos;</span>;
+<span class="hljs-keyword">import</span> BooksModel <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../models/BooksModel&apos;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooksController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span> </span>{
+  <span class="hljs-keyword">constructor</span> () {
+    <span class="hljs-keyword">super</span>();
+  }
+
+  <span class="hljs-keyword">async</span> actionBooksListPage(ctx, next) {
+    <span class="hljs-keyword">const</span> booksModel = <span class="hljs-keyword">new</span> BooksModel();
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> booksModel.getBookList();
+    ctx.body = <span class="hljs-keyword">await</span> ctx.render(<span class="hljs-string">&apos;books/list&apos;</span>, { data: result.data });
+    next();
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> BooksController;
+</code></pre>
+<p>&#x5F15;&#x5165;BooksModel&#x4E4B;&#x540E;&#xFF0C;&#x5728;actionBooksListPage&#x65B9;&#x6CD5;&#x4E2D;&#x8C03;&#x7528;getBookList&#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x6700;&#x540E;&#x628A;&#x6570;&#x636E;&#x6CE8;&#x5165;&#x5230;view&#x6A21;&#x677F;&#x4E2D;&#x3002;</p>
+</li>
+<li><p>&#x7F16;&#x5199;books/list&#x6A21;&#x677F;</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- views/books/list.html --&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>&#x56FE;&#x4E66;&#x5217;&#x8868;&#x9875;<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#x56FE;&#x4E66;&#x5217;&#x8868;&#x9875;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>&#x5FAA;&#x73AF;&#x6E32;&#x67D3;bookslist&#x6570;&#x636E;&#x3002;</p>
+</li>
+</ul>
+<p>&#x5230;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x660E;&#x786E;&#x7684;&#x8BB2;&#x5B8C;&#x4E86;&#x600E;&#x4E48;&#x628A;Node&#x8BF7;&#x6C42;&#x56DE;&#x6765;&#x7684;JSON&#x6570;&#x636E;&#x6E32;&#x67D3;&#x5230;&#x6A21;&#x677F;&#x4E2D;&#x3002;</p>
+<p>&#x5230;&#x73B0;&#x5728;&#x4E3A;&#x6B62;&#xFF0C;&#x6211;&#x4EEC;&#x6574;&#x4F53;&#x4E0A;BFF&#x7684;&#x6D41;&#x7A0B;&#x5C31;&#x5B8C;&#x5168;&#x7684;&#x8BB2;&#x89E3;&#x5B8C;&#x6BD5;&#x4E86;&#xFF0C;&#x4EE3;&#x7801;&#x4E5F;&#x8FDB;&#x884C;&#x4E86;&#x5B8C;&#x5168;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x5B9E;&#x73B0;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x5DE5;&#x4F5C;&#x8981;&#x505A;&#xFF1A;</p>
+<ol>
+<li>&#x5BF9;&#x4E8E;axios&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x5C01;&#x88C5;&#xFF0C;&#x4E00;&#x822C;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x5B8C;&#x5168;&#x4FE1;&#x4EFB;&#x4ECE;&#x540E;&#x7AEF;&#x8BF7;&#x6C42;&#x8FC7;&#x6765;&#x7684;&#x6570;&#x636E;&#x3002;&#x9700;&#x8981;&#x5728;axios&#x8FD9;&#x4E00;&#x6B65;&#x9AA4;&#x4E2D;&#x8FDB;&#x884C;&#x5BB9;&#x9519;&#x7684;&#x5904;&#x7406;&#x3002;</li>
+<li>&#x8FD8;&#x8981;&#x5BF9;&#x524D;&#x7AEF;&#x7684;&#x9875;&#x9762;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x5316;&#x7684;&#x6D4B;&#x8BD5;&#x3002;</li>
+</ol>
+<h3 id="&#x5BF9;axios&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x7684;&#x5BB9;&#x9519;&#x5904;&#x7406;">&#x5BF9;Axios&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x7684;&#x5BB9;&#x9519;&#x5904;&#x7406;</h3>
+<p>&#x6211;&#x4EEC;&#x5728;&#x8BF7;&#x6C42;&#x540E;&#x7AEF;&#x7684;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x6709;&#x53EF;&#x80FD;&#x540E;&#x7AEF;&#x6CA1;&#x6709;&#x7ED9;&#x6211;&#x4EEC;&#x6B63;&#x786E;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5F88;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x6211;&#x4EEC;&#x7684;&#x9875;&#x9762;&#x5D29;&#x6E83;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x6709;&#x5FC5;&#x8981;&#x5C01;&#x88C5;&#x4E00;&#x4E0B;axios&#xFF0C;&#x5BF9;&#x8BF7;&#x6C42;&#x505A;&#x4E00;&#x4E9B;&#x5BB9;&#x9519;&#x3002;</p>
+<p>&#x5728;utils&#x76EE;&#x5F55;&#x4E2D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;safeRequest.js&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* utils/safeRequest.js */</span>
+
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;axios&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SafeRequest</span> </span>{
+  <span class="hljs-comment">// &#x7EDF;&#x4E00;&#x8BBE;&#x7F6E;&#x8FD4;&#x56DE;&#x7684;&#x54CD;&#x5E94;&#x72B6;&#x6001;&#x7801;&#x548C;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x54CD;&#x5E94;&#x72B6;&#x6001;&#x7801;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x516C;&#x53F8;&#x5185;&#x90E8;&#x6307;&#x5B9A;&#x7684;&#x4E00;&#x5957;&#x6807;&#x51C6;&#x3002;</span>
+
+  <span class="hljs-keyword">static</span> fetch(url) {
+    <span class="hljs-keyword">let</span> result = {
+      code: <span class="hljs-number">0</span>,
+      message: <span class="hljs-string">&apos;&apos;</span>,
+      data: <span class="hljs-literal">null</span>
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(resolve =&gt; {
+      axios(url).then(res =&gt; {
+        result.message = <span class="hljs-string">&apos;OK&apos;</span>;
+        result.data = res.data;
+        resolve(result);
+      }).catch(err =&gt; {
+        <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x505A;&#x7EDF;&#x4E00;&#x7684;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x6355;&#x83B7;</span>
+        result.message = err.message;
+        result.code = <span class="hljs-number">-1</span>;
+        resolve(result);
+      });
+    });
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> SafeRequest;
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x770B;&#x5230;&#xFF0C;&#x5728;&#x5C01;&#x88C5;&#x4E4B;&#x540E;&#x7684;axios&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E00;&#x4E9B;&#x516C;&#x53F8;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x7684;&#x54CD;&#x5E94;&#x72B6;&#x6001;&#x89C4;&#x8303;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x72B6;&#x6001;&#x7EC4;&#x88C5;result&#x5BF9;&#x8C61;&#xFF0C;&#x6700;&#x540E;&#x8FD4;&#x56DE;&#x3002;&#x800C;&#x4E14;&#x5728;&#x51FA;&#x9519;&#x7684;&#x65F6;&#x5019;&#x8FD8;&#x53EF;&#x4EE5;&#x7EDF;&#x4E00;&#x7684;&#x505A;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x7684;&#x6355;&#x83B7;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x5C01;&#x88C5;&#x7684;&#x597D;&#x5904;&#x5728;&#x4E8E;&#x6211;&#x4EEC;&#x5BF9;&#x4E8E;&#x8BF7;&#x6C42;&#x80FD;&#x591F;&#x96C6;&#x4E2D;&#x7684;&#x7BA1;&#x7406;&#xFF0C;&#x4E0D;&#x81F3;&#x4E8E;&#x5199;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x5176;&#x5B9E;axios&#x7684;&#x529F;&#x80FD;&#x5341;&#x5206;&#x5F3A;&#x5927;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x505A;&#x8BF7;&#x6C42;&#x7684;&#x62E6;&#x622A;&#x548C;&#x54CD;&#x5E94;&#x7684;&#x62E6;&#x622A;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;&#x8BF7;&#x6C42;&#x53D1;&#x51FA;&#x4E4B;&#x524D;&#x548C;&#x6536;&#x5230;&#x54CD;&#x5E94;&#x4E4B;&#x524D;&#x505A;&#x4E00;&#x4E9B;&#x4E1A;&#x52A1;&#x9700;&#x8981;&#x7684;&#x4E8B;&#x60C5;&#x3002;&#x5728;&#x771F;&#x6B63;&#x7684;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x7684;&#x72EC;&#x7279;&#x6027;&#xFF0C;&#x4E0D;&#x65AD;&#x7684;&#x4E30;&#x5BCC;&#x548C;&#x5065;&#x58EE;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x3002;</p>
+<h2 id="&#x4E94;&#x3001;&#x5982;&#x4F55;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;">&#x4E94;&#x3001;&#x5982;&#x4F55;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;</h2>
+<p>&#x6211;&#x4EEC;&#x5982;&#x679C;&#x60F3;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x9605;&#x8BFB;&#x4E00;&#x4E0B;&#x7ECF;&#x5178;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;&#x7684;&#x6E90;&#x7801;&#xFF1A;</p>
+<ul>
+<li>Underscore</li>
+<li>Lodash</li>
+</ul>
+<p>&#x4EE5;&#x4E0A;&#x8FD9;&#x4E24;&#x4E2A;&#x90FD;&#x662F;&#x975E;&#x5E38;&#x4F18;&#x79C0;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;&#xFF0C;&#x7B14;&#x8005;&#x5EFA;&#x8BAE;&#x5927;&#x5BB6;&#x5148;&#x719F;&#x7EC3;&#x4F7F;&#x7528;Lodash&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5C1D;&#x8BD5;&#x8BFB;&#x4E00;&#x4E0B;Lodash&#x7684;&#x6E90;&#x7801;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C31;&#x5C1D;&#x8BD5;&#x9605;&#x8BFB;&#x6E90;&#x7801;&#xFF0C;&#x6E90;&#x7801;&#x7684;&#x9605;&#x8BFB;&#x6211;&#x5728;github&#x4E0A;&#x5DF2;&#x7ECF;&#x5206;&#x6790;&#x8FC7;&#x4E86;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x5199;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* utils/myUtils */</span>
+
+<span class="hljs-comment">/* &#x7F16;&#x5199;&#x81EA;&#x5DF1;&#x7684;&#x5E93; */</span>
+
+<span class="hljs-comment">// &#x5199;&#x4E00;&#x4E2A;&#x95ED;&#x5305;  &#x51FD;&#x6570;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;&#x53BB;&#x9694;&#x79BB;</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x6267;&#x884C;&#x73AF;&#x5883;</span>
+    <span class="hljs-keyword">var</span> root = <span class="hljs-keyword">typeof</span> self == <span class="hljs-string">&apos;object&apos;</span> &amp;&amp; self.self === self &amp;&amp; self ||
+        <span class="hljs-keyword">typeof</span> global == <span class="hljs-string">&apos;object&apos;</span> &amp;&amp; global.global === global &amp;&amp; global ||
+        <span class="hljs-keyword">this</span> || {};
+
+    <span class="hljs-comment">// &#x6838;&#x5FC3;</span>
+    <span class="hljs-comment">// &#x6784;&#x9020;&#x5B89;&#x5168;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+    <span class="hljs-keyword">var</span> _ = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
+        <span class="hljs-comment">// </span>
+        <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> _) <span class="hljs-keyword">return</span> obj;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;new&#x4E4B;&#x524D;&apos;</span>,<span class="hljs-keyword">this</span>);
+        <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> _)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> _(obj);
+
+        <span class="hljs-comment">// &#x5982;&#x679C;&#x524D;&#x8FB9;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#x90FD;&#x4E0D;&#x6EE1;&#x8DB3;</span>
+        <span class="hljs-keyword">this</span>._wrapped = obj;
+    };
+
+     <span class="hljs-comment">// &#x529F;&#x80FD;&#x975E;&#x5E38;&#x4E30;&#x5BCC;</span>
+     _.map = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{}
+    _.each = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arr, fn</span>) </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) {
+            fn(arr[i], i);
+        }
+        <span class="hljs-keyword">return</span> arr;
+    }
+
+    _.functions = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
+        <span class="hljs-keyword">var</span> names = [];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj) {
+            <span class="hljs-keyword">if</span> (_.isFunction(obj[key])) names.push(key);
+        }
+        <span class="hljs-keyword">return</span> names.sort();
+    };
+    _.isFunction = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> obj == <span class="hljs-string">&apos;function&apos;</span> || <span class="hljs-literal">false</span>;
+    };
+    <span class="hljs-comment">/* 
+      &#x8282;&#x6D41;&#x51FD;&#x6570;
+      &#x4E00;&#x822C;&#x6253;&#x4E09;&#x4E2A;&#x70B9;
+      1. &#x5728;&#x4E00;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x51FD;&#x6570;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;
+      2. &#x7B2C;&#x4E00;&#x6B21;&#x89E6;&#x53D1;&#xFF0C;&#x4F1A;&#x7ACB;&#x5373;&#x6267;&#x884C;
+      3. &#x5982;&#x679C;&#x518D;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#x5185;&#x89E6;&#x53D1;&#xFF0C;&#x4F1A;&#x5728;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#x672B;&#x5C3E;&#x518D;&#x6267;&#x884C;&#x4E00;&#x6B21;
+    */</span>
+   _.throttle = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb,t</span>)</span>{
+        <span class="hljs-keyword">let</span> isFirst = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">let</span> execDate = + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+        <span class="hljs-keyword">let</span> timeoutId = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+            <span class="hljs-keyword">if</span>(isFirst){
+                <span class="hljs-comment">// &#x7ACB;&#x5373;&#x6267;&#x884C;</span>
+                cb();
+                execDate = + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+                isFirst = <span class="hljs-literal">false</span>;
+            }<span class="hljs-keyword">else</span>{
+                <span class="hljs-comment">// &#x5982;&#x679C;&#x4E0D;&#x662F;&#x7B2C;&#x4E00;&#x6B21;</span>
+                <span class="hljs-keyword">const</span> currentDate = +<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+                <span class="hljs-keyword">if</span>(currentDate - execDate &gt;=t){
+                    cb();
+                    execDate = + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+                }<span class="hljs-keyword">else</span>{
+                    timeoutId &amp;&amp; clearTimeout(timeoutId);
+                    <span class="hljs-comment">// &#x8981;&#x95F4;&#x9694;&#x7684;&#x65F6;&#x95F4; - &#x5DF2;&#x7ECF;&#x8FC7;&#x4E86;&#x591A;&#x957F;&#x65F6;&#x95F4;(currentDate-execDate)</span>
+                    <span class="hljs-keyword">const</span> timeWait = t - (currentDate - execDate);
+                    timeoutId = setTimeout(()=&gt;{
+                        cb();
+                        execDate = + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+                    },timeWait)
+                }
+            }
+        }
+   }
+   _.xxx = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
+   }
+
+    <span class="hljs-keyword">var</span> push = <span class="hljs-built_in">Array</span>.prototype.push;
+
+    _.mixin = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>{
+        <span class="hljs-comment">// 1. &#x904D;&#x5386;undescore &#x4E0A;&#x7684;&#x6240;&#x6709;&#x65B9;&#x6CD5; name-&#x65B9;&#x6CD5;&#x540D;</span>
+        _.each(_.functions(obj), <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name</span>) </span>{
+            <span class="hljs-comment">// console.log(name);</span>
+            <span class="hljs-comment">// _[name] = obj[name] =&gt; &#x6269;&#x5C55;&#x81EA;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;</span>
+            <span class="hljs-keyword">var</span> func = _[name] = obj[name];
+            <span class="hljs-comment">//  &#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x5173;&#x952E;</span>
+            _.prototype[name] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+                <span class="hljs-comment">// &#x53C2;&#x6570;&#x7684;&#x4E00;&#x4E2A;&#x5408;&#x5E76;</span>
+                <span class="hljs-comment">// console.log(this._wrapped,arguments);</span>
+                <span class="hljs-comment">/* &#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5; */</span>
+                <span class="hljs-keyword">var</span> args = [<span class="hljs-keyword">this</span>._wrapped];
+                push.apply(args, <span class="hljs-built_in">arguments</span>);
+                <span class="hljs-comment">// return chainResult(this, func.apply(_, args));</span>
+                <span class="hljs-comment">/* ES6&#x7684;&#x65B9;&#x5F0F; */</span>
+                args.push(...arguments);
+                <span class="hljs-keyword">return</span> func.apply(_, args);
+            };
+        });
+        <span class="hljs-keyword">return</span> _;
+    };
+    _.mixin(_);
+
+
+    <span class="hljs-comment">/* &#x5168;&#x5C40;&#x6302;&#x8F7D; */</span>
+    root._ = _;
+})();
+</code></pre>
+<p>&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x5E93;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x4E00;&#x79CD;&#x53EF;&#x63D2;&#x62D4;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x63D2;&#x62D4;&#x7684;&#x65B9;&#x5F0F;&#x7684;&#x7279;&#x70B9;&#x5C31;&#x662F;&#x4EE3;&#x7801;&#x7684;&#x6838;&#x5FC3;&#x975E;&#x5E38;&#x5C0F;&#xFF0C;&#x4F46;&#x662F;&#x529F;&#x80FD;&#x975E;&#x5E38;&#x4E30;&#x5BCC;&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x7684;&#x4E24;&#x4E2A;&#x7279;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8F6C;&#x6362;</li>
+<li>&#x901A;&#x8FC7;&#x4E32;&#x8054;&#x591A;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x6C42;&#x7ED3;&#x679C;</li>
+</ul>
+<p>&#x8FD9;&#x91CC;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x4E0D;&#x505A;&#x8BB2;&#x89E3;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x770B;&#x5177;&#x4F53;&#x7684;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x53EF;&#x4EE5;&#x524D;&#x5F80;&#x7B2C;&#x5341;&#x4E00;&#x5377;&#x3002;</p>
+<h2 id="&#x516D;&#x3001;&#x524D;&#x7AEF;&#x6D4B;&#x8BD5;">&#x516D;&#x3001;&#x524D;&#x7AEF;&#x6D4B;&#x8BD5;</h2>
+<h3 id="i&#x3001;e2e&#x6D4B;&#x8BD5;">I&#x3001;e2e&#x6D4B;&#x8BD5;</h3>
+<p>&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#xFF1A;</p>
+<p>playWright&#xFF0C;&#x5FAE;&#x8F6F;&#x5F00;&#x6E90;&#x7684;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x662F;&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x7684;&#xFF0C;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;playWright&#x662F;&#x6CA1;&#x6709;&#x65AD;&#x8A00;&#x5E93;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x8FD8;&#x8981;&#x662F;&#x7528;chai&#x65AD;&#x8A00;&#x5E93;&#x8FDB;&#x884C;&#x65AD;&#x8A00;&#xFF1A;</p>
+<p>&#x5B89;&#x88C5;chai&#x65AD;&#x8A00;&#x5E93;&#xFF1A;</p>
+<pre><code>$ npm install chai -D
+</code></pre><p>&#x5B89;&#x88C5;playWright&#xFF1A;</p>
+<pre><code>$ npm install playWright -D
+</code></pre><p>&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#x811A;&#x672C;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* tests/e2e.test.js */</span>
+
+<span class="hljs-keyword">const</span> playwright = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;playwright&apos;</span>);
+<span class="hljs-keyword">const</span> expect = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;chain&apos;</span>).expect;
+
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> browserType <span class="hljs-keyword">of</span> [<span class="hljs-string">&apos;chromium&apos;</span>, <span class="hljs-string">&apos;firefox&apos;</span>, <span class="hljs-string">&apos;webkit&apos;</span>]) {
+    <span class="hljs-keyword">const</span> browser = <span class="hljs-keyword">await</span> playwright[browserType].launch();
+    <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">await</span> browser.newContext();
+    <span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> context.newPage();
+    <span class="hljs-comment">// &#x6D4B;&#x8BD5;&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x56FE;&#x4E66;&#x5217;&#x8868;&#x9875;</span>
+    <span class="hljs-keyword">await</span> page.goto(<span class="hljs-string">&apos;http://localhost:8000/bookslist&apos;</span>);
+    <span class="hljs-comment">// &#x6A21;&#x62DF;&#x7528;&#x6237;&#x70B9;&#x51FB;</span>
+    <span class="hljs-keyword">const</span> content = <span class="hljs-keyword">await</span> page.textContent(<span class="hljs-string">&quot;#btn&quot;</span>);
+    expect(content).equal(<span class="hljs-string">&apos;&#x70B9;&#x51FB;&apos;</span>);
+    <span class="hljs-keyword">await</span> page.screenshot({ path: <span class="hljs-string">`report/example-<span class="hljs-subst">${browserType}</span>.png`</span> });
+    <span class="hljs-keyword">await</span> browser.close();
+  }
+})();
+</code></pre>
+<p>&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#xFF08;package.json&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-json">...
+<span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;NODE_ENV=development nodemon --exec &apos;babel-node ./app.js&apos;&quot;</span>,
+    <span class="hljs-string">&quot;test:e2e&quot;</span>: <span class="hljs-string">&quot;node tests/e2e.test.js&quot;</span>
+  },
+...
+</code></pre>
+<h3 id="ii&#x3001;&#x524D;&#x7AEF;&#x63A5;&#x53E3;&#x6D4B;&#x8BD5;">II&#x3001;&#x524D;&#x7AEF;&#x63A5;&#x53E3;&#x6D4B;&#x8BD5;</h3>
+<p>&#x6211;&#x4EEC;&#x5728;&#x5E73;&#x65F6;&#x7684;&#x5F00;&#x53D1;&#x4E2D;&#x9762;&#x5BF9;&#x540E;&#x7AEF;&#x7ED9;&#x6211;&#x4EEC;&#x7684;&#x63A5;&#x53E3;&#x6211;&#x4EEC;&#x4E0D;&#x77E5;&#x9053;&#x5BF9;&#x4E0D;&#x5BF9;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4E8B;&#x5148;&#x6D4B;&#x8BD5;&#x4E00;&#x4E0B;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4F1A;&#x7528;psotman&#x8FDB;&#x884C;&#x63A5;&#x53E3;&#x6D4B;&#x8BD5;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x63A5;&#x53E3;&#x7684;&#x6570;&#x91CF;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x6211;&#x4EEC;&#x7528;postman&#x6D4B;&#x8BD5;&#x662F;&#x624B;&#x52A8;&#x6D4B;&#x8BD5;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x6BD4;&#x8F83;&#x6D6A;&#x8D39;&#x65F6;&#x95F4;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x524D;&#x7AEF;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x5DE5;&#x5177;&#xFF0C;&#x6D4B;&#x8BD5;&#x4E00;&#x4E0B;&#x540E;&#x7AEF;&#x7684;&#x63A5;&#x53E3;&#x597D;&#x4E0D;&#x597D;&#x7528;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4F7F;&#x7528;mocha&#x548C;supertest&#x6765;&#x8FDB;&#x884C;&#x63A5;&#x53E3;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#xFF1A;</p>
+<p>&#x9996;&#x5148;&#x5B89;&#x88C5;mocha&#x548C;supertest</p>
+<pre><code>$ npm install mocha -D
+
+$ npm install supertest -
+</code></pre><p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x6765;&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#x811A;&#x672C;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">/* tests/api.test.js */</span>
+
+<span class="hljs-keyword">const</span> request = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;supertest&apos;</span>);
+
+describe(<span class="hljs-string">&apos;nodejs api test&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  it(<span class="hljs-string">&apos;&#x83B7;&#x53D6;&#x56FE;&#x4E66;&#x5217;&#x8868;&#x63A5;&#x53E3;&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    request(<span class="hljs-string">&apos;http://localhost:8000&apos;</span>)
+      .get(<span class="hljs-string">&apos;api/getBooksList&apos;</span>)
+        .expect(<span class="hljs-number">200</span>)
+        .end((err, res) =&gt; {
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;res---&gt;&apos;</span>, res.body)
+    });
+  });
+});
+</code></pre>
+<p>&#x7F16;&#x5199;&#x5B8C;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x8FD8;&#x8981;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x63A5;&#x53E3;&#x7684;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code class="lang-json">...
+<span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;NODE_ENV=development nodemon --exec &apos;babel-node ./app.js&apos;&quot;</span>,
+    <span class="hljs-string">&quot;test:e2e&quot;</span>: <span class="hljs-string">&quot;node tests/e2e.test.js&quot;</span>,
+      <span class="hljs-string">&quot;test:api&quot;</span>: <span class="hljs-string">&quot;mocha --file ./tests/api.test.js&quot;</span>
+  },
+...
+</code></pre>
+<p>&#x53E6;&#x5916;&#x63A5;&#x53E3;&#x6D4B;&#x8BD5;&#x8FD8;&#x53EF;&#x4EE5;&#x642D;&#x914D;&#x65AD;&#x8A00;&#x5E93;&#xFF0C;&#x6765;&#x68C0;&#x67E5;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x4EE5;&#x53CA;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x7684;&#x683C;&#x5F0F;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;</p>
+<h2 id="&#x4E03;&#x3001;&#x603B;&#x7ED3;">&#x4E03;&#x3001;&#x603B;&#x7ED3;</h2>
+<p>BFF&#x67B6;&#x6784;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5230;&#x8FD9;&#x91CC;&#x4E5F;&#x5C31;&#x544A;&#x4E00;&#x6BB5;&#x843D;&#x4E86;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x77E5;&#x8BC6;&#x6838;&#x5FC3;&#x7684;&#x5B9E;&#x73B0;&#x90E8;&#x5206;&#xFF0C;&#x8FD8;&#x6709;&#x8BB8;&#x591A;&#x5DE5;&#x4F5C;&#x8981;&#x5B8C;&#x5584;&#x3002; &#x6BD4;&#x5982;&#x5982;&#x679C;&#x8981;&#x4E0A;&#x7EBF;&#x7684;&#x8BDD;&#xFF0C;Node&#x9879;&#x76EE;&#x7684;&#x4E0A;&#x7EBF;&#xFF0C;&#x7EF4;&#x62A4;&#x7B49;&#x5DE5;&#x4F5C;&#x3002;&#x8FD9;&#x5C31;&#x9700;&#x8981;PM2&#x6765;&#x505A;&#x8FDB;&#x7A0B;&#x7BA1;&#x7406;&#x548C;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;&#x8FD8;&#x6709;&#x5C31;&#x662F;webpack&#x7684;&#x6253;&#x5305;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x5F88;&#x91CD;&#x8981;&#x6211;&#x4EEC;&#x4F1A;&#x5728;&#x4EE5;&#x540E;&#x6162;&#x6162;&#x7684;&#x7EC6;&#x5316;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="section1.html" class="navigation navigation-prev " aria-label="Previous page: 前后端BFF架构实现（一）">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter10/" class="navigation navigation-next " aria-label="Next page: 第十卷·前端性能优化与工程化">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"前后端BFF架构实现（二）","level":"1.10.3","depth":2,"next":{"title":"第十卷·前端性能优化与工程化","level":"1.11","depth":1,"path":"chapter10/README.md","ref":"chapter10/README.md","articles":[{"title":"前端性能优化的服务器基础","level":"1.11.1","depth":2,"path":"chapter10/section1.md","ref":"chapter10/section1.md","articles":[]},{"title":"Chrome浏览器的渲染机制","level":"1.11.2","depth":2,"path":"chapter10/section2.md","ref":"chapter10/section2.md","articles":[]},{"title":"大规模NodeJS项目架构与优化","level":"1.11.3","depth":2,"path":"chapter10/section3.md","ref":"chapter10/section3.md","articles":[]},{"title":"前端工程化Linux预备知识","level":"1.11.4","depth":2,"path":"chapter10/section4.md","ref":"chapter10/section4.md","articles":[]}]},"previous":{"title":"前后端BFF架构实现（一）","level":"1.10.2","depth":2,"path":"chapter9/section1.md","ref":"chapter9/section1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter9/section2.md","mtime":"2021-06-13T08:25:36.347Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-06-13T05:08:03.003Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
