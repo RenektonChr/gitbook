@@ -26,6 +26,8 @@
     * [Chrome浏览器的渲染机制](chapter10/section2.md)
     * [大规模NodeJS项目架构与优化](chapter10/section3.md)
     * [前端工程化Linux预备知识](chapter10/section4.md)
+    * [从小到大论前端持续集成](chapter10/section5.md)
+    * [前端工程化之CI/CD](chapter10/section6.md)
 * [第十一卷·JavaScript函数式编程](chapter11/README.md)
     * [函数式编程](chapter11/section1.md)
 
