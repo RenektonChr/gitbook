@@ -263,3 +263,9 @@ $ ./sonar.sh console
 <img src="../assets/images/chapter10/32.png" alt="node-app.png" style="zoom:50%;" />
 
 Sonarqube的默认用户名和密码都是admin。输入之后点击login即可登录完成。
+
+但现在为止我们就在Java环境中安装上SonarQube。其实还是有些麻烦的。
+
+### II、Docker环境安装SonarQube
+
+未完待续...
