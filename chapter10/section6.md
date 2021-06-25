@@ -268,4 +268,89 @@ Sonarqube的默认用户名和密码都是admin。输入之后点击login即可�
 
 ### II、Docker环境安装SonarQube
 
-未完待续...
+首先使用Docker环境安装SonarQube就需要安装Docker，在VPS中安装docker执行：
+
+```
+$ yum install docker
+```
+
+安装完之后，docker分为客户端和服务端，属于CS架构，平常我们使用的就是客户端，也就是docker命令。执行一下docker命令如果有正确的返回说明docker安装成功。
+
+<img src="../assets/images/chapter10/33.png" alt="node-app.png" style="zoom:50%;" />
+
+如果出现上图的返回结果证明docker安装成功。docker有服务端，安装完之后需要启动服务端，执行：
+
+```
+$ systemctl start docker
+```
+
+要注意的是执行这条命令之后是没有任何的反馈的，所以我们还要查看一下docer server的状态来确定是否启动成功了：
+
+```
+$ systemctl status docker
+```
+
+如下图所示，启动成功（active running）：
+
+<img src="../assets/images/chapter10/34.png" alt="node-app.png" style="zoom:50%;" />
+
+接下来要下载docker镜像了，docker镜像的下载使用docker命令从dockerhub上pull下来，就像使用git命令从github上拉取项目是一样的，我们看一下sonarqube的[官网教程](https://docs.sonarqube.org/latest/setup/install-server/)的**Installing SonarQube from the Docker Image**：
+
+<img src="../assets/images/chapter10/35.png" alt="node-app.png" style="zoom:50%;" />
+
+我们就按照官网的步骤，一步步的往下做。
+
++ 为docker创建虚拟卷，docker在执行的时候会产生一些数据，这些数据不能放在docker容器里面，是存放在本地的硬盘中的。
+
+  ```
+  ## 依次执行
+  $ docker volume create --name sonarqube_data
+  $ docker volume create --name sonarqube_logs
+  $ docker volume create --name sonarqube_extensions
+  ```
+
++ 如果我们使用sonarqube自带的数据库来启动sonarqube则执行以下命令：
+
+  ```
+  $ docker run --rm \
+      -p 9000:9000 \
+      -v sonarqube_extensions:/opt/sonarqube/extensions \
+      <image_name>
+  ```
+
+  我们需要注意的是<image_name>需要填写[dockerHub](https://hub.docker.com/)上的官方镜像名称。
+
+  <img src="../assets/images/chapter10/36.png" alt="node-app.png" style="zoom:50%;" />
+
+  填写这个名字默认下载dockerhub上的社区版的最新版本。如果填写`docker-sonarqube`没有作用，那么久只填写`sonarqube`。
+
+  和Java环境下的sonarqube一样，sonarqube的启动分为第一次启动和第n次启动：
+
+  ```
+  ## 第一次启动执行以下命令
+  $ docker run --rm -p 8000:9000 -v sonarqube_extensions:/opt/sonarqube/extensions sonarqube
+      
+  ## 第n次启动执行以下命令
+  $ docker start sonarqube
+  ```
+
+  不出意外的话sonarqube就可以启动成功了。
+
+  > 这里要注意一个问题，不管是Java环境还是docker环境，启动sonarqube的服务都是需要JVM的，Java的应用程序是出了名的吃内存，如果启动sonarqube的服务尽量把其他占内存大的服务停掉，否则可能出现因为内存不够启动失败。
+
+  sonarqube的web应用是B/S架构的，只是依靠这个Web服务是不能检测代码的，sonarqube还有一个客户端，需要把客户端集成到IDE中或者gitlab、SVN中去。客户端是需要配置文件的。
+
+  现在我们打开sonarqube的网站，发现是英文的，这对于英文不好的开发者不是很友好，我们可以下载一个汉化包`Chinese Pack`，可以在应用市场中搜到。如下图所示：
+
+  <img src="../assets/images/chapter10/37.png" alt="node-app.png" style="zoom:50%;" />
+
+  点击install就可以安装。安装完成之后重启服务，就可以看到汉化完成。效果如下图所示：
+
+  <img src="../assets/images/chapter10/38.png" alt="node-app.png" style="zoom:50%;" />
+
+
+
+## 三、SonarQube的使用
+
+关于SonarQube的使用我们会在Jenkins中详细介绍。
+
