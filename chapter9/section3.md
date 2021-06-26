@@ -547,13 +547,17 @@ files.forEach(path => {
   // 使用正则匹配 匹配到”xxx-xxx.entry.js“，然后取出"xxx-xxx"
   if(/([a-zA-Z]+-[a-zA-Z]+)\.entry\.js/.test(path)) {
     const entryKey = RegExp.$1;
+    entries[entryKey] = path;
   }
 });
+
+// 输出一下处理完的entries
+console.log('entries---->', entries);
 
 // 公共的webpack配置
 const bisicConfig = {
   mode,
-  entry: "",		// 入口 要打包的文件
+  entry: entries,		// 入口 要打包的文件
   output: "",		// 出口 打包完成之后输出的文件
   module: ""		// 需要打包的模块
 }
@@ -562,3 +566,398 @@ const bisicConfig = {
 module.exports = merge(basicConfig, envConfig);
 ```
 
+<img src="../assets/images/chapter9/10.png" alt="node-app.png" style="zoom:100%;" />
+
+我们可以看到输出的结果，是正确的的，到现在我们已经把多入口对象处理完毕。
+
+那么接下来我们配置一下**output对象**，这里我们要使用到node的path对象，来统一不同操作系统的路径。先在**books-list.entry.js**中随意编写一段代码：
+
+```javascript
+// /src/web/views/books-list.entry.js
+
+class BooksList {
+  constructor() {
+    console.log('books list init');
+  }
+}
+
+new BooksList();
+```
+
+> loader和babel的区别：
+>
+> + lodaer是一个转换器，比如说把a.less转成a.css
+> + plugin丰富了webpack的功能
+
+然后，我们安装一下**babel-loader**：
+
+```shell
+npm install -D babel-laoder
+```
+
+我们现在开始添加output和model：
+
+```javascript
+// webpack.config.js
+
+const { argv } = require('yargs');
+const { merge } = require('webpack-merge');
+const path = require('path');
+const glob = require('glob');
+const mode = argv.mode || 'development';
+// 分环境加载配置
+const envConfig = require(`./build/webpack.${mode}.js`);
+// 匹配文件  入口文件统一的命名方式就是为了在这里容易匹配，好处理。
+const files = glob.sync('./src/web/views/**/*.entry.js');
+// webpack入口对象
+const entries = {};
+files.forEach(path => {
+  // 使用正则匹配 匹配到”xxx-xxx.entry.js“，然后取出"xxx-xxx"
+  if(/([a-zA-Z]+-[a-zA-Z]+)\.entry\.js/.test(path)) {
+    const entryKey = RegExp.$1;
+    entries[entryKey] = path;
+  }
+});
+
+// 输出一下处理完的entries
+console.log('entries---->', entries);
+
+// 公共的webpack配置
+const bisicConfig = {
+  mode,
+  entry: entries,		// 入口 要打包的文件
+  output: {
+    path: path.join(__dirname, './dist/assets'),
+    filename: 'scripts/[name].bundle.js'
+  },		// 出口 打包完成之后输出的文件
+  module: {
+    rules: [{
+        test: /\.js$/,
+        use: ['babel-loader']
+    }]
+  }		// 需要打包的模块
+}
+
+// 合并配置
+module.exports = merge(basicConfig, envConfig);
+```
+
+这样配置完之后，执行`npm run client:dev`就可以打包成功。这时你就会发现dist目录里生成了一个scripts目录，目录里生成了两个打包好的文件：`books-create-bundle.js`、`books-list-bundle.js`。可以看一下**books-list-bundle.js**里面的内容，你会发现打包出了很多没有见过的代码，这写代码包含了Webpack运行时，然后把我们写的ES6的类，打包成了ES5的原型链写法。
+
+通过这种webpack打包的方式我们可以在入口文件中引入JS文件和CSS文件，然后打包完成之后再塞到Node后端的swig模板中去。这是我们使用webpack打包静态前端代码的根本目的。
+
+**看一下swig模板和组件的使用**
+
+接下来我们新建一个**src/web/views/layouts/layout.html**：
+
+```html
+<!-- src/web/views/layouts/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% block content %}{% endblock %}
+  {% block script %}{% endblock %}
+</body>
+</html>
+```
+
+这些**{% block xxx %}**就是一些占位符，其他的页面都继承自这一页面，然后把不同的内容渲染到占位符中。我们分别说一下layout.html中的占位符：
+
++ {% block title %}{% endblock %} title的占位符
++ {% block head %}{% endblock %}head的占位符
++ {% block content %}{% endblock %}页面内容的站位符
++ {% block script %}{% endblock %}JS脚本的占位符
+
+创建一个前端的组件，在**src/web/components**新建一个nav目录，在里面创建nav.html、nav.css、nav.js：
+
+```html
+<!-- src/web/components/nav/nav.html -->
+<!-- 只需要写内容   不需要写html的完整结构 -->
+<ul>
+  <li><a href="/">首页</a></li>
+  <li><a href="/books/list">图书列表页</a></li>
+  <li><a href="/books/create">图书创建页</a></li>
+</ul>
+```
+
+```css
+/* src/web/components/nav/nav.css */
+
+ul {
+  background-color: aqua;
+}
+```
+
+```javascript
+/* src/web/components/nav/nav.js */
+
+function nav() {
+  console.log('nav init');
+}
+
+export default nav;
+```
+
+写好了layout页面和nav组件，我们来修改一下**src/web/views/book/book-list.html**，book-list.html页面继承自layout页面，然后把nav组件塞进去：
+
+```html
+{% extends '../../layouts/layout.html' %}
+
+{% block title %}图书列表页{% endblock %}
+
+{% block head %}
+<style>
+  body {
+    background-color: yellow;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  {% include '../../../components/nav/nav.html' %}
+  {% for item in data %}
+    <div>{{ item.name }} - {{ item.price }}</div>
+  {% endfor %}
+{% endblock %}
+
+{% block script %}
+  
+{% endblock %}
+```
+
+list页面继承自layout页面，然后就可以往layout页面里的占位符中渲染dom了，还使用include模板语法引入了一个组件。使用for …… in语法渲染了列表。
+
+更改完了list页面之后我们还需要更改一些后端的路由，因为我们的页面的位置在工程化改造过程中发生了变化。
+
+```javascript
+import Controller from './Controller';
+import BooksModel from '../models/BooksModel'
+
+class BooksController extends Controller {
+  constructor () {
+    super();
+  }
+
+  async actionBooksListPage(ctx, next) {
+    console.log('books/list')
+    const booksModel = new BooksModel();
+    const result = await booksModel.getBookList();
+    // 更改为'books/pages/list'
+    ctx.body = await ctx.render('books/pages/list', { data: result.data });
+    next();
+  }
+
+  // 新建一个actionBooksCreatePage函数，用啦渲染create页面
+  async actionBooksCreatePage(ctx, next) {
+    ctx.body = await ctx.render('books/pages/create');
+    next();
+  }
+}
+
+export default BooksController;
+```
+
+改完之后我们来看一下浏览器的渲染效果，在地址栏输入`localhost:8000/books/list`：
+
+<img src="../assets/images/chapter9/11.png" alt="node-app.png" style="zoom:100%;" />
+
+相同的我们也可以改一下create页面。现在我们模板已经处理的差不多了，接下来就是使用webpack进行打包了，我们需要把JS和CSS文件都打包到HTML中。需要使用`html-webpack-plugin`。
+
+```shell
+$ npm install -D html-webpack-plugin
+```
+
+安装完成之后，在webpack.config.js中引入使用：
+
+```javascript
+// webpack.config.js
+
+const { argv } = require('yargs');
+const { merge } = require('webpack-merge');
+// 页面模板处理，webpack会把css和js注入到HTML中
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const glob = require('glob');
+const mode = argv.mode || 'development';
+// 分环境加载配置
+const envConfig = require(`./build/webpack.${mode}.js`);
+// 匹配文件  入口文件统一的命名方式就是为了在这里容易匹配，好处理。
+const files = glob.sync('./src/web/views/**/*.entry.js');
+// webpack入口对象
+const entries = {};
+files.forEach(path => {
+  // 使用正则匹配 匹配到”xxx-xxx.entry.js“，然后取出"xxx-xxx"
+  if(/([a-zA-Z]+-[a-zA-Z]+)\.entry\.js/.test(path)) {
+    const entryKey = RegExp.$1;
+    entries[entryKey] = path;
+  }
+});
+
+// 输出一下处理完的entries
+console.log('entries---->', entries);
+
+// 公共的webpack配置
+const bisicConfig = {
+  mode,
+  entry: entries,		// 入口 要打包的文件
+  output: {
+    path: path.join(__dirname, './dist/assets'),
+    filename: 'scripts/[name].bundle.js'
+  },		// 出口 打包完成之后输出的文件
+  module: {
+    rules: [{
+        test: /\.js$/,
+        use: ['babel-loader']
+    }]
+  },		// 需要打包的模块
+  plugins: [ new HTMLWebpackPlugin() ]
+}
+
+// 合并配置
+module.exports = merge(basicConfig, envConfig);
+```
+
+执行**npm run client:dev**，我们看一下结果：
+
+<img src="../assets/images/chapter9/12.png" alt="node-app.png" style="zoom:100%;" />
+
+我们会发现，我们是个多页面应用，但是webpack就打包出一个index.html，这显然是不合适的，这里的html打包和上文中的JS打包相同的需要根据每个入口打包，一个入口文件对应一个html，并且每个html中需要引入各自的JS和CSS而不是全部引入，这样的话我们就要对webpack.config.js进行配置：
+
+```javascript
+// webpack.config.js
+
+const { argv } = require('yargs');
+const { merge } = require('webpack-merge');
+// 页面模板处理，webpack会把css和js注入到HTML中
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const glob = require('glob');
+const mode = argv.mode || 'development';
+// 分环境加载配置
+const envConfig = require(`./build/webpack.${mode}.js`);
+// 匹配文件  入口文件统一的命名方式就是为了在这里容易匹配，好处理。
+const files = glob.sync('./src/web/views/**/*.entry.js');
+// webpack入口对象
+const entries = {};
+// 多页面资源注入处理
+const htmlPlugins = [];
+files.forEach(path => {
+  // 使用正则匹配 匹配到”xxx-xxx.entry.js“，然后取出"xxx-xxx"
+  if(/([a-zA-Z]+-[a-zA-Z]+)\.entry\.js/.test(path)) {
+    const entryKey = RegExp.$1;
+    const [ pageName, template ] = entryKey.split('-');
+    entries[entryKey] = path;
+    // new HTMLWebpackPlugin要做两个配置，filename是打包之后文件输出到哪里，template是打包的页面在哪儿
+    htmlPlugins.push(new HTMLWebpackPlugin({
+      // 这里的路径是以output下的path路径为基准的。
+      filename: `../views/${pageName}/pages/${template}.html`,
+      // 模板文件的路径是以当前webpack文件的位置为基准（正常找就可以）
+      template: `./src/web/views/${pageName}/pages/${template}.html`
+    }));
+  }
+});
+
+// 公共的webpack配置
+const bisicConfig = {
+  mode,
+  entry: entries,		// 入口 要打包的文件
+  output: {
+    path: path.join(__dirname, './dist/assets'),
+    filename: 'scripts/[name].bundle.js'
+  },		// 出口 打包完成之后输出的文件
+  module: {
+    rules: [{
+        test: /\.js$/,
+        use: ['babel-loader']
+    }]
+  },		// 需要打包的模块
+  plugins: [ ...htmlPlugins ]
+}
+
+// 合并配置
+module.exports = merge(basicConfig, envConfig);
+```
+
+现在打包，就会发现打包了多页面。但是现在还存在两个问题：
+
++ 每个html文件中引入了全部的JS文件
++ JS文件并没有被引入到{% block script %}...{% endblock %}里面
+
+现在我们要做的就是解决这两个问题。首先处理第一个问题，我们让每个HTML只引入该引入的JS文件并做一个优化把webpack入口的JS文件的运行时代码抽离出来，更改webpack配置：
+
+```javascript
+// webpack.config.js
+
+const { argv } = require('yargs');
+const { merge } = require('webpack-merge');
+// 页面模板处理，webpack会把css和js注入到HTML中
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const glob = require('glob');
+const mode = argv.mode || 'development';
+// 分环境加载配置
+const envConfig = require(`./build/webpack.${mode}.js`);
+// 匹配文件  入口文件统一的命名方式就是为了在这里容易匹配，好处理。
+const files = glob.sync('./src/web/views/**/*.entry.js');
+// webpack入口对象
+const entries = {};
+// 多页面资源注入处理
+const htmlPlugins = [];
+files.forEach(path => {
+  // 使用正则匹配 匹配到”xxx-xxx.entry.js“，然后取出"xxx-xxx"
+  if(/([a-zA-Z]+-[a-zA-Z]+)\.entry\.js/.test(path)) {
+    const entryKey = RegExp.$1;
+    const [ pageName, template ] = entryKey.split('-');
+    entries[entryKey] = path;
+    // new HTMLWebpackPlugin要做两个配置，filename是打包之后文件输出到哪里，template是打包的页面在哪儿
+    htmlPlugins.push(new HTMLWebpackPlugin({
+      // 这里的路径是以output下的path路径为基准的。
+      filename: `../views/${pageName}/pages/${template}.html`,
+      // 模板文件的路径是以当前webpack文件的位置为基准（正常找就可以）
+      template: `./src/web/views/${pageName}/pages/${template}.html`,
+      // 解决JS文件全部引入的问题只需要设置chunks为当前入口的entryKey
+      chunks: [entryKey]
+    }));
+  }
+});
+
+// 公共的webpack配置
+const bisicConfig = {
+  mode,
+  entry: entries,		// 入口 要打包的文件
+  output: {
+    path: path.join(__dirname, './dist/assets'),
+    filename: 'scripts/[name].bundle.js'
+  },		// 出口 打包完成之后输出的文件
+  optimization: {
+    runtimeChunk: "single"
+  },
+  module: {
+    rules: [{
+        test: /\.js$/,
+        use: ['babel-loader']
+    }]
+  },		// 需要打包的模块
+  plugins: [ ...htmlPlugins ]
+}
+
+// 合并配置
+module.exports = merge(basicConfig, envConfig);
+```
+
+优化完的打包结果如图：
+
+<img src="../assets/images/chapter9/13.png" alt="node-app.png" style="zoom:100%;" />
+
+关于第二个问题的解决思路是：
+
++ 在要插入JS的地方事先做好标记。
+
++ 在webpack的打包过程中做拦截，把打包好的JS插入到做标记的地方。类似于Vue的`<router-view>`。
