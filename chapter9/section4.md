@@ -578,7 +578,7 @@ function buildDev() {
 ```shell
 ## scripts/server/dev.sh
 
-cross-env NODE-ENV=development gulp
+cross-env NODE_ENV=development gulp
 ```
 
 我们在这个脚本中使用了cross-env插件实现了环境变量的注入，所以我们要安装它：
@@ -586,4 +586,539 @@ cross-env NODE-ENV=development gulp
 ```shell
 $ npm install -D cross-env
 ```
+
+最后我们要给gulp-watch配置上ignoreInitial: false;，这样的话在第一次启动的时候就会出发gulp的打包。
+
+```javascript
+// gulpfile.js
+
+...
+const watch = require('gulp-watch');
+const babel = require('gulp-babel');
+
+// 和webpack一样，gulp也是需要入口文件的
+const entry = "./src/server/**/*.js";
+
+// 开发环境任务
+function buildDev() {
+	return watch(entry, { ignoreInitial: false }, () => {
+    gulp.src(entry).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+  });
+}
+
+...
+```
+
+执行`npm run server:dev `：
+
+<img src="../assets/images/chapter9/21.png" alt="node-app.png" style="zoom:50%;" />
+
+我们可以看到已经打包完成，随便改一下server里面的文件内容，会重新打包（经过 笔者测试，可用！）。但是终端没有任何输出，直接重新打包。需要检查打包出来的文件才能知道已经重新打包了。
+
+到这里我们Development环境的gulp打包流程已经完成了，接下来就是生产环境的gulp处理。
+
+生产环境Gulp的配置：
+
+```javascript
+const gulp = require('gulp');
+const watch = require('gulp-watch');
+const babel = require('gulp-babel');
+
+// 和webpack一样，gulp也是需要入口文件的
+const entry = "./src/server/**/*.js";
+// 需要清洗的文件
+const cleanEntry = "./src/server/config/index.js";
+
+// 开发环境任务
+function buildDev() {
+  return watch(entry, { ignoreInitial: false }, () => {
+    gulp.src(entry).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"],
+        // 忽略掉需要清洗的文件
+        ignore: [cleanEntry]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+  });
+}
+
+// 生产环境任务
+function buildProd() {
+  return gulp.src(entry).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+}
+
+// 流清洗任务
+function buildConfig() {
+  
+}
+
+// 默认执行开发环境的任务
+let build = gulp.series(buildDev);
+
+if(process.env.NODE_ENV === 'production') {
+  // 默认是串行的
+  build = gulp.series(buildProd, buildConfig);
+}
+
+gulp.task("default", build);
+```
+
+关于glup-watch还有一个弊端，如果监听的代码出现语法错误，glup-watch会马上停止服务，这显然是不合理的，为了解决这个问题我们还要引入另外一个包`gulp-plumber`：
+
+```shell
+$ npm install -D gulp-plumber
+```
+
+安装完成之后在gulpfile.js中引入并应用：
+
+```javascript
+// gulpfile.js
+
+const gulp = require('gulp');
+const watch = require('gulp-watch');
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
+
+// 和webpack一样，gulp也是需要入口文件的
+const entry = "./src/server/**/*.js";
+// 需要清洗的文件
+const cleanEntry = "./src/server/config/index.js";
+
+// 开发环境任务
+function buildDev() {
+  return watch(entry, { ignoreInitial: false }, () => {
+    gulp.src(entry).
+    // 在这里加上
+    pipe(plumber).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"],
+        // 忽略掉需要清洗的文件
+        ignore: [cleanEntry]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+  });
+}
+
+// 生产环境任务
+function buildProd() {
+  return gulp.src(entry).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+}
+
+// 流清洗任务
+function buildConfig() {
+  
+}
+
+// 默认执行开发环境的任务
+let build = gulp.series(buildDev);
+
+if(process.env.NODE_ENV === 'production') {
+  // 默认是串行的
+  build = gulp.series(buildProd, buildConfig);
+}
+
+gulp.task("default", build);
+```
+
+这样配置完，即使有语法错误监听也不会挂掉，然后改正完毕依然会正常编译。
+
+接下来就是流清洗，所谓的流清洗就是Tree Shaking，摇树优化，这也是Rollup最先提出来的。要进行Tree Shaking优化那么就要安装gulp-rollup包：
+
+```shell
+$ npm install -D gulp-rollup
+```
+
+然后在gulpfile.js中引入使用：
+
+```javascript
+// gulpfile.js
+
+const gulp = require('gulp');
+const watch = require('gulp-watch');
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
+const rollup = require('gulp-rollup');
+
+// 和webpack一样，gulp也是需要入口文件的
+const entry = "./src/server/**/*.js";
+// 需要清洗的文件
+const cleanEntry = "./src/server/config/index.js";
+
+// 开发环境任务
+function buildDev() {
+  return watch(entry, { ignoreInitial: false }, () => {
+    gulp.src(entry).
+    // 在这里加上
+    pipe(plumber).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"],
+        // 忽略掉需要清洗的文件
+        ignore: [cleanEntry]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+  });
+}
+
+// 生产环境任务
+function buildProd() {
+  return gulp.src(entry).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+}
+
+// 流清洗任务
+function buildConfig() {
+  return gulp.src(entry)
+    .pipe(rollup({
+      input: cleanEntry,
+    	output: {
+        format: 'cjs'
+      }
+    }))
+    .pipe(gulp.dest('./dist'));
+}
+
+// 默认执行开发环境的任务
+let build = gulp.series(buildDev);
+
+if(process.env.NODE_ENV === 'production') {
+  // 默认是串行的
+  build = gulp.series(buildProd, buildConfig);
+}
+
+gulp.task("default", build);
+```
+
+在config中的index.js中写一段不会执行到的代码，看是否能够被清洗掉：
+
+```javascript
+// src/server/config/index.js
+
+import path from 'path';
+let config = {
+  viewsDir: path.join(__dirname, '../../', 'web'),
+  staticDir: path.join(__dirname, '../../', 'web/assets')
+};
+
+if(false) {
+  console.log('我是不会被执行到的代码！');
+}
+
+if(process.env.NODE_ENV === 'development') {
+  const devConfig = {
+    port: 8000,
+    catch: false,
+  }
+  config = { ...config, ...devConfig };
+}
+
+if(process.env.NODE_ENV === 'production') {
+  const prodConfig = {
+    port: 8080,
+    catch: 'memory'
+  }
+  config = { ...config, ...prodConfig };
+}
+
+export default config;
+```
+
+由于我们在gulpfile.js中配置了在线上才会进行代码的Tree Shaking优化，所以我们配置一个线上的命令：
+
+```shell
+## scripts/server/dev.sh
+
+cross-env NODE_ENV=production gulp
+```
+
+在来看编译之前与编译之后的差别：
+
+<img src="../assets/images/chapter9/22.png" alt="node-app.png" style="zoom:50%;" />
+
+我们可以看到Tree Shaking已经生效。现在我们的需求是需要优化压缩config中的index.js，再生产环境中对于环境的判断和开发环境的代码都是无意义的，直接执行production环境下的config代码就OK了，rollup是没有提供这个功能的，但是它提供了一个插件可以做到实现这个需求：`@rollup/plugin-replace`
+
+```shell
+$ npm install -D @rollup/plugin-replace
+```
+
+引入gulpfile.js并使用：
+
+```javascript
+const gulp = require('gulp');
+const watch = require('gulp-watch');
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
+const rollup = require('gulp-rollup');
+// 引入@rollup/plugin-replace
+const replace = require('@rollup/plugin-replace');
+
+
+// 和webpack一样，gulp也是需要入口文件的
+const entry = "./src/server/**/*.js";
+// 需要清洗的文件
+const cleanEntry = "./src/server/config/index.js";
+
+// 开发环境任务
+function buildDev() {
+  return watch(entry, { ignoreInitial: false }, () => {
+    gulp.src(entry).
+    pipe(plumber()).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"],
+        // 忽略掉需要清洗的文件
+        ignore: [cleanEntry]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+  });
+}
+
+// 生产环境任务
+function buildProd() {
+  return gulp.src(entry).
+    pipe(
+      babel({
+        // babel的配置也可以支持这种内联的配置方式，设置babelrc: false;目的是不让gulp-babel去根目录下读babelrc的配置
+        babelrc: false,
+        // 配置@babel/plugin-transform-modules-commonjs
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      })
+    ).
+    pipe(gulp.dest("dist"));
+}
+
+// 流清洗任务
+function buildConfig() {
+  return gulp.src(entry)
+    .pipe(rollup({
+      input: cleanEntry,
+    	output: {
+        // 打包成CommonJS格式
+        format: 'cjs'
+      },
+      plugins: [
+        // 在生产环境优化的时候配置@rollup/plugin-replace插件
+        replace({
+          'process.env.NODE_ENV': JSON.stringify('production')
+        })
+      ]
+    }))
+    .pipe(gulp.dest('./dist'));
+}
+
+// 默认执行开发环境的任务
+let build = gulp.series(buildDev);
+console.log('process.env.NODE_ENV---->', process.env.NODE_ENV);
+if(process.env.NODE_ENV === 'production') {
+  // 默认是串行的
+  build = gulp.series(buildProd, buildConfig);
+}
+
+gulp.task("default", build);
+```
+
+我们看一下打包好的dist/config/index.js
+
+<img src="../assets/images/chapter9/23.png" alt="node-app.png" style="zoom:50%;" />
+
+毫无疑问我们已经把开发环境下的所有配置都优化掉了只保留了生产环境的配置，实现了TreeShaking。还有一个插件是`prepack`也有类似的预处理的功能，有兴趣的可以试一下：
+
+```shell
+$ npm install -D prepack
+```
+
+[prepack官方网站](https://prepack.io/)，官网奉上，有兴趣的可以了解一下，激进的JS代码优化工具。
+
+**带现在位置我们前后端的代码处理已经完成，最后就是让我们整个打包完成的项目运行起来！**
+
+我们需要执行以下几个步骤：
+
++ 改写scripts/server/start.sh
+
+  ```shell
+  NODE_ENV=development nodemon --delay 500ms './dist/app.js'
+  ```
+
++ 执行前端代码打包命令：npm run client:dev
+
++ 执行后端代码打包命令：npm run server:dev
+
++ 修改config/index.js:
+
+  ```javascript
+  import path from 'path';
+  let config = {
+    viewsDir: path.join(__dirname, '../', 'views'),
+    staticDir: path.join(__dirname, '../', 'assets')
+  };
+  ...
+  ```
+
++ components和layouts目录是没有打包到dist的，这两个都是模板文件不需要打包，直接copy到dist就行，需要用到copy-webpack-plugin:
+
+  ```shell
+  $ npm install -D copy-webpack-plugin
+  ```
+
+  在webpack.config.js中引入并使用：
+
+  ```javascript
+  const { argv } = require('yargs');
+  const { merge } = require('webpack-merge');
+  const path = require('path');
+  // 匹配文件使用
+  const glob = require('glob');
+  
+  // 页面模板处理
+  const HTMLWebpackPlugin = require('html-webpack-plugin');
+  // 引入自定义插件，这个自定义插件的功能是基于HTMLWebpackPlugin插件的功能之上开发的
+  const HtmlAfterPlugin = require('./build/HtmlAfterPlugin.js');
+  const CopyPlugin = require("copy-webpack-plugin");
+  
+  const mode = argv.mode || 'development';
+  // 分环境加载配置
+  const envConfig = require(`./build/webpack.${mode}.js`);
+  const files = glob.sync('./src/web/views/**/*.entry.js');
+  // webopack多入口配置对象
+  const entries = {};
+  // 多页面资源注入处理
+  const htmlPlugins = [];
+  
+  files.forEach(path => {
+    if(/([a-zA-Z]+-[a-zA-Z]+)\.entry\.js/.test(path)) {
+      const entryKey = RegExp.$1;
+      const [pageName, template] = entryKey.split('-');
+      entries[entryKey] = path;
+      htmlPlugins.push(
+        new HTMLWebpackPlugin({
+          filename: `../views/${pageName}/pages/${template}.html`,
+          template: `./src/web/views/${pageName}/pages/${template}.html`,
+          chunks: [entryKey],
+          inject: false
+        })
+      )
+    }
+  });
+  
+  /**
+   * @baseConfig 不同环境下公共的配置
+   */
+  const baseConfig = {
+    mode,
+    entry: entries,
+    output: {
+      path: path.join(__dirname, './dist/assets'),
+      filename: 'scripts/[name].bundle.js'
+    },
+    optimization: {
+      runtimeChunk: "single"
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: ['babel-loader']
+        }
+      ]
+    },
+    plugins: [
+      ...htmlPlugins,
+      // 注意一定要在HTMLWebpackPlugin之后注入，这里的顺序一定不能乱！
+      new HtmlAfterPlugin(),
+      new CopyPlugin({
+        patterns: [
+          { 
+            from: path.join(__dirname, "./src/web/views/layouts/layout.html"),
+            to: '../views/layouts/layout.html' 
+          },
+          { 
+            from: path.join(__dirname, "./src/web/components"), 
+            to: "../components",
+            filter: (url) => {
+              if(/\.(js|css)$/.test(url)) {
+                return false;
+              }
+              return true;
+            }
+          },
+        ],
+      }),
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve('./src/web')
+      }
+    }
+  }
+  
+  // 合并配置
+  module.exports = merge(baseConfig, envConfig);
+  ```
+
+  在使用CopyPlugin复制components的时候我们需要用到filter函数，把CSS文件和JS文件过滤出来。
+
+  最后一步就是代码的压缩，我们在生产环境要进行代码的压缩。也就是分环境对代码进行处理。
+
+**到这里我们整体的工程化已经介绍完了。。。**
+
+
+
+## 三、总结
+
+我们用了两篇长文来粗浅的探讨了BFF架构的工程化改造，其实就是解决一个核心的问题，使用webpack对src中的client目录中的前端代码进行打包。使用gulp对server目录中的node后端代码进行打包。**前后端打包完成之后的输出结果放到dist目录，从而组成一个打包之后的MVC结构的BFF**。就像没打包之前的目录结构一样，只是代码进行的构建工具编译。
+
+其实现在的技术栈的选取很多，只要选一个能够满足需求并且自己熟悉的就OK。最后一点心得，还是要熟练掌握三四种打包工具，以及对应的常用插件。推荐Webpack、gulp、rollup。
 

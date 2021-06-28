@@ -963,3 +963,6 @@ module.exports = merge(basicConfig, envConfig);
 + 在webpack的打包过程中做拦截，把打包好的JS插入到做标记的地方。类似于Vue的`<router-view>`。
 
 到这里我们的Webpack深度细化BFF就完成了一半了。
+
+
+
