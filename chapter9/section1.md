@@ -157,7 +157,7 @@ const app = new Koa();
 app.use(ctx => {
   ctx.body = 'hello koa!';
 });
-
+ 
 app.listen(3000, function() {
   console.log("Server is running at http://localhost:3000.");
 });
@@ -246,8 +246,8 @@ app.listen(config.port, function() {
 此外我们还可以根据环境变量的不同声明多个脚本命令，例如我们可以为开发环境，测试环境以及生产环境各自配置项目的启动命令：
 
 * development："start": "NODE_ENV=development node ./app.js"
-* test："start": "NODE_ENV=test node ./app.js"
-* production："start": "NODE_ENV=production node ./app.js"
+* test："test": "NODE_ENV=test node ./app.js"
+* production："dev": "NODE_ENV=production node ./app.js"
 
 ```json
 /* package.json */
@@ -292,7 +292,7 @@ app.listen(config.port, function() {
 
 koa2对应的路由处理一般使用koa-router中间件。koa-router就是配合koa使用的。这里我们使用koa-router的最新版，当前koa-router的最新版本是@koa-router。  
 
-我们是用 `npm install @koa-router`  来安装koa-router。安装好之后，我们来使用一下koa-router。不废话直接上代码。  
+我们是用 `npm install @koa/router`  来安装koa-router。安装好之后，我们来使用一下koa-router。不废话直接上代码。  
 
 ```javascript
 /* app.js */
@@ -371,13 +371,11 @@ const router = new Router();
 
 //定义初始化的路由入口，传入app实例
 initController(app) {
-  
+  // 同样我们在使用koa-router的时候要use一下
+  app
+    .use(router.routes())
+    .use(router.allowedMethods());
 }
-
-// 同样我们在使用koa-router的时候要use一下
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
 
 // 导出initController，在app.js中引入并执行
 module.exports = initController;
@@ -776,9 +774,9 @@ app.listen(config.port, function() {  
 const path = require('path');
 
 let config = {
-  viewDir: path.join(__dirname, '../', 'views');
+  viewDir: path.join(__dirname, '../', 'views'),
   // 静态资源路径生产环境和开发环境相同
-  staticDir: path.join(__dirname, '../', 'assets');
+  staticDir: path.join(__dirname, '../', 'assets'),
 };
 
 if(process.env.NODE_ENV === "development"){
@@ -862,7 +860,7 @@ class ErrorHandle {
     app.use(async(ctx, next) => {
       try {
         await next();
-        if(ctx.status === 400) {
+        if(ctx.status === 404) {
            ctx.body = '友好的404页面';
         }
       }catch {

@@ -520,6 +520,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.11.7" data-path="../chapter10/section7.html">
+            
+                <a href="../chapter10/section7.html">
+            
+                    
+                    从0搭建CI&CD运维平台之Jenkins实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../chapter10/section8.html">
+            
+                <a href="../chapter10/section8.html">
+            
+                    
+                    前端架构与性能优化那些事儿
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../chapter10/section9.html">
+            
+                <a href="../chapter10/section9.html">
+            
+                    
+                    手摸手带你从0实现前端监控SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -783,8 +822,8 @@ app.listen(config.port, <span class="hljs-function"><span class="hljs-keyword">f
 <p>&#x6B64;&#x5916;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x7684;&#x4E0D;&#x540C;&#x58F0;&#x660E;&#x591A;&#x4E2A;&#x811A;&#x672C;&#x547D;&#x4EE4;&#xFF0C;&#x4F8B;&#x5982;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4E3A;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF0C;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4EE5;&#x53CA;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5404;&#x81EA;&#x914D;&#x7F6E;&#x9879;&#x76EE;&#x7684;&#x542F;&#x52A8;&#x547D;&#x4EE4;&#xFF1A;</p>
 <ul>
 <li>development&#xFF1A;&quot;start&quot;: &quot;NODE_ENV=development node ./app.js&quot;</li>
-<li>test&#xFF1A;&quot;start&quot;: &quot;NODE_ENV=test node ./app.js&quot;</li>
-<li>production&#xFF1A;&quot;start&quot;: &quot;NODE_ENV=production node ./app.js&quot;</li>
+<li>test&#xFF1A;&quot;test&quot;: &quot;NODE_ENV=test node ./app.js&quot;</li>
+<li>production&#xFF1A;&quot;dev&quot;: &quot;NODE_ENV=production node ./app.js&quot;</li>
 </ul>
 <pre><code class="lang-json"><span class="hljs-comment">/* package.json */</span>
 {
@@ -813,7 +852,7 @@ $ sudo npm install nodemon -g
 <p>&#x6211;&#x4EEC;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4F7F;&#x7528;nodemon&#x76D1;&#x542C;&#x4EE3;&#x7801;&#x7684;&#x53D8;&#x66F4;&#x8FDB;&#x884C;&#x70ED;&#x66F4;&#x65B0;&#xFF0C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;pm2&#x3002;  </p>
 <h4 id="step3&#x3001;&#x8DEF;&#x7531;">Step3&#x3001;&#x8DEF;&#x7531;</h4>
 <p>koa2&#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x7531;&#x5904;&#x7406;&#x4E00;&#x822C;&#x4F7F;&#x7528;koa-router&#x4E2D;&#x95F4;&#x4EF6;&#x3002;koa-router&#x5C31;&#x662F;&#x914D;&#x5408;koa&#x4F7F;&#x7528;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4F7F;&#x7528;koa-router&#x7684;&#x6700;&#x65B0;&#x7248;&#xFF0C;&#x5F53;&#x524D;koa-router&#x7684;&#x6700;&#x65B0;&#x7248;&#x672C;&#x662F;@koa-router&#x3002;  </p>
-<p>&#x6211;&#x4EEC;&#x662F;&#x7528; <code>npm install @koa-router</code>  &#x6765;&#x5B89;&#x88C5;koa-router&#x3002;&#x5B89;&#x88C5;&#x597D;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x4F7F;&#x7528;&#x4E00;&#x4E0B;koa-router&#x3002;&#x4E0D;&#x5E9F;&#x8BDD;&#x76F4;&#x63A5;&#x4E0A;&#x4EE3;&#x7801;&#x3002;  </p>
+<p>&#x6211;&#x4EEC;&#x662F;&#x7528; <code>npm install @koa/router</code>  &#x6765;&#x5B89;&#x88C5;koa-router&#x3002;&#x5B89;&#x88C5;&#x597D;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x4F7F;&#x7528;&#x4E00;&#x4E0B;koa-router&#x3002;&#x4E0D;&#x5E9F;&#x8BDD;&#x76F4;&#x63A5;&#x4E0A;&#x4EE3;&#x7801;&#x3002;  </p>
 <pre><code class="lang-javascript"><span class="hljs-comment">/* app.js */</span>
 <span class="hljs-keyword">const</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;koa&quot;</span>);
 <span class="hljs-comment">// &#x5F15;&#x5165;@koa/router</span>
@@ -878,13 +917,11 @@ app.listen(config.port, <span class="hljs-function"><span class="hljs-keyword">f
 
 <span class="hljs-comment">//&#x5B9A;&#x4E49;&#x521D;&#x59CB;&#x5316;&#x7684;&#x8DEF;&#x7531;&#x5165;&#x53E3;&#xFF0C;&#x4F20;&#x5165;app&#x5B9E;&#x4F8B;</span>
 initController(app) {
-
+  <span class="hljs-comment">// &#x540C;&#x6837;&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;koa-router&#x7684;&#x65F6;&#x5019;&#x8981;use&#x4E00;&#x4E0B;</span>
+  app
+    .use(router.routes())
+    .use(router.allowedMethods());
 }
-
-<span class="hljs-comment">// &#x540C;&#x6837;&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;koa-router&#x7684;&#x65F6;&#x5019;&#x8981;use&#x4E00;&#x4E0B;</span>
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
 
 <span class="hljs-comment">// &#x5BFC;&#x51FA;initController&#xFF0C;&#x5728;app.js&#x4E2D;&#x5F15;&#x5165;&#x5E76;&#x6267;&#x884C;</span>
 <span class="hljs-built_in">module</span>.exports = initController;
@@ -1225,9 +1262,9 @@ app.listen(config.port, <span class="hljs-function"><span class="hljs-keyword">f
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
 
 <span class="hljs-keyword">let</span> config = {
-  viewDir: path.join(__dirname, <span class="hljs-string">&apos;../&apos;</span>, <span class="hljs-string">&apos;views&apos;</span>);
+  viewDir: path.join(__dirname, <span class="hljs-string">&apos;../&apos;</span>, <span class="hljs-string">&apos;views&apos;</span>),
   <span class="hljs-comment">// &#x9759;&#x6001;&#x8D44;&#x6E90;&#x8DEF;&#x5F84;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x548C;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x76F8;&#x540C;</span>
-  staticDir: path.join(__dirname, <span class="hljs-string">&apos;../&apos;</span>, <span class="hljs-string">&apos;assets&apos;</span>);
+  staticDir: path.join(__dirname, <span class="hljs-string">&apos;../&apos;</span>, <span class="hljs-string">&apos;assets&apos;</span>),
 };
 
 <span class="hljs-keyword">if</span>(process.env.NODE_ENV === <span class="hljs-string">&quot;development&quot;</span>){
@@ -1297,7 +1334,7 @@ app.listen(config.port, <span class="hljs-function"><span class="hljs-keyword">f
     app.use(<span class="hljs-keyword">async</span>(ctx, next) =&gt; {
       <span class="hljs-keyword">try</span> {
         <span class="hljs-keyword">await</span> next();
-        <span class="hljs-keyword">if</span>(ctx.status === <span class="hljs-number">400</span>) {
+        <span class="hljs-keyword">if</span>(ctx.status === <span class="hljs-number">404</span>) {
            ctx.body = <span class="hljs-string">&apos;&#x53CB;&#x597D;&#x7684;404&#x9875;&#x9762;&apos;</span>;
         }
       }<span class="hljs-keyword">catch</span> {
@@ -1493,7 +1530,7 @@ app.listen(config.port, <span class="hljs-function"><span class="hljs-keyword">f
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"前后端BFF架构实现（一）","level":"1.10.2","depth":2,"next":{"title":"前后端BFF架构实现（二）","level":"1.10.3","depth":2,"path":"chapter9/section2.md","ref":"chapter9/section2.md","articles":[]},"previous":{"title":"前端架构分离实践之后端开发","level":"1.10.1","depth":2,"path":"chapter9/section0.md","ref":"chapter9/section0.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter9/section1.md","mtime":"2021-06-10T01:39:33.819Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-06-28T08:32:48.810Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"前后端BFF架构实现（一）","level":"1.10.2","depth":2,"next":{"title":"前后端BFF架构实现（二）","level":"1.10.3","depth":2,"path":"chapter9/section2.md","ref":"chapter9/section2.md","articles":[]},"previous":{"title":"前端架构分离实践之后端开发","level":"1.10.1","depth":2,"path":"chapter9/section0.md","ref":"chapter9/section0.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter9/section1.md","mtime":"2021-07-03T13:15:34.320Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-06T10:03:54.262Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

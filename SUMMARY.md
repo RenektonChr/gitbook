@@ -30,6 +30,9 @@
     * [前端工程化Linux预备知识](chapter10/section4.md)
     * [从小到大论前端持续集成](chapter10/section5.md)
     * [前端工程化之CI/CD](chapter10/section6.md)
+    * [从0搭建CI&CD运维平台之Jenkins实战](chapter10/section7.md)
+    * [前端架构与性能优化那些事儿](chapter10/section8.md)
+    * [手摸手带你从0实现前端监控SDK](chapter10/section9.md)
 * [第十一卷·JavaScript函数式编程](chapter11/README.md)
     * [函数式编程](chapter11/section1.md)
 

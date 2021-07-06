@@ -668,12 +668,12 @@ module.exports = merge(basicConfig, envConfig);
 </html>
 ```
 
-这些**{% block xxx %}**就是一些占位符，其他的页面都继承自这一页面，然后把不同的内容渲染到占位符中。我们分别说一下layout.html中的占位符：
+这些`{% block xxx %}`就是一些占位符，其他的页面都继承自这一页面，然后把不同的内容渲染到占位符中。我们分别说一下layout.html中的占位符：
 
-+ {% block title %}{% endblock %} title的占位符
-+ {% block head %}{% endblock %}head的占位符
-+ {% block content %}{% endblock %}页面内容的站位符
-+ {% block script %}{% endblock %}JS脚本的占位符
++ ```{% block title %}{% endblock %}``` title的占位符
++ ```{% block head %}{% endblock %}```head的占位符
++ ```{% block content %}{% endblock %}```页面内容的站位符
++ ```{% block Script %}{% endblock %}```JS脚本的占位符
 
 创建一个前端的组件，在**src/web/components**新建一个nav目录，在里面创建nav.html、nav.css、nav.js：
 
@@ -888,7 +888,7 @@ module.exports = merge(basicConfig, envConfig);
 现在打包，就会发现打包了多页面。但是现在还存在两个问题：
 
 + 每个html文件中引入了全部的JS文件
-+ JS文件并没有被引入到{% block script %}...{% endblock %}里面
++ JS文件并没有被引入到```{% block script %}...{% endblock %}```里面
 
 现在我们要做的就是解决这两个问题。首先处理第一个问题，我们让每个HTML只引入该引入的JS文件并做一个优化把webpack入口的JS文件的运行时代码抽离出来，更改webpack配置：
 
