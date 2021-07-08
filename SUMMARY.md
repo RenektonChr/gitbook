@@ -23,6 +23,7 @@
     * [前后端BFF架构实现（二）](chapter9/section2.md)
     * [Webpack从0-1深度细化BFF（一）](chapter9/section3.md)
     * [Webpack从0-1深度细化BFF（二）](chapter9/section4.md)
+    * [深度实现Vue SSR原理](chapter9/section5.md)
 * [第十卷·前端性能优化与工程化](chapter10/README.md)
     * [前端性能优化的服务器基础](chapter10/section1.md)
     * [Chrome浏览器的渲染机制](chapter10/section2.md)
