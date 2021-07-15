@@ -24,6 +24,7 @@
     * [Webpack从0-1深度细化BFF（一）](chapter9/section3.md)
     * [Webpack从0-1深度细化BFF（二）](chapter9/section4.md)
     * [深度实现Vue SSR原理](chapter9/section5.md)
+    * [前端架构师启蒙课第一讲-走进IOC](chapter9/section6.md)
 * [第十卷·前端性能优化与工程化](chapter10/README.md)
     * [前端性能优化的服务器基础](chapter10/section1.md)
     * [Chrome浏览器的渲染机制](chapter10/section2.md)
@@ -36,4 +37,8 @@
     * [手摸手带你从0实现前端监控SDK](chapter10/section9.md)
 * [第十一卷·JavaScript函数式编程](chapter11/README.md)
     * [函数式编程](chapter11/section1.md)
+* [第十二卷·CSS的奇幻世界](chapter12/README.md)
+    * [CSS3构建3D的世界](chapter12/section1.md)
+* [第十三卷·TypeScript](chapter13/README.md)
+    * [TypeScript从入门到实战——基础篇](chapter13/section1.md)
 
