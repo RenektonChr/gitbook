@@ -503,6 +503,13 @@ function buildName2(lastName: string, firstName?: string): string {
 ```typescript
 /** 类 */
 
+/**
+ * 1. 抽象类可以定义抽象方法，也可以有具体实现的方法
+ * 2. 方法修饰符
+ *    public 公共的，任何地方都可以访问。
+ *    private 私有的，不能在声明的类的外部使用，也就是说不能在对象上使用。不能被继承。
+ *    protect 受保护的方法，可以在类的内部和子类的内部使用。不能在外部使用。
+ */
 // 抽象类
 abstract class Animal {
   abstract makeSound(): void;
@@ -510,8 +517,13 @@ abstract class Animal {
   move():void {
     console.log('动物移动');
   }
+
+  protected bb() {
+    console.log('bb');
+  }
 }
 
+// TS中的类既可以是个实体类，又可以是一个类型。
 class Dog extends Animal {
   constructor() {
     super();
@@ -519,20 +531,439 @@ class Dog extends Animal {
   makeSound():void {
     console.log('汪汪汪');
   }
+
+  private aa() {
+    this.bb();
+    console.log('aa');
+  }
 }
 
 const dog = new Dog();
-dog.move();		// 动物移动
-dog.makeSound();		// 汪汪汪
+dog.move();
+dog.makeSound();
 
-// TS中的类既可以是个实体类，又可以是一个类型。
 const s:Dog = new Dog();
-// TS中的抽象类也可以做为一个类型。
-const w:Animal = new Animal();
 ```
 
 我们可以看到抽象类中的抽象方法makeSound是不在Animal中实现的，他的子类必须完成抽象方法的实现。看到这里，抽象类的概念和接口的概念并没有什么不同，但是抽象类和接口肯定是有区别额，他俩的区别就是抽象类可以实现一写自己的方法，比如代码中的move方法。
 
 子类Dog继承了Animal类，通过constructor构造方法中的super来实现对Animal的继承，由此可以让dog对象上存在了父类上的move方法和自身实现的父类上makeSound抽象方法。
 
-在TS中
+在TS中实体类和抽象类都可以作为类型。
+
+
+
+## 七、TypeScript的类型断言
+
+TS的类型断言主要是针对联合类型。下面我们举例说明：
+
+<img src="../assets/images/chapter13/16.png" alt="node-app.png" style="zoom:50%;" />
+
+通过上面的代码可以看到，getLength函数的value参数可以是字符串或者数字，我们在使用value的时候，只能访问到字符串或数字的共有的参数或者方法。所以这是时候我们要进行断言。我们直接上代码：
+
+```typescript
+// 强制的类型断言
+
+// 利用泛型
+function getLength(value: string | number):number {
+  if((<string>value).length) {
+    return (<string>value).length;
+  }else {
+    return value.toString().length;
+  }
+}
+
+// 利用as
+function getLength2(value: string | number):number {
+  if((value as string).length) {
+    return (value as string).length;
+  }else {
+    return value.toString().length;
+  }
+}
+
+// 使用type
+type Name = string;
+type NameResolver = () => string;
+type NameOrResolver = Name | NameResolver;
+function getName(n: NameOrResolver):Name {
+  if(typeof n === "string") {
+    return n;
+  }else {
+    return n();
+  }
+}
+
+// 使用interface
+interface A {
+  a: string;
+}
+
+interface A {
+  b: string;
+}
+
+const l: A = {
+  a: 'a',
+  b: 'b'
+}
+```
+
++ 使用泛型进行强行断言
++ 使用as断言
++ 如果类型组合比较多的时候，可以使用type，这种方式在开发中用的最多。
++ interface重复定义的话并不会被覆盖，而是合并。
+
+
+
+## 八、TypeScript的泛型
+
+### I、为什么会有泛型？
+
+设计泛型的关键目的是在成员之间提供有意义的约束，这些成员可以是：
+
++ 类的实例成员
++ 类的方法
++ 函数参数
++ 函数返回值
+
+我们先举一个简单的例子来引出泛型的必要性，写一个FIFO的数据结构——队列：
+
+```typescript
+class Queue {
+  private data = [];
+  push = (item) => {
+    return this.data.push(item);
+  }
+  pop = () => this.data.shift();
+}
+```
+
+这段代码实际上是存在一个问题的，它允许你向队列里添加任何数据，在出队的时候也可以是任何类型。那么我们设想一个场景，如果我们只允许数字进入队列，在出队的时候也只能是数字，该怎么满足呢？其实这个问题在TS中也是非常容易的，只需要给上面的代码加上类型的控制即可：
+
+```typescript
+class Queue {
+  private data: number[] = [];
+  push =  (item: number):number => {
+    return this.data.push(item);
+  }
+  pop = ():number | undefined => this.data.shift();
+}
+
+const queue = new QueueNumber();
+
+queue.push(0);
+queue.push('1'); // Error: 不能推入一个 `string` 类型，只能是 `number` 类型
+```
+
+另外我们还见过一个例子，一个reverse函数，现在在这个函数里添加函数参数与函数返回值的约束：
+
+```typescript
+function reverse<T>(items: T[]): T[] {
+  const data:T[] = [];
+  for(let i = 0; i < items.length; i++) {
+    data.push();
+  }
+  return data;
+}
+
+const reverse_arr = reverse<number>([1,2,3]);
+```
+
+我们也可以为成员函数添加泛型：
+
+```typescript
+class Utility {
+  reverse<T>(items: T[]):T[] {
+    const data:T[] = [];
+    for(let i = items.length - 1; i >= 0; i--) {
+      data.push(items[i]);
+    }
+    return data;
+  }
+}
+```
+
+>你可以随意调用泛型参数，当你使用简单的泛型时，泛型常用 `T`、`U`、`V` 表示。如果在你的参数里，不止拥有一个泛型，你应该使用一个更语义化名称，如 `TKey` 和 `TValue` （通常情况下，以 `T` 作为泛型的前缀，在其他语言如 C++ 里，也被称为模板）。
+
+### II、泛型的使用姿势
+
+TS的泛型是一个难点，也是前端开发者学习TS的痛点，每次一遇到泛型一下字就不好了。。。但是泛型的应用是很广泛的，Vuex和Redux都大量的使用了泛型。
+
+泛型是解决类、接口、方法的复用性，以及对不确定的数据类型的支持。
+
+```typescript
+// 泛型
+
+// 1. 不知道类型是什么的时候就会使用到泛型
+interface LengthWise {
+  length: number;
+}
+
+function getLength<T extends LengthWise>(arg: T): T {
+  console.log(arg.length);
+  return arg;
+}
+
+const result = getLength<string>("Renekton");
+console.log(result);
+
+// 2. demo2 类型 实体类
+class GenericNumber<T> {
+  zeroValue: T | undefined;
+  add: ((x: number, y: number) => T) | undefined;
+}
+
+const genericNumber = new GenericNumber<number>();
+genericNumber.add = function(x: number, y: number) {
+  return x + y;
+};
+genericNumber.zeroValue = 22;
+
+// 3. 泛型实现函数重载
+function getData<T>(value:T):T {
+  return value;
+}
+
+getData(123);
+getData('renekton');
+
+// 4. 泛型接口
+interface ConfigFn {
+  <T>(value: T): void;
+}
+
+const getData2:ConfigFn = function<T>(value: T):void {
+  console.log(value);
+}
+getData2<string>('ren');
+
+// 5. 动态泛型
+interface Bookmark {
+  mag: string;
+}
+class BookmarksService<T extends Bookmark> {
+  items: T[] = [];
+}
+
+class BookmarksService2<T extends Bookmark = Bookmark> {
+  items: T[] = [];
+}
+```
+
++ 泛型的重要作用就是在不知道是什么类型的时候就上泛型，我们使用了`<T>`来代表了泛型，并且这个泛型继承了LengthWise接口，在调用getLength的时候传入泛型。那么类型就确定了。
++ 使用泛型实现实体类
++ 使用泛型实现函数重载
++ 使用泛型来定义接口
++ 动态泛型
+
+
+
+## 九、TypeScript实现接口
+
+接口在开发SDK和写NodeJS的时候尤为重要，SOLID的设计原则都是interface先行。
+
+```typescript
+interface IPriceData {
+  id: number;
+  m: string;
+}
+
+type IPriceDataArray = IPriceData[];
+
+function getPriceData() {
+  return new Promise<IPriceDataArray>((resolve, reject) => {
+    fetch("url").then(function (response) {
+      return response.json();
+    }).then(function(myJson) {
+      const data: IPriceDataArray = [];
+      resolve(data)
+    });
+  });
+}
+
+getPriceData().then(function(data) {
+  console.log(data[0].m);
+})
+```
+
+**Interface和Type的区别：**
+
++ 相同点：
+  + 都可以描述一个对象或函数。
+  + 都允许进行扩展。
++ 不同点：
+  + type声明基本类型别名、联合类型、元组等。
+  + 可以使用typeof获取实例的对象。
+  + interface可以被合并。
+
+**Interface的使用场景：**
+
++ 有关于后台的api接口，前端更愿意使用interface。
++ 第三方开发的SDK，比如说Vue。
++ 正常的开发任务用type更方便一些。
+
+
+
+## 十、TypeScript装饰器
+
+
+
+## 十一、细数 TS 中那些奇怪的符号
+
++ ! 非空断言操作符
++ ?. 运算符，可选链。
++ ?? 控制合并运算符
++ ?: 可选属性
++ & 运算符：将多个类型合并成一个类型
++ | 分隔符，在 TypeScript 中联合类型（Union Types）表示取值可以为多种类型中的一种，联合类型使用 `|` 分隔每个类型。
++ _ 数字分割符，正如数值分隔符 ECMAScript 提案中所概述的那样。对于一个数字字面量，你现在可以通过把一个下划线作为它们之间的分隔符来分组数字。
++ `<Type>` 语法
++ @XXX 装饰器
++ #xxx 私有字段
+
+
+
+## 十二、TypeScript有关于DOM
+
+作为前端开发者来说，最后我们的代码都会跑在浏览器中，所以对于DOM的处理还是很重要的。
+
+```typescript
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement,
+  abbr: HTMLElement,
+  address: HTMLElement,
+  applet: HTMLAppletElement,
+  area: HTMLAreaElement,
+  article: HTMLElement,
+  input: HTMLInputElement
+}
+
+const textEl = document.querySelector("input");
+```
+
+当我们使用TS来进行Dom选择的时候，我们得到了textEl有可能是一个`null`，这就造成了我们找不到HTML元素上的属性，这时候我们可以给他指定一个泛型：
+
+```typescript
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement,
+  abbr: HTMLElement,
+  address: HTMLElement,
+  applet: HTMLAppletElement,
+  area: HTMLAreaElement,
+  article: HTMLElement,
+  input: HTMLInputElement
+}
+
+const textEl = document.querySelector<HTMLInputElement>("input");
+if(textEl !== null) {
+  textEl.addEventListener("click", (e: MouseEvent) => {
+    console.log(e.clientX);
+  })
+}
+```
+
+以上的代码可能还会使textEl的值为null，那么我们在textEl设置点击事件的时候可能取不到addEventListener这个方法，这里我们需要判断一下，在textEl不为null的时候设置监听事件。**这里需要注意的是：`<HTMLInputElement>`这个泛型一定要设置正确，如果设置的不合适，在取属性值的时候可能会出现错误。导致代码编译不通过。**
+
+```typescript
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement,
+  abbr: HTMLElement,
+  address: HTMLElement,
+  applet: HTMLAppletElement,
+  area: HTMLAreaElement,
+  article: HTMLElement,
+  input: HTMLInputElement
+}
+
+const textEl = document.querySelector<HTMLElement>("input");
+if(textEl !== null) {
+  textEl.addEventListener("click", (e: MouseEvent) => {
+    console.log(e.clientX);
+  });
+	// HTMLElement类型上没有value属性
+  console.log(textEl.value);
+}
+```
+
+在上面的代码上我们传入的泛型改成了`<HTMLElement>`，但是在一般的`<HTMLElement>`上没有value属性，这时候代码的编译就会出现错误。所以我们在传入泛型的时候一定不能传错。
+
+<img src="../assets/images/chapter13/20.png" alt="node-app.png" style="zoom:50%;" />
+
+另外对于先前的取值出现null值的问题，我们除了if判断之外还有其他更优雅的方式：
+
+### I、断言
+
+我们可以使用断言把`textEl`断言成`HTMLInputElement`：
+
+```typescript
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement,
+  abbr: HTMLElement,
+  address: HTMLElement,
+  applet: HTMLAppletElement,
+  area: HTMLAreaElement,
+  article: HTMLElement,
+  input: HTMLInputElement
+}
+
+const textEl = document.querySelector("input") as HTMLInputElement;
+console.log(textEl.value);
+```
+
+把textEl直接断言成HTMLInputElement，那么就相当于告诉编译器`textEl`确定就是HTMLInputElement类型，不需要检查和推断。
+
+### II、可选链
+
+我们在不确定是不是null的情况下，可以使用可选链来取属性值，如果有该属性则取值，如果没有则直接返回当前的值：
+
+```typescript
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement,
+  abbr: HTMLElement,
+  address: HTMLElement,
+  applet: HTMLAppletElement,
+  area: HTMLAreaElement,
+  article: HTMLElement,
+  input: HTMLInputElement
+}
+
+const textEl = document.querySelector("input");
+console.log(textEl?.value);
+```
+
+由于编译器不能确定textEl是不是null，所以不能直接取值，使用可选链规避在null上访问属性的语法错误。
+
+### III、使用！（非空断言操作符）强制指定
+
+除了可选链可以解决问题之外，还有一个特殊符号可以强制的指定textEl非空（和断言很像）：
+
+```typescript
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement,
+  abbr: HTMLElement,
+  address: HTMLElement,
+  applet: HTMLAppletElement,
+  area: HTMLAreaElement,
+  article: HTMLElement,
+  input: HTMLInputElement
+}
+
+const textEl = document.querySelector("input");
+console.log(textEl!.value);
+```
+
+
+
+## 十三、TypeScript其他基础
+
+TS基础知识入门图谱：
+
+<img src="../assets/images/chapter13/TS-base.jpg" alt="node-app.png" style="zoom:50%;" />
+
+很不幸，我们学完这张图才能算TS刚入门！
+
++ [TS英文文档](https://www.typescriptlang.org/)
++ [TSz中文文档](https://www.tslang.cn/)
+
+**建议读英文文档，笔者英文不好读的是中文文档。**

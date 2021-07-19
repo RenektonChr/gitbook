@@ -41,4 +41,5 @@
     * [CSS3构建3D的世界](chapter12/section1.md)
 * [第十三卷·TypeScript](chapter13/README.md)
     * [TypeScript从入门到实战——基础篇](chapter13/section1.md)
+    * [TypeScript泛型](chapter13/section2.md)
 
