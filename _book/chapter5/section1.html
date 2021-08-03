@@ -1,0 +1,955 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Vue2原理分析（一） · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter6/" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/">
+            
+                <a href="../chapter1/">
+            
+                    
+                    第一卷·前端JS手写系列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter1/section1.1.html">
+            
+                <a href="../chapter1/section1.1.html">
+            
+                    
+                    Section1.1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../chapter1/section1.2.html">
+            
+                <a href="../chapter1/section1.2.html">
+            
+                    
+                    Section1.2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/">
+            
+                <a href="../chapter2/">
+            
+                    
+                    第二卷·你不知道的JavaScript
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/section1.html">
+            
+                <a href="../chapter2/section1.html">
+            
+                    
+                    JavaScript面试题详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter3/">
+            
+                <a href="../chapter3/">
+            
+                    
+                    第三卷·天天造轮子
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter3/section1.1.vue-cli.html">
+            
+                <a href="../chapter3/section1.1.vue-cli.html">
+            
+                    
+                    手写vue-cli
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/">
+            
+                <a href="../chapter4/">
+            
+                    
+                    第四卷·天天面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第五卷·MVVM框架源码系列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.6.1" data-path="section1.html">
+            
+                <a href="section1.html">
+            
+                    
+                    Vue2原理分析（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter6/">
+            
+                <a href="../chapter6/">
+            
+                    
+                    第六卷·前端测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chapter7/">
+            
+                <a href="../chapter7/">
+            
+                    
+                    第七卷·传输协议那点事儿
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chapter7/section1.html">
+            
+                <a href="../chapter7/section1.html">
+            
+                    
+                    HTTP协议那些事儿（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../chapter7/section2.html">
+            
+                <a href="../chapter7/section2.html">
+            
+                    
+                    HTTP协议那些事儿（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter8/">
+            
+                <a href="../chapter8/">
+            
+                    
+                    第八卷·Linux秘籍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/section1.html">
+            
+                <a href="../chapter8/section1.html">
+            
+                    
+                    Linux开发环境准备
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../chapter8/section2.html">
+            
+                <a href="../chapter8/section2.html">
+            
+                    
+                    操作系统与后端语言核心
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter9/">
+            
+                <a href="../chapter9/">
+            
+                    
+                    第九卷·前端项目实战
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../chapter9/section0.html">
+            
+                <a href="../chapter9/section0.html">
+            
+                    
+                    前端架构分离实践之后端开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../chapter9/section1.html">
+            
+                <a href="../chapter9/section1.html">
+            
+                    
+                    前后端BFF架构实现（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../chapter9/section2.html">
+            
+                <a href="../chapter9/section2.html">
+            
+                    
+                    前后端BFF架构实现（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../chapter9/section3.html">
+            
+                <a href="../chapter9/section3.html">
+            
+                    
+                    Webpack从0-1深度细化BFF（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../chapter9/section4.html">
+            
+                <a href="../chapter9/section4.html">
+            
+                    
+                    Webpack从0-1深度细化BFF（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../chapter9/section5.html">
+            
+                <a href="../chapter9/section5.html">
+            
+                    
+                    深度实现Vue SSR原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../chapter9/section6.html">
+            
+                <a href="../chapter9/section6.html">
+            
+                    
+                    前端架构师启蒙课第一讲-走进IOC
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../chapter10/">
+            
+                <a href="../chapter10/">
+            
+                    
+                    第十卷·前端性能优化与工程化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../chapter10/section1.html">
+            
+                <a href="../chapter10/section1.html">
+            
+                    
+                    前端性能优化的服务器基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../chapter10/section2.html">
+            
+                <a href="../chapter10/section2.html">
+            
+                    
+                    Chrome浏览器的渲染机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../chapter10/section3.html">
+            
+                <a href="../chapter10/section3.html">
+            
+                    
+                    大规模NodeJS项目架构与优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../chapter10/section4.html">
+            
+                <a href="../chapter10/section4.html">
+            
+                    
+                    前端工程化Linux预备知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../chapter10/section5.html">
+            
+                <a href="../chapter10/section5.html">
+            
+                    
+                    从小到大论前端持续集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../chapter10/section6.html">
+            
+                <a href="../chapter10/section6.html">
+            
+                    
+                    前端工程化之CI/CD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../chapter10/section7.html">
+            
+                <a href="../chapter10/section7.html">
+            
+                    
+                    从0搭建CI&CD运维平台之Jenkins实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../chapter10/section8.html">
+            
+                <a href="../chapter10/section8.html">
+            
+                    
+                    前端架构与性能优化那些事儿
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../chapter10/section9.html">
+            
+                <a href="../chapter10/section9.html">
+            
+                    
+                    手摸手带你从0实现前端监控SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../chapter11/">
+            
+                <a href="../chapter11/">
+            
+                    
+                    第十一卷·JavaScript函数式编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../chapter11/section1.html">
+            
+                <a href="../chapter11/section1.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../chapter12/">
+            
+                <a href="../chapter12/">
+            
+                    
+                    第十二卷·CSS古话今说与网站重构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../chapter12/section1.html">
+            
+                <a href="../chapter12/section1.html">
+            
+                    
+                    现代化CSS方法论
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../chapter13/">
+            
+                <a href="../chapter13/">
+            
+                    
+                    第十三卷·TypeScript
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="../chapter13/section1.html">
+            
+                <a href="../chapter13/section1.html">
+            
+                    
+                    TypeScript从入门到实战——基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="../chapter13/section2.html">
+            
+                <a href="../chapter13/section2.html">
+            
+                    
+                    TypeScript泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="../chapter13/section3.html">
+            
+                <a href="../chapter13/section3.html">
+            
+                    
+                    TypeScript从入门到实战——进阶篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.4" data-path="../chapter13/section4.html">
+            
+                <a href="../chapter13/section4.html">
+            
+                    
+                    TypeScript高级使用技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.5" data-path="../chapter13/section5.html">
+            
+                <a href="../chapter13/section5.html">
+            
+                    
+                    TypeScript高级使用技巧（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Vue2原理分析（一）</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="vue2&#x539F;&#x7406;&#x5206;&#x6790;&#xFF08;&#x4E00;&#xFF09;">Vue2&#x539F;&#x7406;&#x5206;&#x6790;&#xFF08;&#x4E00;&#xFF09;</h1>
+<h2 id="&#x96F6;&#x3001;&#x5199;&#x5728;&#x524D;&#x9762;">&#x96F6;&#x3001;&#x5199;&#x5728;&#x524D;&#x9762;</h2>
+<p><strong>&#x6211;&#x4EEC;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5B66;&#x4E60;&#x6E90;&#x7801;&#xFF1F;</strong></p>
+<p>&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;IT&#x4ECE;&#x4E1A;&#x4EBA;&#x5458;&#xFF0C;&#x65E0;&#x8BBA;&#x524D;&#x7AEF;&#x8FD8;&#x662F;&#x540E;&#x7AEF;&#x5E72;&#x7684;&#x65F6;&#x95F4;&#x8D8A;&#x4E45;&#x5C31;&#x4F1A;&#x53D1;&#x73B0;&#x524D;&#x540E;&#x7AEF;&#x7684;&#x754C;&#x9650;&#x5176;&#x5B9E;&#x5E76;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x660E;&#x663E;&#xFF0C;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x672C;&#x8D28;&#x5C31;&#x662F;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x52A0;&#x7B97;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x4F5C;&#x4E3A;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x8005;&#x5F88;&#x5BB9;&#x6613;&#x6210;&#x4E3A;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;&#x6846;&#x67B6;&#x7684;&#x719F;&#x7EC3;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x8FD9;&#x662F;&#x6CA1;&#x6709;&#x4F18;&#x52BF;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x7684;&#x57FA;&#x672C;&#x529F;&#x5728;&#x4E8E;&#x5BF9;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x548C;&#x7B97;&#x6CD5;&#x7684;&#x638C;&#x63E1;&#x3002;&#x8FD9;&#x79CD;&#x529F;&#x529B;&#x7684;&#x8BAD;&#x7EC3;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x953B;&#x70BC;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x9605;&#x8BFB;&#x4F18;&#x79C0;&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x5B66;&#x4E60;&#x6E90;&#x7801;&#x80CC;&#x540E;&#x7684;&#x539F;&#x7406;&#xFF0C;&#x4EE5;&#x53CA;&#x4F18;&#x79C0;&#x7684;&#x5F00;&#x6E90;&#x98CE;&#x683C;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x8DEF;&#x3002;&#x8FD9;&#x624D;&#x80FD;&#x771F;&#x6B63;&#x7684;&#x63D0;&#x9AD8;&#x6211;&#x4EEC;&#x7684;&#x7F16;&#x7801;&#x529F;&#x5E95;&#x3002;</p>
+<p><strong>&#x5B66;&#x4E60;&#x6E90;&#x7801;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x7684;&#x610F;&#x4E49;&#xFF1F;</strong></p>
+<ul>
+<li>&#x9762;&#x8BD5;&#xFF1A;&#x73B0;&#x5728;&#x7684;&#x524D;&#x7AEF;&#x9762;&#x8BD5;&#xFF0C;&#x6E90;&#x7801;&#x7684;&#x9762;&#x8BD5;&#x662F;&#x5FC5;&#x987B;&#x7684;&#xFF0C;&#x770B;&#x5F97;&#x61C2;&#x6E90;&#x7801;&#x751A;&#x81F3;&#x624B;&#x5199;&#x6E90;&#x7801;&#x90FD;&#x662F;&#x6211;&#x4EEC;&#x5FC5;&#x5907;&#x7684;&#x6280;&#x80FD;&#x3002;&#x53EA;&#x6709;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x66F4;&#x597D;&#x7684;&#x8FC7;&#x9762;&#x8BD5;&#xFF0C;&#x624D;&#x80FD;&#x591A;&#x8D5A;&#x94B1;&#x3002;</li>
+<li>&#x5DE5;&#x4F5C;&#xFF1A;&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x5728;&#x5DE5;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x9047;&#x5230;&#x6709;&#x5173;&#x4E8E;&#x6846;&#x67B6;&#x7684;&#x4E00;&#x4E9B;&#x5947;&#x602A;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6846;&#x67B6;&#x7684;&#x719F;&#x7EC3;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x5BF9;&#x6846;&#x67B6;&#x7684;&#x6E90;&#x7801;&#x4EE5;&#x53CA;&#x539F;&#x7406;&#x90FD;&#x4E0D;&#x719F;&#x6089;&#x5C31;&#x5F88;&#x96BE;&#x5FEB;&#x901F;&#x7CBE;&#x51C6;&#x7684;&#x5B9A;&#x4F4D;&#x95EE;&#x9898;&#x5E76;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;</li>
+</ul>
+<p><strong>&#x6846;&#x67B6;&#x7684;&#x6E90;&#x7801;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x5B66;&#xFF1F;</strong></p>
+<p>&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x7684;&#x6E90;&#x7801;&#x4E0D;&#x662F;&#x4E3A;&#x4E86;&#x5B66;&#x4E60;&#x6E90;&#x7801;&#x800C;&#x5B66;&#x4E60;&#x6E90;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x91CD;&#x70B9;&#x638C;&#x63E1;&#x7684;&#x662F;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>Vue2&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#x67B6;&#x6784;</li>
+<li>&#x53CC;&#x5411;&#x6570;&#x636E;&#x7ED1;&#x5B9A;&amp;SetState&#x539F;&#x7406;</li>
+<li>Vue2 Virtual-dom</li>
+<li>Vue2 DOM Diff&#x7B97;&#x6CD5;&#x89E3;&#x6790;</li>
+<li>Vue2&#x6574;&#x4F53;&#x89E3;&#x6790;&#x6D41;&#x7A0B;</li>
+<li>Vue&#x8FD0;&#x884C;&#x65F6;&#x4F18;&#x5316;</li>
+<li>&#x518D;&#x89C1;Vue~&#x524D;&#x7AEF;&#x6280;&#x672F;&#x6846;&#x67B6;&#x9009;&#x578B;</li>
+</ul>
+<h2 id="&#x4E00;&#x3001;vue2&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#x67B6;&#x6784;">&#x4E00;&#x3001;Vue2&#x6E90;&#x7801;&#x7684;&#x76EE;&#x5F55;&#x67B6;&#x6784;</h2>
+<p>.
+&#x251C;&#x2500;&#x2500; BACKERS.md<br>&#x251C;&#x2500;&#x2500; LICENSE<br>&#x251C;&#x2500;&#x2500; README.md<br>&#x251C;&#x2500;&#x2500; benchmarks<br>&#x251C;&#x2500;&#x2500; dist<br>&#x251C;&#x2500;&#x2500; examples<br>&#x251C;&#x2500;&#x2500; flow<br>&#x251C;&#x2500;&#x2500; package.json<br>&#x251C;&#x2500;&#x2500; packages<br>&#x251C;&#x2500;&#x2500; scripts<br>&#x251C;&#x2500;&#x2500; src<br>&#x251C;&#x2500;&#x2500; test<br>&#x251C;&#x2500;&#x2500; types<br>&#x2514;&#x2500;&#x2500; yarn.lock  </p>
+<p>&#x8FD9;&#x662F;Vue2&#x7684;&#x6574;&#x4F53;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6211;&#x4EEC;&#x6311;&#x91CD;&#x70B9;&#x7684;&#x8BF4;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>benchmarks&#xFF1A;Vue&#x7684;&#x8DD1;&#x5206;&#x76EE;&#x5F55;</li>
+<li>dist&#xFF1A;&#x6253;&#x5305;&#x597D;&#x7684;Vue&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x5728;dist&#x91CC;&#x9762;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x5404;&#x79CD;&#x6253;&#x5305;&#x65B9;&#x5F0F;&#x6253;&#x5305;&#x540E;&#x7684;vue&#x3002;</li>
+<li>examples&#xFF1A;VueJS&#x7684;&#x4F7F;&#x7528;&#x8303;&#x4F8B;&#x3002;</li>
+<li>flow&#xFF1A;VueJS&#x4F7F;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x5DE5;&#x5177;&#xFF0C;&#x7531;facebook&#x5F00;&#x53D1;&#x3002;&#x73B0;&#x5728;&#x5DF2;&#x7ECF;&#x505C;&#x6B62;&#x7EF4;&#x62A4;&#x4E86;&#x3002;</li>
+<li>packages&#xFF1A;&#x7F16;&#x8BD1;&#x5668;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x3002;</li>
+<li>scripts&#xFF1A;VueJS&#x6253;&#x5305;&#x7684;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x3002;</li>
+<li>src&#xFF1A;Vue&#x7684;&#x6E90;&#x7801;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x3002;</li>
+<li>test&#xFF1A;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x3002;</li>
+<li>types&#xFF1A;VueJS&#x7684;&#x7C7B;&#x578B;&#x58F0;&#x660E;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x3002;</li>
+</ul>
+<p>&#x65E2;&#x7136;&#x662F;&#x6E90;&#x7801;&#x5206;&#x6790;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x91CD;&#x70B9;&#x5C31;&#x5728;&#x4E8E;<strong>src&#x76EE;&#x5F55;</strong>&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B;src&#x76EE;&#x5F55;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#xFF1A;</p>
+<pre><code class="lang-text">src
+&#x251C;&#x2500;&#x2500; compiler        # &#x7F16;&#x8BD1;&#x76F8;&#x5173; 
+&#x251C;&#x2500;&#x2500; core            # &#x6838;&#x5FC3;&#x4EE3;&#x7801; 
+&#x251C;&#x2500;&#x2500; platforms       # &#x4E0D;&#x540C;&#x5E73;&#x53F0;&#x7684;&#x652F;&#x6301;
+&#x251C;&#x2500;&#x2500; server          # &#x670D;&#x52A1;&#x7AEF;&#x6E32;&#x67D3;
+&#x251C;&#x2500;&#x2500; sfc             # .vue &#x6587;&#x4EF6;&#x89E3;&#x6790;
+&#x251C;&#x2500;&#x2500; shared          # &#x5171;&#x4EAB;&#x4EE3;&#x7801;
+</code></pre>
+<h3 id="compiler">compiler</h3>
+<p>&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x5168;&#x90E8;&#x662F;Vue&#x6709;&#x5173;&#x4E8E;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#x7684;&#x76F8;&#x5173;&#x4EE3;&#x7801;&#x3002;&#x5305;&#x62EC;&#x628A;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#x6210;AST&#x8BED;&#x6CD5;&#x6811;&#xFF0C;AST&#x7684;&#x4F18;&#x5316;&#x7B49;&#x7B49;&#x3002;&#x6709;&#x5173;&#x4E8E;Vue&#x7684;&#x7F16;&#x8BD1;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x79BB;&#x7EBF;&#x7F16;&#x8BD1;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x5728;&#x7EBF;&#x7F16;&#x8BD1;&#x3002;</p>
+<ul>
+<li>&#x79BB;&#x7EBF;&#x7F16;&#x8BD1;&#xFF1A;&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x4F7F;&#x7528;vue-cli&#x751F;&#x6210;&#x7684;vue&#x9879;&#x76EE;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x662F;<strong>vue.runtime.js</strong>&#xFF0C;&#x987E;&#x540D;&#x601D;&#x4E49;&#x662F;&#x8FD0;&#x884C;&#x65F6;&#x7684;VueJS&#x3002;&#x8FD9;&#x79CD;VueJS&#x662F;&#x4E0D;&#x5E26;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#xFF0C;&#x628A;&#x7F16;&#x8BD1;&#x7684;&#x5DE5;&#x4F5C;&#x4EA4;&#x7ED9;webpack&#x548C;vue-loader&#x6765;&#x505A;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5728;&#x6784;&#x5EFA;&#x7684;&#x65F6;&#x5019;&#x505A;&#x7F16;&#x8BD1;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</li>
+<li>&#x5728;&#x7EBF;&#x7F16;&#x8BD1;&#xFF1A;VueJS&#x4E5F;&#x6709;&#x4E00;&#x79CD;&#x5E26;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#xFF0C;&#x65E2;&#x6211;&#x4EEC;&#x5728;html&#x6587;&#x4EF6;&#x4E2D;&#x5F15;&#x5165;&#x7684;vue&#x6587;&#x4EF6;&#x5C31;&#x662F;&#x5E26;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#xFF0C;&#x8FD9;&#x79CD;&#x5C31;&#x662F;&#x5728;&#x7EBF;&#x7F16;&#x8BD1;&#x7684;&#x65B9;&#x5F0F;&#x3002;</li>
+</ul>
+<p>&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x7F16;&#x8BD1;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x8017;&#x8D39;&#x65F6;&#x95F4;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x6240;&#x4EE5;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x79BB;&#x7EBF;&#x7F16;&#x8BD1;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<h3 id="core">core</h3>
+<p>&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E2D;&#x662F;Vue&#x7684;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF0C;&#x53EF;&#x8C13;&#x662F;&#x91CD;&#x4E2D;&#x4E4B;&#x91CD;&#xFF0C;&#x662F;&#x8981;&#x91CD;&#x70B9;&#x5206;&#x6790;&#x7684;&#x90E8;&#x5206;&#x3002;&#x5B83;&#x5305;&#x62EC;&#x5185;&#x7F6E;&#x7EC4;&#x4EF6;&#x3001;&#x5168;&#x5C40;API&#x3001;Vue&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x3001;&#x89C2;&#x5BDF;&#x8005;&#x3001;&#x865A;&#x62DF;Dom&#x3001;&#x5DE5;&#x5177;&#x51FD;&#x6570;&#x7B49;&#x3002;</p>
+<p>core&#x662F;Vue&#x6E90;&#x7801;&#x7684;&#x6838;&#x5FC3;&#xFF0C;&#x4E00;&#x5B9A;&#x8981;&#x638C;&#x63E1;&#xFF01;</p>
+<h3 id="platform">platform</h3>
+<p>Vue&#x662F;&#x4E2A;&#x8DE8;&#x5E73;&#x53F0;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x53EF;&#x4EE5;&#x652F;&#x6301;web&#x548C;weex&#x7AEF;&#xFF0C;&#x6211;&#x4EEC;&#x5219;&#x4E3B;&#x8981;&#x7814;&#x7A76;web&#x7AEF;&#x7684;VueJS&#x3002;</p>
+<h3 id="server">server</h3>
+<p>&#x73B0;&#x5728;Vue&#x652F;&#x6301;SSR&#x670D;&#x52A1;&#x7AEF;&#x6E32;&#x67D3;&#xFF0C;&#x6240;&#x6709;&#x4E0E;&#x670D;&#x52A1;&#x7AEF;&#x6E32;&#x67D3;&#x76F8;&#x5173;&#x7684;&#x4EE3;&#x7801;&#x90FD;&#x5728;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x3002;SSR&#x4E3B;&#x8981;&#x5DE5;&#x4F5C;&#x5C31;&#x662F;&#x628A;&#x670D;&#x52A1;&#x7AEF;&#x7684;VueJS&#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#x6210;html&#x538B;&#x9762;&#x8FD4;&#x56DE;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;&#x3002;</p>
+<h3 id="sfc">sfc</h3>
+<p>&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x5728;&#x5F00;&#x53D1;Vue&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x501F;&#x52A9;webpack&#x6253;&#x5305;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;.vue&#x6587;&#x4EF6;&#x6765;&#x7F16;&#x5199;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x5C31;&#x662F;sfc&#xFF08;&#x5355;&#x6587;&#x4EF6;&#x7EC4;&#x4EF6;&#xFF09;&#x3002;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x903B;&#x8F91;&#x5C31;&#x662F;&#x628A;&#x5355;&#x6587;&#x4EF6;&#x7684;&#x7EC4;&#x4EF6;&#x7F16;&#x8BD1;&#x6210;JS&#x5BF9;&#x8C61;&#x3002;</p>
+<h3 id="shared">shared</h3>
+<p>VueJS&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x548C;&#x6D4F;&#x89C8;&#x5668;&#x7AEF;&#x516C;&#x7528;&#x7684;&#x5DE5;&#x5177;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;vue2&#x7684;&#x6E90;&#x7801;&#x6784;&#x5EFA;">&#x4E8C;&#x3001;Vue2&#x7684;&#x6E90;&#x7801;&#x6784;&#x5EFA;</h2>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第五卷·MVVM框架源码系列">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter6/" class="navigation navigation-next " aria-label="Next page: 第六卷·前端测试">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Vue2原理分析（一）","level":"1.6.1","depth":2,"next":{"title":"第六卷·前端测试","level":"1.7","depth":1,"path":"chapter6/README.md","ref":"chapter6/README.md","articles":[]},"previous":{"title":"第五卷·MVVM框架源码系列","level":"1.6","depth":1,"path":"chapter5/README.md","ref":"chapter5/README.md","articles":[{"title":"Vue2原理分析（一）","level":"1.6.1","depth":2,"path":"chapter5/section1.md","ref":"chapter5/section1.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/section1.md","mtime":"2021-07-28T10:30:16.375Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-26T07:11:55.945Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
