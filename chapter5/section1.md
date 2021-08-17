@@ -69,6 +69,38 @@ src
 ├── shared          # 共享代码
 ```
 
+### 目录总结
+
+```
+├── benchmarks                  性能、基准测试
+├── dist                        构建打包的输出目录
+├── examples                    案例目录
+├── flow                        flow 语法的类型声明
+├── packages                    一些额外的包，比如：负责服务端渲染的包 vue-server-renderer、配合 vue-loader 使用的vue-template-compiler，还有 weex 相关的
+│   ├── vue-server-renderer
+│   ├── vue-template-compiler
+│   ├── weex-template-compiler
+│   └── weex-vue-framework
+├── scripts                     所有的配置文件的存放位置，比如 rollup 的配置文件
+├── src                         vue 源码目录
+│   ├── compiler                编译器
+│   ├── core                    运行时的核心包
+│   │   ├── components          全局组件，比如 keep-alive
+│   │   ├── config.js           一些默认配置项
+│   │   ├── global-api          全局 API，比如熟悉的：Vue.use()、Vue.component() 等
+│   │   ├── instance            Vue 实例相关的，比如 Vue 构造函数就在这个目录下
+│   │   ├── observer            响应式原理
+│   │   ├── util                工具方法
+│   │   └── vdom                虚拟 DOM 相关，比如熟悉的 patch 算法就在这儿
+│   ├── platforms               平台相关的编译器代码
+│   │   ├── web
+│   │   └── weex
+│   ├── server                  服务端渲染相关
+├── test                        测试目录
+├── types                       TS 类型声明
+
+```
+
 ### compiler
 
 这个目录中包含的全部是Vue有关于代码编译的相关代码。包括把代码编译成AST语法树，AST的优化等等。有关于Vue的编译分为两种，一种是离线编译，一种是在线编译。

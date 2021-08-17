@@ -9,6 +9,8 @@
 * [第三卷·天天造轮子](chapter3/README.md)
     * [手写vue-cli](chapter3/section1.1.vue-cli.md)
 * [第四卷·天天面试](chapter4/README.md)
+    * [剑指 Offer月计划 · 第一天——栈与队列](chapter4/section1.md)
+    * [剑指 Offer月计划 · 第二天——链表](chapter4/section2.md)
 * [第五卷·MVVM框架源码系列](chapter5/README.md)
     * [Vue2原理分析（一）](chapter5/section1.md)
 * [第六卷·前端测试](chapter6/README.md)
