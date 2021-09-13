@@ -70,7 +70,7 @@ export default function initData(vm) {
   }
   
   // 做一层代理
-  for(key in data) {
+  for(const key in data) {
     proxy(vm, '_data', key)
 	}
   
@@ -149,13 +149,13 @@ export default Observer(value) {
 }
 
 Observer.prototype.walk = function(obj) {
-  for(key in obj) {
+  for(const key in obj) {
     defineReactive(obj, key, obj[key]);
   }
 }
 
 Observer.prototype.observeArray = function(value) {
-  for(item of value) {
+  for(const item of value) {
     observe(item);
   }
 }
@@ -298,7 +298,7 @@ Dep.prototype.depend = function() {
 
 // 通知更新
 Dep.prototype.notify = function() {
-  for(watcher of this.watchers) {
+  for(const watcher of this.watchers) {
     watcher.update();
   }
 }
@@ -371,13 +371,13 @@ export default Observer(value) {
 value.__ob__.dep = new Dep();
 
 Observer.prototype.walk = function(obj) {
-  for(key in obj) {
+  for(const key in obj) {
     defineReactive(obj, key, obj[key]);
   }
 }
 
 Observer.prototype.observeArray = function(value) {
-  for(item of value) {
+  for(const item of value) {
     observe(item);
   }
 }
@@ -464,4 +464,163 @@ export default function protoArgument(value) {
 
 
 ## 三、模板编译
+
+在new Vue中的_init方法中调用了this.$mount方法，这个方法中调用了mount方法，mount方法就是模板编译的入口。
+
+```javascript
+// src/index.js
+export default function Vue(options) {
+  this._init(options);
+}
+
+Vue.prototype._init = function(options) {
+  this.options = options;
+  // 数据响应式
+  initData(this);
+  // 模板编译和挂载
+  if(this.options.el) {
+    this.$mount()
+  }
+}
+
+Vue.prototype.$mount = function() {
+  mount(this);
+}
+```
+
+我们可以看到在代码中当有el选项的时候我们执行模板编译。
+
+```javascript
+// src/compile/index.js
+import compileNodes from './compileNodes.js';
+
+export default function mount(vm) {
+  let { el } = vm.$options;
+  
+  el = document.querySelector(el);
+  
+  compileNodes(Array.from(el.childNodes), vm);
+}
+```
+
+模板的编译实际上是对于el选项中指定的dom结构，选中DOM结构之后，调用compileNodes函数进行模板编译。
+
+**compileNodes**
+
+```javascript
+// src/compiler/compileNodes.js
+import compileAttributes from './compileAttributes.js';
+import compileTextNode from './compileTextNode.js';
+
+export default function compileNodes(nodes, vm) {
+  for(const node of nodes) {
+    if(node.nodeType === 1) {
+      // node为元素类型
+      compileAttributes(node, vm);
+     	// node递归解析
+      compileNodes(Array.from(node.childNodes), vm);
+    }else if(node.nodeType === 3 && node.textContent.match(/{{(.*)}}/)) {
+      // node为文本节点，并且含有插值表达式语法{{ xxx }}
+      compileTextNode(node, vm);
+    }
+  }
+}
+```
+
+compileNodes函数做了三件事：
+
++ node为元素类型时，解析属性。
++ node为元素类型时，递归解析node.childNodes。
++ node为文本节点时，解析文本节点。
+
+**compileAttributes**
+
+```javascript
+import Watcher from '../watcher.js';
+
+export default function compileAttributes(node, vm) {
+  const attrs = node.aattributes;
+  for(const attr of attrs) {
+    let { name, value } = attr;
+    
+    if(name.match(/v-bind:(.*)/)) {
+      // <div v-bind:class='key'></div>
+      compileVBind(node, value, vm);
+    }else if(name.match(/v-on:click/)) {
+      // <div v-on:click='clickHandle'></div>
+      compileVOnClick(node, value, vm);
+    }else if(name.match(/v-model/)) {
+      compileVModel(node, value, vm);
+    }
+  }
+}
+
+function compileVBind(node, key, vm) {
+  const attrName = RegExp.$1;
+  // 移除v-bind属性
+  node.removeAttribute(`v-bind:${attrName}`);
+  
+  function cb() {
+    node.setAttribute(attrName, vm[attrValue]);
+  }
+  new Watcher(cb);
+}
+
+function compileVOnClick(node, method, vm) {
+  node.addEventListener(function(...args) {
+    vm.$options.methods[method].apply(vm, args);
+  })
+}
+
+function compileVModel(node, key, vm) {
+  let { tagName, type } = node;
+  tagName = tagName.toLowerCase();
+  if(tagName === 'input' && type === 'text') {
+    node.value = vm[key];
+
+    node.addEventListener('input', function() {
+      vm[key] = node.value;
+    })
+  }else if(tagName === 'input' && type === 'checkbox') {
+    node.checked = vm[key];
+
+    node.addEventListener('change', function() {
+      vm[key] = node.checked;
+    })
+  }else if(tagName === 'select') {
+    node.value = vm[key];
+
+    node.addEventListener('change', function() {
+      vm[key] = node.value;
+    })
+  }
+}
+```
+
+**compileTextNode**
+
+```javascript
+import Watcher from '../watcher.js';
+
+export default function compileTextNode(node, vm) {
+  const key = RegExp.$1.trim();
+
+  function cb() {
+    const value = vm[key];
+    node.textContent = typeof value === 'object'? JSON.stringify(value): String(value);
+  }
+
+  new Watcher(cb)
+}
+```
+
+
+
+在Watcher中的cb中会触发getter函数，完成重新的依赖收集。
+
+
+
+## 四、总结
+
+Vue1.0的源码比较简单，只是实现了数据响应式、依赖收集更新、模板编译。我们从源码中可以看出Vue1.0是一个响应式数据一个watcher，这样的设计在做一些小型项目的时候效率会很高，但是大型项目watcher的数量会急剧增加，影响性能。Vue2为了解决这个问题引入了Vnode和patch算法。
 
