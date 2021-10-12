@@ -2,8 +2,7 @@
 
 * [介绍](README.md)
 * [第一卷·前端JS手写系列](chapter1/README.md)
-    * [Section1.1](chapter1/section1.1.md)
-    * [Section1.2](chapter1/section1.2.md)
+    * [EventLoop](chapter1/section1.md)
 * [第二卷·你不知道的JavaScript](chapter2/README.md)
     * [JavaScript面试题详解](chapter2/section1.md)
 * [第三卷·天天造轮子](chapter3/README.md)
@@ -52,4 +51,5 @@
     * [TypeScript从入门到实战——进阶篇](chapter13/section3.md)
     * [TypeScript高级使用技巧](chapter13/section4.md)
     * [TypeScript高级使用技巧（二）](chapter13/section5.md)
+* [第十四卷·NodeJS浅尝](chapter14/README.md)
 
