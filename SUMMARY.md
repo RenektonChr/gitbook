@@ -13,6 +13,7 @@
     * [剑指 Offer月计划 · 第三天——字符串](chapter4/section3.md)
     * [剑指 Offer月计划 · 第四天——查找算法（简单）](chapter4/section4.md)
     * [剑指 Offer月计划 · 第五天——查找算法（中等）](chapter4/section5.md)
+    * [认识复杂度和简单排序算法](chapter4/section6.md)
 * [第五卷·MVVM框架源码系列](chapter5/README.md)
     * [Vue2原理分析（一）](chapter5/section1.md)
     * [手写源码系列——Vue1.x](chapter5/section2.md)
@@ -52,4 +53,5 @@
     * [TypeScript高级使用技巧](chapter13/section4.md)
     * [TypeScript高级使用技巧（二）](chapter13/section5.md)
 * [第十四卷·NodeJS浅尝](chapter14/README.md)
+    * [V8引擎和Linux异步机制](chapter14/section1.md)
 
