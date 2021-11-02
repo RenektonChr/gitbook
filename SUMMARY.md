@@ -17,6 +17,7 @@
 * [第五卷·MVVM框架源码系列](chapter5/README.md)
     * [Vue2原理分析（一）](chapter5/section1.md)
     * [手写源码系列——Vue1.x](chapter5/section2.md)
+    * [从0手写VueSSR](chapter5/section3.md)
 * [第六卷·前端测试](chapter6/README.md)
 * [第七卷·传输协议那点事儿](chapter7/README.md)
     * [HTTP协议那些事儿（一）](chapter7/section1.md)
@@ -54,4 +55,7 @@
     * [TypeScript高级使用技巧（二）](chapter13/section5.md)
 * [第十四卷·NodeJS浅尝](chapter14/README.md)
     * [V8引擎和Linux异步机制](chapter14/section1.md)
+    * [V8引擎和源码分析](chapter14/section2.md)
+    * [webpack在一线开发中的优化](chapter14/section3.md)
+    * [微前端架构设计深度原理分析](chapter14/section4.md)
 

@@ -262,3 +262,52 @@ select模型的关键是使用一种有序的方式，对多个套接字进行�
 + select返回的是含有整个句柄的数组，应用程序需要遍历整个 数组才能发现哪些句柄发生了事件;
 + select的触发方式是水平触发，应用程序如果没有完成对一个 已经就绪的文件描述符进行IO操作，那么之后每次select调用 还是会将这些文件描述符通知进程。
 
+**select图解：**
+
+<img src="../assets/images/chapter14/10.png" alt="node-app.png" style="zoom:50%;" />
+
+
+
+## 六、epoll模型
+
+**epoll模型的优点：**
+
++ 支持一个进程打开大数目的socket描述符
++ IO效率不随FD数目增加而线性下降
++ 使用mmap加速内核与用户空间的消息传递
+
+**epoll的两种工作模式：**
+
++ LT(level triggered，水平触发模式)是缺省的工作方式，并且同时支持 block 和 non-block socket。在这种做法中，内核告诉你一个文件描述符是否就绪了，然后你可以对这个就绪的fd 进行IO操作。如果你不作任何操作，内核还是会继续通知你的，所以，这种模式编程出错误可 能性要小一点。比如内核通知你其中一个fd可以读数据了，你赶紧去读。你还是懒懒散散，不 去读这个数据，下一次循环的时候内核发现你还没读刚才的数据，就又通知你赶紧把刚才的 数据读了。这种机制可以比较好的保证每个数据用户都处理掉了。
++ ET(edge-triggered，边缘触发模式)是高速工作方式，只支持no-block socket。在这种模式 下，当描述符从未就绪变为就绪时，内核通过epoll告诉你。然后它会假设你知道文件描述符 已经就绪，并且不会再为那个文件描述符发送更多的就绪通知，等到下次有新的数据进来的 时候才会再次出发就绪事件。简而言之，就是内核通知过的事情不会再说第二遍，数据错过 没读，你自己负责。这种机制确实速度提高了，但是风险相伴而行。
+
+**epoll模型图解：**
+
+<img src="../assets/images/chapter14/11.png" alt="node-app.png" style="zoom:50%;" />
+
+
+
+## 七、IOCP模型
+
+windows中的高效IO模型，这个模型有一个毛病就是层次不清楚。
+
+**IOCP模型图解：**
+
+<img src="../assets/images/chapter14/12.png" alt="node-app.png" style="zoom:50%;" />
+
+1. 创建一个完成端口
+2. 创建一个线程A
+3. A线程循环调用GetQueuedCompletionStatus()函数来得到IO操作结果，这个 函数是个阻塞函数。
+4. 主线程循环里调用accept等待客户端连接上来。
+5. 主线程里accept返回新连接建立以后，把这个新的套接字句柄用 CreateIoCompletionPort关联到完成端口，然后发出一个异步的 WSASend或者 WSARecv调用，因为是异步函数，WSASend/WSARecv会马上返回，实际的发 送或者接收数据的操作由WINDOWS系统去做。
+6. 主线程继续下一次循环，阻塞在accept这里等待客户端连接。
+7. WINDOWS系统完成WSASend或者WSArecv的操作，把结果发到完成端口。
+8. A线程里的GetQueuedCompletionStatus()马上返回，并从完成端口取得刚完 成的。
+9. 在A线程里对这些数据进行处理(如果处理过程很耗时，需要新开线程处理)，然后接着发。
+
+
+
+## 八、libuv
+
+[libuv官方网站](https://libuv.org/)
+
