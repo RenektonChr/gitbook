@@ -2259,6 +2259,49 @@ babel的配置和postcss的配置类似，也可以独立出来，并不建议�
 
 + 学会看文档和github的issue
 
+**附：package.json**
+
+```json
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev:serve": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/runtime-corejs3": "^7.7.6",
+    "@webpack-cli/serve": "^1.6.0",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.19.1",
+    "css-loader": "^3.3.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.13.1",
+    "less-loader": "^5.0.0",
+    "postcss": "^8.3.11",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.0.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
+
+```
+
 
 
 
