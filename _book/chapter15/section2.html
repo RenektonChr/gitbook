@@ -1,0 +1,1675 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>webpack高级概念 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="section1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/">
+            
+                <a href="../chapter1/">
+            
+                    
+                    第一卷·前端JS手写系列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter1/section1.html">
+            
+                <a href="../chapter1/section1.html">
+            
+                    
+                    EventLoop
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/">
+            
+                <a href="../chapter2/">
+            
+                    
+                    第二卷·你不知道的JavaScript
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter2/section1.html">
+            
+                <a href="../chapter2/section1.html">
+            
+                    
+                    JavaScript面试题详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter3/">
+            
+                <a href="../chapter3/">
+            
+                    
+                    第三卷·天天造轮子
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter3/section1.1.vue-cli.html">
+            
+                <a href="../chapter3/section1.1.vue-cli.html">
+            
+                    
+                    手写vue-cli
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/">
+            
+                <a href="../chapter4/">
+            
+                    
+                    第四卷·天天面试
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chapter4/section1.html">
+            
+                <a href="../chapter4/section1.html">
+            
+                    
+                    剑指 Offer月计划 · 第一天——栈与队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../chapter4/section2.html">
+            
+                <a href="../chapter4/section2.html">
+            
+                    
+                    剑指 Offer月计划 · 第二天——链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../chapter4/section3.html">
+            
+                <a href="../chapter4/section3.html">
+            
+                    
+                    剑指 Offer月计划 · 第三天——字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../chapter4/section4.html">
+            
+                <a href="../chapter4/section4.html">
+            
+                    
+                    剑指 Offer月计划 · 第四天——查找算法（简单）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../chapter4/section5.html">
+            
+                <a href="../chapter4/section5.html">
+            
+                    
+                    剑指 Offer月计划 · 第五天——查找算法（中等）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../chapter4/section6.html">
+            
+                <a href="../chapter4/section6.html">
+            
+                    
+                    认识复杂度和简单排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter5/">
+            
+                <a href="../chapter5/">
+            
+                    
+                    第五卷·MVVM框架源码系列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../chapter5/section1.html">
+            
+                <a href="../chapter5/section1.html">
+            
+                    
+                    Vue2原理分析（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../chapter5/section2.html">
+            
+                <a href="../chapter5/section2.html">
+            
+                    
+                    手写源码系列——Vue1.x
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../chapter5/section3.html">
+            
+                <a href="../chapter5/section3.html">
+            
+                    
+                    从0手写VueSSR
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter6/">
+            
+                <a href="../chapter6/">
+            
+                    
+                    第六卷·前端测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chapter7/">
+            
+                <a href="../chapter7/">
+            
+                    
+                    第七卷·传输协议那点事儿
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chapter7/section1.html">
+            
+                <a href="../chapter7/section1.html">
+            
+                    
+                    HTTP协议那些事儿（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../chapter7/section2.html">
+            
+                <a href="../chapter7/section2.html">
+            
+                    
+                    HTTP协议那些事儿（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../chapter8/">
+            
+                <a href="../chapter8/">
+            
+                    
+                    第八卷·Linux秘籍
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../chapter8/section1.html">
+            
+                <a href="../chapter8/section1.html">
+            
+                    
+                    Linux开发环境准备
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../chapter8/section2.html">
+            
+                <a href="../chapter8/section2.html">
+            
+                    
+                    操作系统与后端语言核心
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../chapter9/">
+            
+                <a href="../chapter9/">
+            
+                    
+                    第九卷·前端项目实战
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../chapter9/section0.html">
+            
+                <a href="../chapter9/section0.html">
+            
+                    
+                    前端架构分离实践之后端开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../chapter9/section1.html">
+            
+                <a href="../chapter9/section1.html">
+            
+                    
+                    前后端BFF架构实现（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../chapter9/section2.html">
+            
+                <a href="../chapter9/section2.html">
+            
+                    
+                    前后端BFF架构实现（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../chapter9/section3.html">
+            
+                <a href="../chapter9/section3.html">
+            
+                    
+                    Webpack从0-1深度细化BFF（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../chapter9/section4.html">
+            
+                <a href="../chapter9/section4.html">
+            
+                    
+                    Webpack从0-1深度细化BFF（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../chapter9/section5.html">
+            
+                <a href="../chapter9/section5.html">
+            
+                    
+                    深度实现Vue SSR原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../chapter9/section6.html">
+            
+                <a href="../chapter9/section6.html">
+            
+                    
+                    前端架构师启蒙课第一讲-走进IOC
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../chapter10/">
+            
+                <a href="../chapter10/">
+            
+                    
+                    第十卷·前端性能优化与工程化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../chapter10/section1.html">
+            
+                <a href="../chapter10/section1.html">
+            
+                    
+                    前端性能优化的服务器基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../chapter10/section2.html">
+            
+                <a href="../chapter10/section2.html">
+            
+                    
+                    Chrome浏览器的渲染机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../chapter10/section3.html">
+            
+                <a href="../chapter10/section3.html">
+            
+                    
+                    大规模NodeJS项目架构与优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../chapter10/section4.html">
+            
+                <a href="../chapter10/section4.html">
+            
+                    
+                    前端工程化Linux预备知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../chapter10/section5.html">
+            
+                <a href="../chapter10/section5.html">
+            
+                    
+                    从小到大论前端持续集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../chapter10/section6.html">
+            
+                <a href="../chapter10/section6.html">
+            
+                    
+                    前端工程化之CI/CD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../chapter10/section7.html">
+            
+                <a href="../chapter10/section7.html">
+            
+                    
+                    从0搭建CI&CD运维平台之Jenkins实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../chapter10/section8.html">
+            
+                <a href="../chapter10/section8.html">
+            
+                    
+                    前端架构与性能优化那些事儿
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../chapter10/section9.html">
+            
+                <a href="../chapter10/section9.html">
+            
+                    
+                    手摸手带你从0实现前端监控SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../chapter11/">
+            
+                <a href="../chapter11/">
+            
+                    
+                    第十一卷·JavaScript函数式编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../chapter11/section1.html">
+            
+                <a href="../chapter11/section1.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../chapter12/">
+            
+                <a href="../chapter12/">
+            
+                    
+                    第十二卷·CSS古话今说与网站重构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../chapter12/section1.html">
+            
+                <a href="../chapter12/section1.html">
+            
+                    
+                    现代化CSS方法论
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../chapter13/">
+            
+                <a href="../chapter13/">
+            
+                    
+                    第十三卷·TypeScript
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="../chapter13/section1.html">
+            
+                <a href="../chapter13/section1.html">
+            
+                    
+                    TypeScript从入门到实战——基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="../chapter13/section2.html">
+            
+                <a href="../chapter13/section2.html">
+            
+                    
+                    TypeScript泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="../chapter13/section3.html">
+            
+                <a href="../chapter13/section3.html">
+            
+                    
+                    TypeScript从入门到实战——进阶篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.4" data-path="../chapter13/section4.html">
+            
+                <a href="../chapter13/section4.html">
+            
+                    
+                    TypeScript高级使用技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.5" data-path="../chapter13/section5.html">
+            
+                <a href="../chapter13/section5.html">
+            
+                    
+                    TypeScript高级使用技巧（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="../chapter14/">
+            
+                <a href="../chapter14/">
+            
+                    
+                    第十四卷·NodeJS浅尝
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../chapter14/section1.html">
+            
+                <a href="../chapter14/section1.html">
+            
+                    
+                    V8引擎和Linux异步机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="../chapter14/section2.html">
+            
+                <a href="../chapter14/section2.html">
+            
+                    
+                    V8引擎和源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="../chapter14/section3.html">
+            
+                <a href="../chapter14/section3.html">
+            
+                    
+                    webpack在一线开发中的优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="../chapter14/section4.html">
+            
+                <a href="../chapter14/section4.html">
+            
+                    
+                    微前端架构设计深度原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第十五卷·浅析前端构建工具
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.16.1" data-path="section1.html">
+            
+                <a href="section1.html">
+            
+                    
+                    webpack核心概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.16.2" data-path="section2.html">
+            
+                <a href="section2.html">
+            
+                    
+                    webpack高级概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >webpack高级概念</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="webpack&#x9AD8;&#x7EA7;&#x6982;&#x5FF5;&#x8BB2;&#x89E3;">Webpack&#x9AD8;&#x7EA7;&#x6982;&#x5FF5;&#x8BB2;&#x89E3;</h1>
+<h2 id="&#x4E00;&#x3001;treeshaking">&#x4E00;&#x3001;TreeShaking</h2>
+<p>Tree-shaking&#x7684;&#x672C;&#x8D28;&#x662F;&#x6D88;&#x9664;&#x65E0;&#x7528;&#x7684;js&#x4EE3;&#x7801;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x7684;&#x624B;&#x6BB5;&#x3002;&#x6700;&#x65E9;&#x7531;Rollup&#x63D0;&#x51FA;&#xFF0C;&#x65E0;&#x7528;&#x4EE3;&#x7801;&#x6D88;&#x9664;&#x5728;&#x5E7F;&#x6CDB;&#x5B58;&#x5728;&#x4E8E;&#x4F20;&#x7EDF;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x7F16;&#x8BD1;&#x5668;&#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x51FA;&#x67D0;&#x4E9B;&#x4EE3;&#x7801;&#x6839;&#x672C;&#x4E0D;&#x5F71;&#x54CD;&#x8F93;&#x51FA;&#xFF0C;&#x7136;&#x540E;&#x6D88;&#x9664;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#xFF0C;&#x8FD9;&#x4E2A;&#x79F0;&#x4E4B;&#x4E3A;DCE&#xFF08;dead code elimination&#xFF09;&#x3002;Tree-shaking&#x76F4;&#x8BD1;&#x8FC7;&#x6765;&#x7684;&#x610F;&#x601D;&#x662F;<code>&#x6447;&#x6811;</code>&#xFF0C;&#x6240;&#x4EE5;&#x53C8;&#x53EB;&#x505A;<code>&#x6447;&#x6811;&#x4F18;&#x5316;</code>&#x3002;</p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;webpack&#x7684;TreeShaking&#x4F9D;&#x8D56;&#x7684;&#x662F;ES6&#x6A21;&#x5757;&#x8BED;&#x6CD5;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5728;webpack&#x4E2D;&#x5B9E;&#x8DF5;&#x4E00;&#x4E0B;&#x3002;</p>
+<ol>
+<li>&#x5728;src&#x4E2D;&#x65B0;&#x5EFA;<code>common/utils.js</code>&#x6587;&#x4EF6;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fn1 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;fn1&apos;</span>);
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fn2 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;fn2&apos;</span>);
+}
+</code></pre>
+<ol>
+<li>&#x7136;&#x540E;&#x5728;src/index.js&#x5199;&#x5165;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { fn1, fn2 } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./common/utils&apos;</span>;
+
+fn1();
+</code></pre>
+<ol>
+<li>&#x6267;&#x884C;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-bash">$ npm run build
+</code></pre>
+<p><img src="../assets/images/chapter15/31.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6211;&#x4EEC;&#x5728;index.js&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x5230;<code>fn2</code>&#xFF0C;&#x4F46;&#x662F;webpack&#x7167;&#x6837;&#x628A;fn2&#x6253;&#x5305;&#x8FDB;&#x53BB;&#x4E86;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5F53;&#x524D;&#x7684;&#x6253;&#x5305;&#x73AF;&#x5883;&#x662F;<code>development</code>&#xFF0C;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x6253;&#x5305;&#xFF0C;webpack&#x9ED8;&#x8BA4;&#x662F;&#x4E0D;&#x4F1A;&#x5F00;&#x542F;tree-shaking&#x7684;&#x3002;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x628A;webpack.config.js&#x4E2D;&#x7684;<code>mode</code>&#x6539;&#x4E3A;<code>production</code>&#x3002;&#x518D;&#x6B21;&#x6267;&#x884C;&#x6784;&#x5EFA;&#x547D;&#x4EE4;&#xFF0C;&#x6784;&#x5EFA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#x56FE;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/32.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6E05;&#x695A;&#x7684;&#x770B;&#x5230;fn2&#x5DF2;&#x7ECF;&#x6CA1;&#x6709;&#x4E86;&#xFF0C;&#x4F46;&#x662F;fn1&#x4F9D;&#x7136;&#x88AB;&#x6253;&#x5305;&#x5230;&#x6587;&#x4EF6;&#x4E2D;&#x4E86;&#x3002;&#x8FD9;&#x5C31;&#x662F;webpack&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x8FDB;&#x884C;&#x7684;tree-shacking&#x4F18;&#x5316;&#x3002;<code>&#x5373;&#x4F7F;fn2&#x5F15;&#x5165;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#xFF0C;&#x4E5F;&#x662F;&#x4E0D;&#x4F1A;&#x6253;&#x5305;&#x7684;&#x3002;</code></p>
+<p>&#x5173;&#x4E8E;tree-shacking&#x4F18;&#x5316;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x522B;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x70B9;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x5982;&#x679C;&#x9879;&#x76EE;&#x4E2D;&#x5728;&#x5F15;&#x5165;&#x50CF;lodash&#x8FD9;&#x79CD;&#x5E93;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5728;index.js&#x5F15;&#x5165;&#x5E93;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { chunk } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lodash&apos;</span>;
+
+<span class="hljs-built_in">console</span>.log(chunk([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">2</span>));
+</code></pre>
+<p>&#x7136;&#x540E;&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF0C;&#x6784;&#x5EFA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/33.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6253;&#x5305;&#x51FA;&#x6765;&#x7684;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#x662F;<code>80kb</code>&#xFF0C;&#x8FD9;&#x663E;&#x7136;&#x662F;&#x4E0D;&#x6B63;&#x5E38;&#x7684;&#x3002;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x539F;&#x56E0;&#x6211;&#x4EEC;&#x524D;&#x6587;&#x4E5F;&#x63D0;&#x5230;&#x4E86;&#xFF0C;&#x90A3;&#x5C31;&#x662F;webpack&#x7684;tree-shaking&#x4F18;&#x5316;&#x53EA;&#x9002;&#x7528;&#x4E8E;ES&#x6A21;&#x5757;&#x5316;&#x7684;&#x5E93;&#xFF0C;lodash&#x8FD9;&#x4E2A;&#x5E93;&#x5E76;&#x6CA1;&#x6709;&#x4F7F;&#x7528;ES&#x6A21;&#x5757;&#x5316;&#x8BED;&#x6CD5;&#x3002;&#x77E5;&#x9053;&#x4E86;&#x8FD9;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x60F3;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x6211;&#x4EEC;&#x4E00;&#x5B9A;&#x662F;&#x4E0D;&#x96BE;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;<code>lodash-es</code>&#x8FD9;&#x4E2A;&#x5E93;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E93;&#x662F;lodash&#x7528;&#x4E86;es&#x6A21;&#x5757;&#x5316;&#x8BED;&#x6CD5;&#x7684;&#x5E93;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5B89;&#x88C5;&#x5B83;&#xFF1A;</p>
+<pre><code class="lang-bash">$ npm install lodash-es
+</code></pre>
+<p>&#x7136;&#x540E;&#x5728;index.js&#x4E2D;&#x5F15;&#x5165;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { chunk } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lodash-es&apos;</span>;
+
+<span class="hljs-built_in">console</span>.log(chunk([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">2</span>));
+</code></pre>
+<p>&#x6700;&#x540E;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/34.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6253;&#x5305;&#x4E4B;&#x540E;&#x7684;&#x7ED3;&#x679C;&#x4E3A;<code>11.1kb</code>&#xFF0C;tree-shacking&#x751F;&#x6548;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;webpack&#x73AF;&#x5883;&#x533A;&#x5206;">&#x4E8C;&#x3001;webpack&#x73AF;&#x5883;&#x533A;&#x5206;</h2>
+<p>&#x73B0;&#x5728;&#x4E3A;&#x6B62;&#xFF0C;&#x6211;&#x4EEC;webpack&#x7684;&#x914D;&#x7F6E;&#x5168;&#x90E8;&#x5199;&#x5728;&#x4E86;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x2014;&#x2014;webpack.config.js&#x4E2D;&#x3002;&#x8FD9;&#x6837;&#x5BF9;&#x4E8E;&#x5F00;&#x53D1;&#x6765;&#x8BF4;&#x662F;&#x975E;&#x5E38;&#x4E0D;&#x65B9;&#x4FBF;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x6B63;&#x5F0F;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x73AF;&#x5883;&#xFF08;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x3001;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#xFF09;&#x5BF9;&#x5E94;&#x7684;&#x914D;&#x7F6E;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x73AF;&#x5883;&#xFF0C;&#x90FD;&#x6709;&#x4E00;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x6BD4;&#x5982;<code>publicPath</code>&#x3001;<code>apid&#x7684;&#x8DEF;&#x5F84;</code>&#x3001;<code>&#x4EE3;&#x7801;&#x538B;&#x7F29;</code>&#x3001;<code>sourcemap</code>&#x7B49;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5728;&#x5F00;&#x53D1;&#x4E2D;&#x4E00;&#x822C;&#x4F1A;&#x5BF9;webpack&#x7684;&#x73AF;&#x5883;&#x8FDB;&#x884C;&#x533A;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6574;&#x7406;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<h3 id="&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF1A;">&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF1A;</h3>
+<ul>
+<li>devServer</li>
+<li>sourceMap</li>
+<li>proxy</li>
+</ul>
+<h3 id="&#x751F;&#x4EA7;&#x73AF;&#x5883;&#xFF1A;">&#x751F;&#x4EA7;&#x73AF;&#x5883;&#xFF1A;</h3>
+<ul>
+<li>Tree-shacking</li>
+<li>&#x4EE3;&#x7801;&#x538B;&#x7F29;</li>
+<li>&#x63D0;&#x53D6;&#x516C;&#x5171;&#x4EE3;&#x7801;</li>
+</ul>
+<h3 id="&#x5171;&#x540C;&#x70B9;&#xFF1A;">&#x5171;&#x540C;&#x70B9;&#xFF1A;</h3>
+<ul>
+<li>&#x5165;&#x53E3;&#x6587;&#x4EF6;</li>
+<li>&#x90E8;&#x5206;&#x76F8;&#x540C;&#x7684;&#x4EE3;&#x7801;&#x5904;&#x7406;</li>
+</ul>
+<p>&#x6574;&#x7406;&#x597D;&#x4E86;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x65B9;&#x6848;&#x5C31;&#x662F;&#x65B0;&#x5EFA;&#x4E0D;&#x540C;&#x73AF;&#x5883;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>&#x751F;&#x4EA7;&#x73AF;&#x5883;&#xFF1A;<code>webpack.prod.js</code></li>
+<li>&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF1A;<code>webpack.dev.js</code></li>
+<li>&#x516C;&#x5171;&#x914D;&#x7F6E;&#xFF1A;<code>webpack.common.js</code></li>
+<li>&#x914D;&#x7F6E;&#x5408;&#x5E76;&#xFF1A;<code>webpack.config.js</code>&#xFF0C;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;<code>webpack-merge</code>&#x3002;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x5148;&#x6765;&#x5B89;&#x88C5;&#x4E00;&#x4E0B;webpack-merge&#xFF1A;</p>
+<pre><code class="lang-bash">$ npm install webpack-merge -D
+</code></pre>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;config&#x76EE;&#x5F55;&#xFF0C;&#x5728;config&#x76EE;&#x5F55;&#x4E2D;&#x65B0;&#x5EFA;<code>webpack.prod.js</code>&#x3001;<code>webpack.dev.js</code>&#x3001;<code>webpack.common.js</code>&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x4F9D;&#x6B21;&#x914D;&#x7F6E;&#x8FD9;&#x4E09;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// webpack.prod.js</span>
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> { merge } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>);
+<span class="hljs-keyword">const</span> commonConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.common&apos;</span>);
+<span class="hljs-keyword">const</span> prodConfig = {
+  mode: <span class="hljs-string">&apos;production&apos;</span>,
+  devtool: <span class="hljs-string">&apos;none&apos;</span>,
+};
+
+<span class="hljs-built_in">module</span>.exports = merge(commonConfig, prodConfig);
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// webpack.dev.js</span>
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> { merge } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>);
+<span class="hljs-keyword">const</span> commonConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.common&apos;</span>);
+
+<span class="hljs-keyword">const</span> devConfig = {
+  mode: <span class="hljs-string">&apos;development&apos;</span>,
+  devtool: <span class="hljs-string">&apos;cheap-module-eval-source-map&apos;</span>,
+  devServer: {
+    contentBase: path.resolve(__dirname, <span class="hljs-string">&apos;../dist&apos;</span>),
+    port: <span class="hljs-number">8080</span>,
+    hot: <span class="hljs-literal">true</span>,
+  },
+  plugins: [
+    <span class="hljs-comment">// HMR&#x63D2;&#x4EF6;</span>
+    <span class="hljs-keyword">new</span> webpack.HotModuleReplacementPlugin()
+  ]
+};
+
+<span class="hljs-built_in">module</span>.exports = merge(commonConfig, devConfig);
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// webpack.common.js</span>
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
+<span class="hljs-keyword">const</span> HtmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;html-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> { CleanWebpackPlugin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;clean-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+
+<span class="hljs-built_in">module</span>.exports = {
+  entry: {
+    index: path.resolve(__dirname, <span class="hljs-string">&apos;../src/index.js&apos;</span>),
+    demo: path.resolve(__dirname, <span class="hljs-string">&apos;../src/demo.js&apos;</span>)
+  },
+  <span class="hljs-comment">// &#x51FA;&#x53E3;&#x914D;&#x7F6E;</span>
+  output: {
+    <span class="hljs-comment">// &#x4F7F;&#x7528;&#x5360;&#x4F4D;&#x7B26;&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8F93;&#x51FA;&#x6587;&#x4EF6;</span>
+    filename: <span class="hljs-string">&apos;[name].[hash:8].js&apos;</span>,
+    path: path.resolve(__dirname, <span class="hljs-string">&apos;../dist&apos;</span>),
+    publicPath: <span class="hljs-string">&apos;./&apos;</span>,
+  },
+  <span class="hljs-built_in">module</span>: {
+    rules: [
+      {
+        test: <span class="hljs-regexp">/\.js$/</span>,
+        exclude: <span class="hljs-regexp">/node_modules/</span>,
+        loader: <span class="hljs-string">&apos;babel-loader&apos;</span>
+      },
+      {
+        test: <span class="hljs-regexp">/\.(png|jpg|gif)$/</span>, <span class="hljs-comment">// &#x6307;&#x5B9A;&#x68C0;&#x6D4B;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x6587;&#x4EF6;</span>
+        use: {
+          loader: <span class="hljs-string">&quot;url-loader&quot;</span>,
+          options: {
+            name: <span class="hljs-string">&apos;[name].[hash:5].[ext]&apos;</span>,
+            outputPath: <span class="hljs-string">&apos;images&apos;</span>,
+            limit: <span class="hljs-number">2048</span>
+          },
+        }
+      },
+      {
+        test: <span class="hljs-regexp">/\.ttf$/</span>, <span class="hljs-comment">// &#x6307;&#x5B9A;&#x68C0;&#x6D4B;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x6587;&#x4EF6;</span>
+        use: {
+          loader: <span class="hljs-string">&quot;file-loader&quot;</span>,
+          options: {
+            name: <span class="hljs-string">&apos;[name].[hash:5].[ext]&apos;</span>,
+            outputPath: <span class="hljs-string">&apos;font&apos;</span>
+          },
+        }
+      },
+      {
+        test: <span class="hljs-regexp">/\.(less|css)$/</span>,
+        use: [
+          {
+            loader: <span class="hljs-string">&quot;style-loader&quot;</span>
+          },
+          {
+            loader: <span class="hljs-string">&quot;css-loader&quot;</span>
+          },
+          {
+            loader: <span class="hljs-string">&quot;postcss-loader&quot;</span>,
+          },
+          {
+            loader: <span class="hljs-string">&quot;less-loader&quot;</span>
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> HtmlWebpackPlugin({
+      template: path.resolve(__dirname, <span class="hljs-string">&apos;../src/index.html&apos;</span>)
+    }),
+    <span class="hljs-keyword">new</span> CleanWebpackPlugin()
+  ]
+}
+</code></pre>
+<p>&#x7531;&#x4E8E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x66F4;&#x6539;&#x4E86;&#x8DEF;&#x5F84;&#xFF0C;&#x6240;&#x4EE5;&#x76F8;&#x5E94;&#x7684;&#x8DEF;&#x5F84;&#x4E5F;&#x8981;&#x53D8;&#xFF0C;&#x8FD9;&#x91CC;&#x63A8;&#x8350;&#x5927;&#x5BB6;&#x90FD;&#x5199;&#x6210;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;&#x4F7F;&#x7528;node&#x7684;path&#x6A21;&#x5757;&#x3002;</p>
+<blockquote>
+<p><strong>&#x5173;&#x4E8E;webpack&#x7684;&#x8DEF;&#x5F84;&#x95EE;&#x9898;&#xFF1A;</strong></p>
+<ol>
+<li>&#x5982;&#x679C;&#x662F;&#x5728;package.json&#x4E2D;&#x8BBE;&#x7F6E;&#x7684;build&#x547D;&#x4EE4;&#xFF0C;&#x8DEF;&#x5F84;&#x7684;&#x76F8;&#x5BF9;&#x4F4D;&#x7F6E;&#x5C31;&#x662F;&#x6839;&#x76EE;&#x5F55;&#xFF0C;&#x548C;package.json&#x7684;&#x4F4D;&#x7F6E;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</li>
+<li>merge&#x4E5F;&#x5BF9;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x6709;&#x5F71;&#x54CD;&#x3002;</li>
+</ol>
+<p>&#x57FA;&#x4E8E;&#x4EE5;&#x4E0A;&#x4E24;&#x70B9;&#xFF1A;<strong>&#x6211;&#x4EEC;&#x5728;webpack&#x4E2D;&#x9047;&#x5230;&#x8DEF;&#x5F84;&#x95EE;&#x9898;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;path.resolve&#x65B9;&#x6CD5;&#xFF0C;&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;&#x6210;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;</strong></p>
+</blockquote>
+<p>&#x65E2;&#x7136;&#x6211;&#x4EEC;&#x533A;&#x5206;&#x4E86;&#x73AF;&#x5883;&#xFF0C;&#x90A3;&#x4E48;&#x6253;&#x5305;&#x7684;&#x547D;&#x4EE4;&#x4E5F;&#x9700;&#x8981;&#x8DDF;&#x7740;&#x533A;&#x5206;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;webpack-demo&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;build:dev&quot;: &quot;webpack --config ./config/webpack.dev.js&quot;, # &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x6253;&#x5305;
+    &quot;build:prod&quot;: &quot;webpack --config ./config/webpack.prod.js&quot;, # &#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6253;&#x5305;
+    &quot;dev:serve&quot;: &quot;webpack-dev-server --config ./config/webpack.dev.js&quot; # &#x5F00;&#x53D1;&#x670D;&#x52A1;&#x5668;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    ...
+  },
+  &quot;dependencies&quot;: {
+    &quot;lodash&quot;: &quot;^4.17.21&quot;,
+    &quot;lodash-es&quot;: &quot;^4.17.21&quot;
+  }
+}
+</code></pre>
+<h2 id="&#x4E09;&#x3001;js&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;">&#x4E09;&#x3001;JS&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;</h2>
+<p>&#x5BF9;&#x4E8E;jquery&#x6211;&#x4EEC;&#x662F;&#x975E;&#x5E38;&#x719F;&#x6089;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x5F15;&#x5165;jquery&#xFF0C;&#x7136;&#x540E;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x6253;&#x5305;&#x770B;&#x4E00;&#x4E0B;&#x7ED3;&#x679C;&#x3002;</p>
+<ol>
+<li>&#x5B89;&#x88C5;jquery&#x6A21;&#x5757;</li>
+</ol>
+<pre><code class="lang-bash">$ npm install jquery
+</code></pre>
+<ol>
+<li>&#x5728;index.js&#x4E2D;&#x5F15;&#x5165;jquery&#x6A21;&#x5757;</li>
+</ol>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { chunk } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lodash-es&apos;</span>;
+<span class="hljs-keyword">import</span> $ <span class="hljs-keyword">from</span> jquery;
+
+<span class="hljs-built_in">console</span>.log(chunk([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">2</span>));
+</code></pre>
+<ol>
+<li>&#x6267;&#x884C;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x7684;&#x6784;&#x5EFA;&#xFF1A;<code>npm run build:dev</code>&#xFF0C;&#x6784;&#x5EFA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ol>
+<p><img src="../assets/images/chapter15/35.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x6253;&#x5B8C;&#x5305;&#x4E4B;&#x540E;index.js&#x5C45;&#x7136;&#x8FBE;&#x5230;&#x4E86;&#x60CA;&#x4EBA;&#x7684;3.44MB&#xFF0C;&#x8FD9;&#x662F;&#x6CA1;&#x6709;&#x7ECF;&#x8FC7;&#x751F;&#x4EA7;&#x6A21;&#x5F0F;&#x7684;tree-shaking&#x7684;&#x6253;&#x5305;&#x4F18;&#x5316;&#x7684;&#x539F;&#x56E0;&#x3002;&#x50CF;&#x8FD9;&#x79CD;JS&#x7684;&#x4EE3;&#x7801;&#x5E93;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4F1A;&#x5355;&#x72EC;&#x7684;&#x63D0;&#x53D6;&#x51FA;&#x53BB;&#xFF0C;&#x63D0;&#x53D6;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#xFF1A;</p>
+<ul>
+<li>&#x5165;&#x53E3;&#x914D;&#x7F6E;&#xFF0C;entry&#x591A;&#x5165;&#x53E3;&#x3002;&#x9700;&#x8981;&#x4F7F;&#x7528;webpack.ProvidePlugin&#x63D2;&#x4EF6;&#x3002;</li>
+<li>&#x62BD;&#x53D6;&#x516C;&#x5171;&#x4EE3;&#x7801;&#xFF1A;splitchunks</li>
+<li>&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6309;&#x9700;&#x52A0;&#x8F7D;&#xFF0C;&#x4FD7;&#x79F0;&#x61D2;&#x52A0;&#x8F7D;&#x3002;&#x9700;&#x8981;&#x914D;&#x7F6E;@babel/plugin-syntax-dynamic-import&#x63D2;&#x4EF6;&#x3002;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x5F15;&#x5165;&#x4E86;jquery&#xFF0C;&#x5E0C;&#x671B;&#x7684;&#x628A;&#x8FD9;&#x4E2A;&#x5355;&#x72EC;&#x6253;&#x5305;&#x51FA;&#x53BB;&#xFF0C;&#x5148;&#x4F7F;&#x7528;&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;</p>
+<h3 id="i&#x3001;&#x914D;&#x7F6E;&#x591A;&#x5165;&#x53E3;&#xFF0C;&#x5355;&#x72EC;&#x6253;&#x5305;jquery">I&#x3001;&#x914D;&#x7F6E;&#x591A;&#x5165;&#x53E3;&#xFF0C;&#x5355;&#x72EC;&#x6253;&#x5305;jquery</h3>
+<p>&#x5728;<code>webpack.common.js</code>&#x4E2D;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
+<span class="hljs-keyword">const</span> HtmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;html-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> { CleanWebpackPlugin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;clean-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+
+<span class="hljs-built_in">module</span>.exports = {
+  entry: {
+    index: path.resolve(__dirname, <span class="hljs-string">&apos;../src/index.js&apos;</span>),
+    demo: path.resolve(__dirname, <span class="hljs-string">&apos;../src/demo.js&apos;</span>),
+    <span class="hljs-comment">// &#x914D;&#x7F6E;jquery&#x7684;&#x5165;&#x53E3;</span>
+    jquery: <span class="hljs-string">&quot;jquery&quot;</span>
+  },
+  <span class="hljs-comment">// &#x51FA;&#x53E3;&#x914D;&#x7F6E;</span>
+  output: {
+    <span class="hljs-comment">// &#x4F7F;&#x7528;&#x5360;&#x4F4D;&#x7B26;&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8F93;&#x51FA;&#x6587;&#x4EF6;</span>
+    filename: <span class="hljs-string">&apos;[name].[hash:8].js&apos;</span>,
+    path: path.resolve(__dirname, <span class="hljs-string">&apos;../dist&apos;</span>),
+    publicPath: <span class="hljs-string">&apos;./&apos;</span>,
+  },
+  <span class="hljs-built_in">module</span>: {
+    <span class="hljs-comment">// ...</span>
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> HtmlWebpackPlugin({
+      template: path.resolve(__dirname, <span class="hljs-string">&apos;../src/index.html&apos;</span>)
+    }),
+    <span class="hljs-keyword">new</span> CleanWebpackPlugin(),
+    <span class="hljs-comment">// &#x4F7F;&#x7528;webpack&#x81EA;&#x5E26;&#x7684;ProvidePlugin&#x63D2;&#x4EF6;&#xFF0C;&#x6CE8;&#x5165;jquery&#x3002;</span>
+    <span class="hljs-comment">// &#x5E76;&#x4E14;&#x914D;&#x7F6E;$&#x3001;jQuery&#x53D8;&#x91CF;</span>
+    <span class="hljs-keyword">new</span> webpack.ProvidePlugin({
+      $: <span class="hljs-string">&quot;jquery&quot;</span>,
+      jQuery: <span class="hljs-string">&quot;jquery&quot;</span>
+    })
+  ]
+}
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x914D;&#x7F6E;&#x4E86;jquery&#x7684;&#x5165;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;ProvidePlugin&#x63D2;&#x4EF6;&#x628A;jquery&#x5E93;&#x6CE8;&#x5165;&#x5230;&#x4E86;index.html&#x4E2D;&#x5E76;&#x66B4;&#x9732;&#x51FA;&#x4E86;<code>$</code>&#x548C;<code>jQuery</code>&#x53D8;&#x91CF;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x80FD;&#x5728;&#x5176;&#x4ED6;&#x7684;JS&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;<code>$</code>&#x548C;<code>jQuery</code>&#x3002;&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x5728;&#x6BCF;&#x4E2A;JS&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;import&#x5F15;&#x5165;&#x4E86;&#xFF0C;&#x4FEE;&#x6539;index.js&#x6E90;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { chunk } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lodash-es&apos;</span>;
+
+<span class="hljs-built_in">console</span>.log(chunk([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">2</span>));
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF1A;<code>npm run build</code>&#xFF0C;&#x6784;&#x5EFA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/36.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x901A;&#x8FC7;&#x6253;&#x5305;&#x7684;&#x7ED3;&#x679C;&#x663E;&#x793A;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x89C2;&#x7684;&#x770B;&#x5230;&#x6253;&#x5305;&#x5B8C;&#x4E4B;&#x540E;&#x7684;index.[hash].js&#x5C0F;&#x4E86;&#x5F88;&#x591A;&#x3002;&#x6253;&#x5305;&#x7684;&#x7ED3;&#x679C;&#x591A;&#x4E86;&#x4E00;&#x4E2A;<code>jquery.[hash].js</code>&#x3002;&#x518D;&#x770B;&#x4E00;&#x4E0B;&#x6253;&#x5305;&#x4E4B;&#x540E;&#x7684;<code>index.html</code>&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/37.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x867D;&#x7136;&#x5728;index.js&#x4E2D;&#x6CA1;&#x6709;&#x5F15;&#x5165;jquery&#xFF0C;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x4F9D;&#x7136;&#x628A;jqery&#x6CE8;&#x5165;&#x5230;&#x4E86;index.html&#x4E2D;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;<code>ProvidePlugin</code>&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x3002;</p>
+<h3 id="ii&#x3001;&#x52A8;&#x6001;&#x52A0;&#x8F7D;jquery">II&#x3001;&#x52A8;&#x6001;&#x52A0;&#x8F7D;jquery</h3>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;webpack&#x7684;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#xFF0C;&#x9700;&#x8981;&#x63D0;&#x524D;&#x5B89;&#x88C5;&#x4E00;&#x4E2A;<code>@babel/plugin-syntax-dynamic-import</code>&#xFF1A;</p>
+<pre><code class="lang-bash">$ npm install @babel/plugin-syntax-dynamic-import -D
+</code></pre>
+<p>&#x7136;&#x540E;&#x628A;&#x521A;&#x624D;&#x591A;&#x5165;&#x53E3;&#x6253;&#x5305;&#x548C;&#x6CE8;&#x5165;&#x7684;&#x4EE3;&#x7801;&#x5728;webpack.common.js&#x4E2D;&#x5220;&#x6389;&#xFF0C;&#x66F4;&#x6539;index.js&#xFF0C;&#x5728;index.js&#x4E2D;&#x5199;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x7684;&#x76F8;&#x5173;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> (<span class="hljs-comment">/*webpackChunkName:&apos;jquery&apos;*/</span> <span class="hljs-string">&apos;jquery&apos;</span>).then(({<span class="hljs-keyword">default</span>: $}) =&gt; {
+  <span class="hljs-built_in">console</span>.log($(<span class="hljs-string">&apos;p&apos;</span>));
+});
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x9700;&#x8981;&#x5728;<code>.babelrc</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;plugins&quot;</span>: [
+    <span class="hljs-string">&quot;@babel/plugin-syntax-dynamic-import&quot;</span>,
+    [
+      <span class="hljs-string">&quot;@babel/plugin-transform-runtime&quot;</span>,
+      {
+        <span class="hljs-string">&quot;corejs&quot;</span>: <span class="hljs-number">3</span>
+      }
+    ]
+  ]
+}
+</code></pre>
+<p>&#x6700;&#x540E;&#x6267;&#x884C;&#x6253;&#x5305;&#xFF1A;<code>npm run build:dev</code></p>
+<p><img src="../assets/images/chapter15/38.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x73B0;&#x5728;index.js&#x7684;&#x5927;&#x5C0F;&#x53EA;&#x6709;35.9kb&#xFF0C;&#x7136;&#x540E;dist&#x76EE;&#x5F55;&#x4E2D;&#x591A;&#x6253;&#x5305;&#x51FA;&#x6765;&#x4E00;&#x4E2A;vendors-jquery.[hash].js&#x6587;&#x4EF6;&#x3002;</p>
+<h3 id="&#x4E09;&#x3001;&#x62BD;&#x53D6;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x2014;&#x2014;splitchunks">&#x4E09;&#x3001;&#x62BD;&#x53D6;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x2014;&#x2014;splitchunks</h3>
+<p>webpack4&#x4E2D;&#x4F7F;&#x7528;&#x4E86;splitchunksPlugin&#x53D6;&#x4EE3;&#x4E86;&#x4E4B;&#x524D;&#x7684;commonChunksPlugin&#xFF0C;&#x63D0;&#x9AD8;&#x4E86;&#x6253;&#x5305;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E0D;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x7B2C;&#x4E09;&#x65B9;&#x63D2;&#x4EF6;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;webpack.common.js&#x4E2D;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x5373;&#x53EF;&#xFF0C;&#x5E76;&#x4E14;&#x529F;&#x80FD;&#x6BD4;&#x8F83;&#x4E30;&#x5BCC;&#xFF0C;&#x6BD4;&#x8F83;&#x63A8;&#x8350;&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-js">const path = require(&apos;path&apos;);
+const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);
+const { CleanWebpackPlugin } = require(&apos;clean-webpack-plugin&apos;);
+const webpack = require(&apos;webpack&apos;);
+
+module.exports = {
+  entry: {
+    index: path.resolve(__dirname, &apos;../src/index.js&apos;),
+    demo: path.resolve(__dirname, &apos;../src/demo.js&apos;),
+  },
+  // &#x51FA;&#x53E3;&#x914D;&#x7F6E;
+  output: {
+    // &#x4F7F;&#x7528;&#x5360;&#x4F4D;&#x7B26;&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8F93;&#x51FA;&#x6587;&#x4EF6;
+    filename: &apos;[name].[hash:8].js&apos;,
+    path: path.resolve(__dirname, &apos;../dist&apos;),
+    publicPath: &apos;/&apos;,
+  },
+  // &#x6253;&#x5305;&#x4F18;&#x5316;
+  optimization: {
+    splitChunks: {
+      chunks: &apos;all&apos;,
+      minSize: 30000, # &#x8D85;&#x8FC7;30kb&#x7684;&#x81EA;&#x52A8;&#x6253;&#x5305;
+      name: false, # &#x81EA;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x7F6E;&#x4E3A;false&#x3002;
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,    # &#x5339;&#x914D;node_modules&#x4E2D;&#x7684;&#x5305;
+          priority: -10, # &#x6253;&#x5305;&#x4F18;&#x5148;&#x7EA7;
+          reuseExistingChunk: true,
+          filename: &quot;jquery.js&quot; # &#x81EA;&#x5B9A;&#x4E49;&#x6587;&#x4EF6;&#x540D;
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true, # &#x5DF2;&#x7ECF;&#x88AB;&#x6253;&#x5305;&#x8FC7;&#x7684;&#x6A21;&#x5757;&#x4E0D;&#x4F1A;&#x518D;&#x6B21;&#x6253;&#x5305;
+          filename: &quot;common.js&quot;
+        },
+      },
+    },
+  },
+  module: {
+    // ...
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, &apos;../src/index.html&apos;)
+    }),
+    new CleanWebpackPlugin()
+  ]
+}
+</code></pre>
+<p>&#x6309;&#x7167;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF0C;&#x914D;&#x7F6E;&#x5B8C;&#x4E4B;&#x540E;&#x5728;index.js&#x548C;demo.js&#x4E2D;&#x5F15;&#x5165;jquery&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// index.js</span>
+<span class="hljs-keyword">import</span> $ <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;jquery&quot;</span>;
+<span class="hljs-built_in">console</span>.log($(<span class="hljs-string">&quot;p&quot;</span>));
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-comment">// demo.js</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;&#x6211;&#x662F;demo.js&#x5165;&#x53E3;&#x6587;&#x4EF6;&apos;</span>);
+<span class="hljs-keyword">import</span> $ <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;jquery&quot;</span>;
+<span class="hljs-built_in">console</span>.log($(<span class="hljs-string">&quot;p&quot;</span>));
+</code></pre>
+<p>&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF1A;<code>npm run build:dev</code>&#xFF0C;&#x6784;&#x5EFA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/39.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;jquery&#x5DF2;&#x7ECF;&#x72EC;&#x7ACB;&#x6253;&#x5305;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x5E76;&#x4E14;&#x6211;&#x4EEC;&#x81EA;&#x5B9A;&#x4E49;&#x547D;&#x540D;&#x4E5F;&#x751F;&#x6548;&#x4E86;&#x3002;&#x66F4;&#x8FC7;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x7684;&#x8BE6;&#x89E3;&#x8BF7;&#x53C2;&#x8003;<a href="https://webpack.docschina.org/plugins/split-chunks-plugin/" target="_blank">&#x5B98;&#x65B9;&#x7F51;&#x7AD9;</a>&#x3002;&#x524D;&#x9762;&#x8BB2;&#x7684;&#x6240;&#x6709;&#x90FD;&#x662F;JS&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x4E00;&#x4E0B;CSS&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;&#x3002;</p>
+<h2 id="&#x56DB;&#x3001;css&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;">&#x56DB;&#x3001;CSS&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;</h2>
+<p>&#x6211;&#x4EEC;&#x5728;index.js&#x4E2D;&#x5F15;&#x5165;less&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;./assets/css/style.less&apos;</span>
+</code></pre>
+<p>&#x7136;&#x540E;&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF1A;<code>npm run build:dev</code>&#xFF0C;&#x6253;&#x5305;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/40.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;dis&#x76EE;&#x5F55;&#x4E2D;&#x662F;&#x6CA1;&#x6709;&#x6253;&#x5305;&#x597D;&#x7684;css&#x6587;&#x4EF6;&#x7684;&#xFF0C;&#x5E76;&#x4E14;css&#x4EE3;&#x7801;&#x662F;&#x76F4;&#x63A5;&#x6253;&#x5305;&#x5230;&#x4E86;JS&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x6211;&#x4EEC;&#x5E0C;&#x671B;css&#x6587;&#x4EF6;&#x80FD;&#x591F;&#x5355;&#x72EC;&#x6253;&#x5305;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8FDB;&#x884C;css&#x4EE3;&#x7801;&#x5206;&#x5272;&#xFF1A;</p>
+<ol>
+<li>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x8981;&#x7528;&#x5230;<code>mini-css-extract-plugin</code>&#x63D2;&#x4EF6;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-bash">$ npm install mini-css-extract-plugin@0.8.0 -D
+</code></pre>
+<ol>
+<li>&#x914D;&#x7F6E;CSS&#x4EE3;&#x7801;&#x5206;&#x5272;&#xFF1A;</li>
+</ol>
+<p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;CSS&#x7684;&#x4EE3;&#x7801;&#x5206;&#x5272;&#x53EA;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;&#x914D;&#x7F6E;&#xFF0C;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x662F;&#x4E0D;&#x9700;&#x8981;CSS&#x4EE3;&#x7801;&#x5206;&#x5272;&#x7684;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x914D;&#x7F6E;<code>webpack.prod.js</code>&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> { merge } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>);
+<span class="hljs-keyword">const</span> commonConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.common&apos;</span>);
+<span class="hljs-keyword">const</span> MiniCssExtractPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mini-css-extract-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> prodConfig = {
+  mode: <span class="hljs-string">&apos;production&apos;</span>,
+  devtool: <span class="hljs-string">&apos;none&apos;</span>,
+  <span class="hljs-built_in">module</span>: {
+    rules: [
+      {
+        test: <span class="hljs-regexp">/\.(less|css)$/</span>,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: <span class="hljs-string">&quot;css-loader&quot;</span>
+          },
+          {
+            loader: <span class="hljs-string">&quot;postcss-loader&quot;</span>,
+          },
+          {
+            loader: <span class="hljs-string">&quot;less-loader&quot;</span>
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> MiniCssExtractPlugin({
+      filename: <span class="hljs-string">&quot;[name].[hash:8].css&quot;</span>
+    })
+  ]
+};
+
+<span class="hljs-built_in">module</span>.exports = merge(commonConfig, prodConfig);
+</code></pre>
+<ol>
+<li>&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF1A;<code>npm run build:prod</code>&#xFF0C;&#x6784;&#x5EFA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ol>
+<p><img src="../assets/images/chapter15/41.png" alt="node-app.png" style="zoom:50%;"></p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;dist&#x76EE;&#x5F55;&#x4E2D;&#x591A;&#x4E86;&#x4E00;&#x4E2A;<code>index.[hash].css</code>&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x8BF4;&#x660E;css&#x6587;&#x4EF6;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x5355;&#x72EC;&#x6253;&#x5305;&#xFF0C;CSS&#x4EE3;&#x7801;&#x7684;&#x5206;&#x5272;&#x5DF2;&#x7ECF;&#x751F;&#x6548;&#x3002;</p>
+<ol>
+<li>&#x5BF9;&#x6253;&#x5305;&#x751F;&#x6210;&#x7684;CSS&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#x3002;</li>
+</ol>
+<p>&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E0B;CSS&#x4EE3;&#x7801;&#x662F;&#x9700;&#x8981;&#x538B;&#x7F29;&#x7684;&#xFF0C;&#x4E00;&#x822C;&#x4F7F;&#x7528;<code>optimize-css-assets-webpack-plugin</code>&#x8FDB;&#x884C;CSS&#x4EE3;&#x7801;&#x538B;&#x7F29;&#x3002;</p>
+<pre><code class="lang-bash">$ npm install optimize-css-assets-webpack-plugin -D
+</code></pre>
+<p>&#x4E0B;&#x8F7D;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#xFF0C;&#x5728;webpack.prod.js&#x4E2D;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> { merge } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>);
+<span class="hljs-keyword">const</span> commonConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.common&apos;</span>);
+<span class="hljs-keyword">const</span> MiniCssExtractPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mini-css-extract-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> OptimizeCssAssetsPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;optimize-css-assets-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> prodConfig = {
+  mode: <span class="hljs-string">&apos;production&apos;</span>,
+  devtool: <span class="hljs-string">&apos;none&apos;</span>,
+  optimization: {
+    minimizer: [
+      <span class="hljs-comment">// &#x538B;&#x7F29;&#x63D2;&#x4EF6;</span>
+      <span class="hljs-keyword">new</span> OptimizeCssAssetsPlugin()
+    ],
+  },
+  <span class="hljs-built_in">module</span>: {
+    rules: [
+      {
+        test: <span class="hljs-regexp">/\.(less|css)$/</span>,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: <span class="hljs-string">&quot;css-loader&quot;</span>
+          },
+          {
+            loader: <span class="hljs-string">&quot;postcss-loader&quot;</span>,
+          },
+          {
+            loader: <span class="hljs-string">&quot;less-loader&quot;</span>
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> MiniCssExtractPlugin({
+      filename: <span class="hljs-string">&quot;[name].[hash:8].css&quot;</span>
+    }),
+
+  ]
+};
+
+<span class="hljs-built_in">module</span>.exports = merge(commonConfig, prodConfig);
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/42.png" alt="node-app.png" style="zoom:50%;"></p>
+<blockquote>
+<p><strong>OptimizeCssAssetsPlugin&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5199;&#x5728;plugins&#x4E2D;&#x3002;</strong></p>
+</blockquote>
+<p>&#x8FD9;&#x91CC;&#x51FA;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5728;optimization&#x914D;&#x7F6E;CSS&#x538B;&#x7F29;&#x63D2;&#x4EF6;OptimizeCssAssetsPlugin&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;&#x6240;&#x6709;&#x7684;JS&#x90FD;&#x6CA1;&#x6709;&#x88AB;&#x538B;&#x7F29;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;optimization&#x7684;&#x914D;&#x7F6E;&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x7684;&#x624B;&#x52A8;&#x914D;&#x7F6E;&#xFF0C;&#x88AB;&#x8986;&#x76D6;&#x6389;&#x4E86;&#x3002;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;JS&#x4EE3;&#x7801;&#x7684;&#x538B;&#x7F29;&#x7684;&#x9ED8;&#x8BA4;&#x63D2;&#x4EF6;&#x88AB;&#x8986;&#x76D6;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x7684;&#x6DFB;&#x52A0;JS&#x7684;&#x538B;&#x7F29;&#x63D2;&#x4EF6;&#x2014;&#x2014;<code>terser-webpack-plugin</code>&#x3002;</p>
+<pre><code class="lang-bash">$ npm install terser-webpack-plugin -D
+</code></pre>
+<p>&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x6DFB;&#x52A0;&#x5230;<code>optimization.minimizer</code>&#x4E2D;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> { merge } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>);
+<span class="hljs-keyword">const</span> commonConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.common&apos;</span>);
+<span class="hljs-keyword">const</span> MiniCssExtractPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mini-css-extract-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> OptimizeCssAssetsPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;optimize-css-assets-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> TerserPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;terser-webpack-plugin&quot;</span>);
+
+<span class="hljs-keyword">const</span> prodConfig = {
+  mode: <span class="hljs-string">&apos;production&apos;</span>,
+  devtool: <span class="hljs-string">&apos;none&apos;</span>,
+  optimization: {
+    minimizer: [
+      <span class="hljs-comment">// CSS&#x4EE3;&#x7801;&#x538B;&#x7F29;</span>
+      <span class="hljs-keyword">new</span> OptimizeCssAssetsPlugin(),
+      <span class="hljs-comment">// JS&#x4EE3;&#x7801;&#x538B;&#x7F29;</span>
+      <span class="hljs-keyword">new</span> TerserPlugin()
+    ],
+  },
+  <span class="hljs-built_in">module</span>: {
+    <span class="hljs-comment">// ...</span>
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> MiniCssExtractPlugin({
+      filename: <span class="hljs-string">&quot;[name].[hash:8].css&quot;</span>
+    })
+  ]
+};
+
+<span class="hljs-built_in">module</span>.exports = merge(commonConfig, prodConfig);
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x6784;&#x5EFA;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;JS&#x4EE3;&#x7801;&#x4E5F;&#x88AB;&#x538B;&#x7F29;&#x4E86;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<p>&#x5728;optimization.minimizer&#x624B;&#x52A8;&#x914D;&#x7F6E;&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x5230;webpack&#x5728;production&#x73AF;&#x5883;&#x4E0B;JS&#x4EE3;&#x7801;&#x7684;&#x9ED8;&#x8BA4;&#x538B;&#x7F29;&#x3002;&#x9700;&#x8981;&#x624B;&#x52A8;&#x914D;&#x7F6E;JS&#x4EE3;&#x7801;&#x538B;&#x7F29;&#x3002;</p>
+</blockquote>
+<p>&#x968F;&#x7740;&#x6211;&#x4EEC;&#x5F00;&#x53D1;&#x7684;&#x9879;&#x76EE;&#x8D8A;&#x6765;&#x8D8A;&#x5927;&#xFF0C;&#x5B89;&#x88C5;&#x7684;&#x4EE3;&#x7801;&#x5305;&#x4E5F;&#x4F1A;&#x968F;&#x4E4B;&#x589E;&#x52A0;&#x3002;&#x8FD9;&#x91CC;&#x63A8;&#x8350;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x597D;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF1A;<code>webpack-bundle-plugin</code>&#x3002;</p>
+<p>&#x5148;&#x6765;&#x5B89;&#x88C5;&#x5B83;&#xFF1A;</p>
+<pre><code class="lang-bash">$ npm install webpack-bundle-analyzer -D
+</code></pre>
+<p>&#x7136;&#x540E;&#x5728;webpack.prod.js&#xFF08;&#x52A0;&#x5165;&#x6211;&#x4EEC;&#x8981;&#x5206;&#x6790;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x7684;&#x5305;&#xFF09;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> { merge } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-merge&apos;</span>);
+<span class="hljs-keyword">const</span> commonConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;./webpack.common&apos;</span>);
+<span class="hljs-keyword">const</span> MiniCssExtractPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mini-css-extract-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> OptimizeCssAssetsPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;optimize-css-assets-webpack-plugin&apos;</span>);
+<span class="hljs-keyword">const</span> TerserPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;terser-webpack-plugin&quot;</span>);
+<span class="hljs-keyword">const</span> BundleAnalyzerPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-bundle-analyzer&apos;</span>).BundleAnalyzerPlugin;
+
+<span class="hljs-keyword">const</span> prodConfig = {
+  mode: <span class="hljs-string">&apos;production&apos;</span>,
+  devtool: <span class="hljs-string">&apos;none&apos;</span>,
+  optimization: {
+    minimizer: [
+      <span class="hljs-keyword">new</span> OptimizeCssAssetsPlugin(),
+      <span class="hljs-keyword">new</span> TerserPlugin()
+    ],
+  },
+  <span class="hljs-built_in">module</span>: {
+    <span class="hljs-comment">// ...</span>
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> MiniCssExtractPlugin({
+      filename: <span class="hljs-string">&quot;[name].[hash:8].css&quot;</span>
+    }),
+    <span class="hljs-comment">// &#x4EE3;&#x7801;&#x5305;&#x5206;&#x6790;&#x5DE5;&#x5177;</span>
+    <span class="hljs-keyword">new</span> BundleAnalyzerPlugin()
+  ]
+};
+
+<span class="hljs-built_in">module</span>.exports = merge(commonConfig, prodConfig);
+</code></pre>
+<p>&#x914D;&#x7F6E;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#xFF0C;&#x8FDB;&#x884C;&#x6784;&#x5EFA;&#xFF1A;<code>npm run build:prod</code>&#xFF0C;&#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x4F1A;&#x81EA;&#x52A8;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x4E0A;&#x9762;&#x663E;&#x793A;&#x4E86;&#x6BCF;&#x4E2A;&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#x5F15;&#x7528;&#x7684;&#x5305;&#xFF1A;</p>
+<p><img src="../assets/images/chapter15/43.png" alt="node-app.png" style="zoom:50%;"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="section1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: webpack核心概念">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"webpack高级概念","level":"1.16.2","depth":2,"previous":{"title":"webpack核心概念","level":"1.16.1","depth":2,"path":"chapter15/section1.md","ref":"chapter15/section1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter15/section2.md","mtime":"2021-11-08T11:40:41.486Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-08T00:38:02.082Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

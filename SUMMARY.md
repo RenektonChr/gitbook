@@ -59,5 +59,6 @@
     * [webpack在一线开发中的优化](chapter14/section3.md)
     * [微前端架构设计深度原理分析](chapter14/section4.md)
 * [第十五卷·浅析前端构建工具](chapter15/README.md)
-    * 
+    * [webpack核心概念](chapter15/section1.md)
+    * [webpack高级概念](chapter15/section2.md)
 
