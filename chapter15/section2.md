@@ -651,6 +651,10 @@ module.exports = merge(commonConfig, prodConfig);
 >
 > 在optimization.minimizer手动配置之后，会影响到webpack在production环境下JS代码的默认压缩。需要手动配置JS代码压缩。
 
+
+
+## 五、代码包管理工具
+
 随着我们开发的项目越来越大，安装的代码包也会随之增加。这里推荐一个非常好用的代码包管理工具：`webpack-bundle-plugin`。
 
 先来安装它：
@@ -699,6 +703,157 @@ module.exports = merge(commonConfig, prodConfig);
 <img src="../assets/images/chapter15/43.png" alt="node-app.png" style="zoom:50%;" />
 
 
+
+## 六、webpack的环境变量
+
+有的时候我们需要在webpack的配置文件中获取当前打包的环境变量，以便我们在公共配置中，按照环境变量的不同实现不同的配置。
+
+1. 在执行build命令的时候，传入环境变量，构建命令中的环境变量是可以自定义的。
+
+```json
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "webpack --config ./config/webpack.dev.js",
+    ## 这里的--env就是环境变量env  env的值为production，也可以定义除了env之外别的变量名
+    "build:prod": "webpack --config ./config/webpack.prod.js --env production",
+    "dev:serve": "webpack-dev-server --config ./config/webpack.dev.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    
+  },
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "yargs": "^13.2.4"
+  }
+}
+
+```
+
+2. 在webpack.common.js中获取环境变量。
+
+想要在配置文件中获取环境变量，我们需要一个工具——yargs。先安装：
+
+```bash
+$ npm install yargs
+```
+
+然后在webpack.common.js中获取：
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const argv = require('yargs').argv;
+
+console.log("环境变量env：", argv.env);
+// 使用env
+const modeFlag = argv.env === "production"? true: false;
+
+module.exports = {
+  entry: {
+    index: path.resolve(__dirname, '../src/index.js'),
+    demo: path.resolve(__dirname, '../src/demo.js'),
+  },
+  output: {
+    filename: '[name].[hash:8].js',
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      name: false,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+          filename: "jquery.js"
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+          filename: "common.js"
+        },
+      },
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            // 根据modeFlag实现不同的配置
+            name: modeFlag? '[name].[contenthash:5].[ext]': '[name].[hash:5].[ext]',
+            outputPath: 'images',
+            limit: 2048
+          },
+        }
+      },
+      {
+        test: /\.ttf$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: '[name].[hash:5].[ext]',
+            outputPath: 'font'
+          },
+        }
+      },
+      {
+        test: /\.(less|css)$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader",
+          },
+          {
+            loader: "less-loader"
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../src/index.html')
+    }),
+    new CleanWebpackPlugin()
+  ]
+}
+```
+
+这样我们就完成了在公共的配置文件中使用环境变量来进行分环境配置。
+
+
+
+## 总结
+
+到现在为止，webpack中的基本概念和高级概念就全部介绍完了。在项目中实践是最重要的。
 
 
 
