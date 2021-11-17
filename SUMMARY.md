@@ -14,6 +14,8 @@
     * [剑指 Offer月计划 · 第四天——查找算法（简单）](chapter4/section4.md)
     * [剑指 Offer月计划 · 第五天——查找算法（中等）](chapter4/section5.md)
     * [认识复杂度和简单排序算法](chapter4/section6.md)
+    * [每日一练——day01](chapter4/section7.md)
+    * [每日一练——day02](chapter4/section8.md)
 * [第五卷·MVVM框架源码系列](chapter5/README.md)
     * [Vue2原理分析（一）](chapter5/section1.md)
     * [手写源码系列——Vue1.x](chapter5/section2.md)
