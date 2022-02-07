@@ -16,6 +16,8 @@
     * [认识复杂度和简单排序算法](chapter4/section6.md)
     * [每日一练——day01](chapter4/section7.md)
     * [每日一练——day02](chapter4/section8.md)
+    * [每日一练——day03](chapter4/section9.md)
+    * [每日一练——day04](chapter4/section10.md)
 * [第五卷·MVVM框架源码系列](chapter5/README.md)
     * [Vue2原理分析（一）](chapter5/section1.md)
     * [手写源码系列——Vue1.x](chapter5/section2.md)
@@ -64,4 +66,4 @@
 * [第十五卷·浅析前端构建工具](chapter15/README.md)
     * [webpack核心概念](chapter15/section1.md)
     * [webpack高级概念](chapter15/section2.md)
-
+    * [webpack原码分析](chapter15/section3.md)

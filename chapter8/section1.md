@@ -117,7 +117,7 @@ Linux系统是一个文件系统，也就是说系统中所有的内容都会被
 
 + etc：
 
-  存放配置文件的目录，如果要改动这里的文件要非常小心，如果害怕改错，一定要在更改配置文件之前对原文件进行备份，如果改坏了，还可以用备份文件快速更改。如果想固定IP就是在etc中的网络配置文件中更改，`/etc/sysconfig/nwtwork-scripts`  中修改，更改ONBOOT为true，启动网卡，然后设置IPADDR。
+  存放配置文件的目录，如果要改动这里的文件要非常小心，如果害怕改错，一定要在更改配置文件之前对原文件进行备份，如果改坏了，还可以用备份文件快速更改。如果想固定IP就是在etc中的网络配置文件中更改，`/etc/sysconfig/nwtwork-scripts`  中修改，更改BOOTPROTO为static，更改ONBOOT为yes，启动网卡，然后设置IPADDR，最后设置DNS和GATEWAY。
 
 + home：
 
@@ -214,7 +214,7 @@ Linux下常用的基本命令，以后会专门总结一下，写一篇文章。
   
   # yum命令安装
   yum install -y nodejs
-  # 查看安装的banben
+  # 查看安装的版本
   node -v
   ```
 
