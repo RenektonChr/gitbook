@@ -373,6 +373,39 @@ a();
 
 
 
+```javascript
+console.log(a);
+var a = 0;
+console.log(a);
+if(true) {
+  console.log(a);
+  a = 1;
+  function a() {};
+  console.log(a);
+  a = 21;
+  console.log('after 21', a);
+}
+
+console.log('end', a);
+/*
+undefined
+0
+function a() {}
+1
+after 21 21
+end 1
+*/ 
+```
+
+这道题主要考察了条件函数声明的声明提升：
+
+1. if里的函数声明首先会定义一个全局的同名变量 `a = undefined `
+2. if里的函数声明会提升到if块的顶部
+3. 执行到函数声明语句时，会把if块里的a赋值到全局同名变量a，注意这里说的`if块里的a的值是执行到函数声明语句时a的值，if块内函数声明之后a的赋值则不会被赋值到全局。` 
+4. 不同浏览器之间实现不同！**`（实在太恶心）`**。
+
+
+
 到这里，第一题的基本题目已经讲完，难度不大，所以我们还可以加强一下，看一下第一题的进阶题目：
 
 ```javascript
