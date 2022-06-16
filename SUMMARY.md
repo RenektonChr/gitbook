@@ -69,3 +69,6 @@
     * [webpack原码分析](chapter15/section3.md)
 * [第十六卷·Webpack专题](chapter16/README.md)
     * [Webpack初体验](chapter16/section1.md)
+*  [第十六卷·网络协议专题](chapter17/README.md)
+* [第十八卷·JS手写与算法专题](chapter18/README.md)
+    * [深度剖析函数柯里化——JavaScript版本](chapter18/section1.md)
