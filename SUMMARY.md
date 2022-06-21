@@ -72,3 +72,5 @@
 *  [第十六卷·网络协议专题](chapter17/README.md)
 * [第十八卷·JS手写与算法专题](chapter18/README.md)
     * [深度剖析函数柯里化——JavaScript版本](chapter18/section1.md)
+    * [深度剖析实现symbol polyfill](chapter18/section2.md)
+    * [深度剖析实现Promise](chapter18/section3.md)
