@@ -41,7 +41,7 @@ Ts还是一个强类型的静态类型的语言，在编译的阶段就能确定
 + 需要额外的空间存储属性名
 + 所有对象的偏移量信息各存一份
 
-**TypeScript:**
+**TypeScript、C++:**
 
 <img src="../assets/images/chapter13/02.png" alt="node-app.png" style="zoom:50%;" />
 
@@ -964,6 +964,6 @@ TS基础知识入门图谱：
 很不幸，我们学完这张图才能算TS刚入门！
 
 + [TS英文文档](https://www.typescriptlang.org/)
-+ [TSz中文文档](https://www.tslang.cn/)
++ [TS中文文档](https://typescript.bootcss.com/)
 
 **建议读英文文档，笔者英文不好读的是中文文档。**
