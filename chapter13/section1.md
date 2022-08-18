@@ -126,6 +126,7 @@ ts-node-dev包能够让我们不必使用传统的命令方式去运行TS，可�
 // src/demo1.ts
 
 const data: string = "Hello world!";
+const data2 = 'renkton'
 console.log(data);
 ```
 
@@ -140,6 +141,14 @@ console.log(data);
 ## 三、TypeScript基础数据类型
 
 啥也不说了先上个图：
+
+```typescript
+const num: Boolean = 12;
+
+console.log(num)
+```
+
+
 
 <img src="../assets/images/chapter13/06.png" alt="node-app.png" style="zoom:50%;" />
 
@@ -193,13 +202,15 @@ num = 1;
 // 十六进制数
 let hexNum: number = 0xf00d;
 
+
+
 /** 字符串类型 */
 let str:string = "Renekton";
 ```
 
 就像我们声明数字类型变量num一样，可以先声明，再赋值。要注意的是number类型是有进制的。字符串类型的声明和数字类型的类似就是为`string`。
 
-
+面向对象   函数式编程
 
 ```typescript
 /** 函数 */
@@ -215,6 +226,7 @@ alertName2('Renekton');
 
 function alertName3(name: string):void {
   alert('测试' + name);
+  return undefined
 }
 alertName3('Renekton');
 ```
@@ -232,7 +244,7 @@ alertName3('Renekton');
 这就代表了这段代码不会向外输出任何东西，就是undefined。在TS中还支持以下这种写法：
 
 ```typescript
-let unusable:void = undefinde;
+let unusable:number = undefined;
 ```
 
 这也从侧面证明了void类型就是JavaScript中的undefined。
@@ -295,15 +307,20 @@ interface Person {
   age: number;
 }
 
+const fn:Ifn = () => {}
+
 const Renekton:Person = {
   id: 1,
-  age: 26,
+  age: 26
 }
+
 
 Person.id = 2;
 ```
 
 TypeScript的核心原则之一是对值所具有的结构进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。说的简单点，接口就是对对象的一种内容的约束，对象要实现接口中定义的所有内容。
+
+`类型擦除`
 
 我们看一下Person接口，它定义了id、username、age三个属性，并且id是只读的（不可更改）number类型的值，username是可缺省的string类型的值，age是必要的number类型的值。所以我们声明了一个Renekton对象，实现了Person接口。id和age是必要的，username为缺省项。Person.id = 2;对只读属性id做了更改，程序出现报错。
 
@@ -355,7 +372,7 @@ interface Person {
   readonly id: number;
   username?: string;
   age: number;
-  [proName: string]: any;
+  [proName: string]: unknown;
 }
 
 const Renekton:Person = {
@@ -564,12 +581,12 @@ TS的类型断言主要是针对联合类型。下面我们举例说明：
 ```typescript
 // 强制的类型断言
 
-// 利用泛型
+// 利用泛型(不建议)
 function getLength(value: string | number):number {
   if((<string>value).length) {
     return (<string>value).length;
   }else {
-    return value.toString().length;
+    return value.toString().length as unkonwn as ;
   }
 }
 
@@ -643,25 +660,49 @@ class Queue {
 
 ```typescript
 class Queue {
-  private data: number[] = [];
+  private data: number[] | string[] | IxxxType[] = [];
   push =  (item: number):number => {
     return this.data.push(item);
   }
   pop = ():number | undefined => this.data.shift();
 }
 
-const queue = new QueueNumber();
+const queue = new Queue();
 
 queue.push(0);
 queue.push('1'); // Error: 不能推入一个 `string` 类型，只能是 `number` 类型
 ```
+
+但是如果现在还有一个需求，我想每个出队入队元素的都是字符串，那按照上述的方法我们不得不再次创建一个类，然后给`data、push、pop`一个`string`，这样当然可以满足需求，那么如果需求再次增加，希望出队入队的是`boolean、element....`，我去你大爷，这怎么玩儿？
+
+**从需求中我们可以得知，出队入队的类型不一定（也就是可变的），那么按照编程的一般规律来说，我们会封装不变的，可变的部分会以参数的形式存在。**
+
+也就是说，可变的类型由调用者决定——这就是泛型的意义。
+
+Talk is cheap，show me the code
+
+```typescript
+class Queue<T> {
+  private data: T[] = [];
+  push =  (item: T):T => {
+    return this.data.push(item);
+  }
+  pop = ():T | undefined => this.data.shift();
+}
+
+const queueString = new Queue<string>();
+const queueNumber = new Queue<number>();
+
+```
+
+**完美收官~~~~**
 
 另外我们还见过一个例子，一个reverse函数，现在在这个函数里添加函数参数与函数返回值的约束：
 
 ```typescript
 function reverse<T>(items: T[]): T[] {
   const data:T[] = [];
-  for(let i = 0; i < items.length; i++) {
+  for(let i = items.length - 1; i >= 0; i--) {
     data.push();
   }
   return data;
@@ -673,7 +714,7 @@ const reverse_arr = reverse<number>([1,2,3]);
 我们也可以为成员函数添加泛型：
 
 ```typescript
-class Utility {
+class Utility<T> {
   reverse<T>(items: T[]):T[] {
     const data:T[] = [];
     for(let i = items.length - 1; i >= 0; i--) {
@@ -688,7 +729,7 @@ class Utility {
 
 ### II、泛型的使用姿势
 
-TS的泛型是一个难点，也是前端开发者学习TS的痛点，每次一遇到泛型一下字就不好了。。。但是泛型的应用是很广泛的，Vuex和Redux都大量的使用了泛型。
+TS的泛型是一个难点，也是前端开发者学习TS的痛点，每次一遇到泛型一下子就不好了。。。但是泛型的应用是很广泛的，Vuex`（Vuex对于TS的支持很垃圾）`和Redux都大量的使用了泛型。
 
 泛型是解决类、接口、方法的复用性，以及对不确定的数据类型的支持。
 
@@ -763,6 +804,8 @@ class BookmarksService2<T extends Bookmark = Bookmark> {
 
 接口在开发SDK和写NodeJS的时候尤为重要，SOLID的设计原则都是interface先行。
 
+nestjs
+
 ```typescript
 interface IPriceData {
   id: number;
@@ -785,6 +828,14 @@ function getPriceData() {
 getPriceData().then(function(data) {
   console.log(data[0].m);
 })
+
+lib.dom.d.ts
+
+interface Window {
+  xxx: type
+}
+
+window.xxx
 ```
 
 **Interface和Type的区别：**
@@ -800,6 +851,7 @@ getPriceData().then(function(data) {
 **Interface的使用场景：**
 
 + 有关于后台的api接口，前端更愿意使用interface。
++ QuickType
 + 第三方开发的SDK，比如说Vue。
 + 正常的开发任务用type更方便一些。
 
@@ -807,7 +859,54 @@ getPriceData().then(function(data) {
 
 ## 十、TypeScript装饰器
 
+随着TypeScript和ES6里引入了类，在一些场景下我们需要额外的特性来支持标注或修改类及其成员。 装饰器（Decorators）为我们在类的声明及成员上通过元编程语法添加标注提供了一种方式。
 
+NestJS  路由注入  装饰器
+
+如果想使用TS装饰器，那么需要在`tsconfig.json`中做具体的配置
+
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true
+  }
+}
+```
+
+常见的装饰器有: `类装饰器`、`属性装饰器`、`方法装饰器`、`参数装饰器`
+
+啥也不说了，直接上代码：
+
+```typescript
+function sealed(target) {
+
+    // do something with "target" ...
+  console.log(target)
+  
+  
+  
+}
+
+@sealed
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+```
+
+这里的target是Greeter的构造函数。
+
+**装饰器具体的应用场景：**
+
+装饰器的灵魂作用就是两个字 `"注入"`，装饰者模式（Decorator Pattern）也称为装饰器模式，在不改变对象自身的基础上，动态增加额外的职责。属于结构型模式的一种。
+
+**使用装饰者模式的优点：把对象核心职责和要装饰的功能分开了。**非侵入式的行为修改。有利于`关注点分离`。
 
 ## 十一、细数 TS 中那些奇怪的符号
 
@@ -815,12 +914,12 @@ getPriceData().then(function(data) {
 + ?. 运算符，可选链。
 + ?? 控制合并运算符
 + ?: 可选属性
-+ & 运算符：将多个类型合并成一个类型
++ & 运算符：将多个类型合并成一个类型    `逆变   协变`
 + | 分隔符，在 TypeScript 中联合类型（Union Types）表示取值可以为多种类型中的一种，联合类型使用 `|` 分隔每个类型。
 + _ 数字分割符，正如数值分隔符 ECMAScript 提案中所概述的那样。对于一个数字字面量，你现在可以通过把一个下划线作为它们之间的分隔符来分组数字。
 + `<Type>` 语法
 + @XXX 装饰器
-+ #xxx 私有字段
++ #xxx 私有字段  实验性特性
 
 
 
@@ -955,7 +1054,7 @@ console.log(textEl!.value);
 
 
 
-## 十三、TypeScript其他基础
+## 十三、TypeScript基础知识图谱
 
 TS基础知识入门图谱：
 
@@ -967,3 +1066,4 @@ TS基础知识入门图谱：
 + [TS中文文档](https://typescript.bootcss.com/)
 
 **建议读英文文档，笔者英文不好读的是中文文档。**
+
