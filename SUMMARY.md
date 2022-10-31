@@ -74,3 +74,8 @@
     * [深度剖析函数柯里化——JavaScript版本](chapter18/section1.md)
     * [深度剖析实现symbol polyfill](chapter18/section2.md)
     * [深度剖析实现Promise](chapter18/section3.md)
+* [第十九卷·前端进阶](chapter19/README.md)
+    * [私仓（一）](chapter19/section1.md)
+    * [私仓（二）](chapter19/section2.md)
+* [第二十卷·React组件库从0到1手摸手](chapter19/README.md)
+    * 
