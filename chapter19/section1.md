@@ -318,9 +318,41 @@ $ node ./components/index
 + ignoreChanges：publish的忽略文件
 + message：publish的提示语
 
+配置好之后我们执行下面这条命令，进行发包：
 
+```bash
+$ lerna publish from-package
+```
 
+Lerna-cli会在此时会检测你packages下的包有多少个，然后询问你是否发包，输入`Y`成功。发布成功之后我们可以看一下`localhost:4873`
 
+<img src="../assets/images/chapter19/07.png" alt="" style="zoom:50%;" />
+
+可以明确看到，两个包已经被我们发到私仓上去了！
+
+> **注意：**
+>
+> 我们在执行`lerna publish`之前，最好是先执行一下：
+>
+> ```bash
+> $ npm login
+> 
+> $ npm whoami
+> ```
+>
+> 这两条命令，来检查一下我们当前的登录状态和登录用户。
+>
+> pnpm发的包怎么移除？执行以下命令
+>
+> ```bash
+> $ pnpm unpublish packageName
+> ```
+>
+> 
+
+## 四、总结
+
+我们简单的说了一下关于私仓发包的问题，下一篇文章将会结合TS进行私仓的搭建。
 
 
 
